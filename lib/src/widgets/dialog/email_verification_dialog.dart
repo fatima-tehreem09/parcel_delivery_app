@@ -5,7 +5,12 @@ import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class EmailVerificationDialog extends StatelessWidget {
-  const EmailVerificationDialog({super.key});
+  const EmailVerificationDialog({
+    super.key,
+    this.isVerificationLink = false,
+  });
+
+  final bool isVerificationLink;
 
   Future<bool> show(BuildContext context) async {
     return await showDialog<bool>(
@@ -20,7 +25,7 @@ class EmailVerificationDialog extends StatelessWidget {
     return BaseDialog(
       children: [
         OnestText(
-          'Email Verification',
+          isVerificationLink ? 'Verification Link' : 'Email Verification',
           size: 24,
           fontWeight: FontWeight.w700,
           color: AppColors.primaryBlack,
