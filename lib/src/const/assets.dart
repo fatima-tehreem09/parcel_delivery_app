@@ -10,4 +10,6 @@ class AppAssets {
   static const userIcon = '${iconPath}user-icon.svg';
   static const driverIcon = '${iconPath}driver-icon.svg';
   static const forwardColoredIcon = '${iconPath}forward-colored-icon.svg';
+  static const yellowTruckIcon = '${iconPath}yellow-truck-icon.svg';
+  static const redCancelIcon = '${iconPath}red-cancel-icon.svg';
 }

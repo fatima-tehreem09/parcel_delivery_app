@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/views/sign_in/views/sign_in.dart';
+import '../features/notification/views/notification.dart';
 import '../features/user_type.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
@@ -14,7 +15,7 @@ final routerConfigProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: UserType.path,
+      initialLocation: NotificationView.path,
       routes: [
         GoRoute(
           path: UserType.path,
@@ -40,6 +41,11 @@ final routerConfigProvider = Provider<GoRouter>(
           path: UpdatePassword.path,
           name: UpdatePassword.name,
           builder: UpdatePassword.builder,
+        ),
+        GoRoute(
+          path: NotificationView.path,
+          name: NotificationView.name,
+          builder: NotificationView.builder,
         ),
         //   StatefulShellRoute.indexedStack(
         //     builder: (BuildContext context, GoRouterState state,
