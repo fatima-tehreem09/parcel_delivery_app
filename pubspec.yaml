@@ -61,18 +61,7 @@ flutter:
     - assets/images/
     - assets/icons/
 
-  fonts:
-    - family: GeneralSans
-      fonts:
-        - asset: fonts/GeneralSans-Bold.otf
-        - asset: fonts/GeneralSans-Medium.otf
-        - asset: fonts/GeneralSans-Regular.otf
-    - family: Inter
-      fonts:
-        - asset: fonts/Inter-Medium.ttf
-        - asset: fonts/Inter-Bold.ttf
-        - asset: fonts/Inter-Regular.ttf
-        - asset: fonts/Inter-SemiBold.ttf
+
 
 flutter_native_splash:
   color: "#FFFFFF"

@@ -7,4 +7,5 @@ class AppColors {
   static const primaryScaffoldBg = Color(0xffF8F8FA);
   static const primaryWhite = Color(0xffFFFFFF);
   static const primaryButtonDisableOverlay = Color(0xffE5E7EB);
+  static const lightBlack = Color(0xff15171C);
 }
