@@ -20,18 +20,19 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
         ),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        visualDensity: VisualDensity.compact,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        minimumSize: Size.zero,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        minimumSize: const Size(double.infinity, 52),
         elevation: 0.0,
         overlayColor: Colors.transparent,
       ),
       onPressed: onPressed,
-      child: OnestText(
-        text,
-        size: 16,
-        fontWeight: FontWeight.w600,
-        color: AppColors.primaryWhite,
+      child: Center(
+        child: OnestText(
+          text,
+          size: 16,
+          fontWeight: FontWeight.w600,
+          color: AppColors.primaryWhite,
+        ),
       ),
     );
   }

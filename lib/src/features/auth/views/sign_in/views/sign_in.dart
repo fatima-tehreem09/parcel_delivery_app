@@ -1,0 +1,113 @@
+import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
+import 'package:abiola_along_client_app/src/features/auth/widgets/auth_layout.dart';
+import 'package:abiola_along_client_app/src/features/auth/widgets/field_heading.dart';
+import 'package:abiola_along_client_app/src/widgets/app_textfield.dart';
+import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:reusables/mixins/form_state_mixin.dart';
+
+import '../../../../../const/colors.dart';
+import '../../../../../widgets/primary_button.dart';
+
+class SignIn extends ConsumerStatefulWidget {
+  const SignIn.builder(
+    BuildContext context,
+    GoRouterState state, {
+    super.key,
+  });
+
+  static const path = '/sign_in';
+  static const name = 'SignIn';
+
+  @override
+  ConsumerState createState() => _SignUpState();
+}
+
+class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  /// TODO: Add validators to fields
+  @override
+  Widget build(BuildContext context) {
+    return AuthLayout(
+      heading: "Sign In",
+      formChildren: [
+        const FieldHeading(
+          text: "Email",
+        ),
+        AppTextField(
+          textEditingController: _emailController,
+          hint: "Email Address",
+          keyboardType: TextInputType.emailAddress,
+          textInputAction: TextInputAction.go,
+        ),
+        const FieldHeading(text: "Password"),
+        AppPasswordField(
+          textEditingController: _passwordController,
+        ),
+        10.heightBox,
+        Align(
+          alignment: Alignment.bottomRight,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              overlayColor: Colors.transparent,
+              visualDensity: VisualDensity.compact,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+            ),
+            onPressed: () {},
+            child: OnestText(
+              "Forgot Password?",
+              color: Color(0xff6B7280),
+              size: 14,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+        50.heightBox,
+        PrimaryButton(onPressed: () {}, text: "Sign In"),
+        50.heightBox,
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Text.rich(
+            TextSpan(
+              text: "Don’t have an account? ",
+              style: GoogleFonts.onest(
+                color: AppColors.hintDarkGrey,
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+              ),
+              children: [
+                TextSpan(
+                  text: "Sign Up",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      context.pushNamed(SignUp.name);
+                    },
+                  style: GoogleFonts.onest(
+                    color: AppColors.lightBlack,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

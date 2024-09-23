@@ -1,10 +1,7 @@
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../const/assets.dart';
 
 class AppTextField extends StatefulWidget {
   const AppTextField({
@@ -73,7 +70,7 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     InputBorder getBorder(Color color) {
       return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(100),
         borderSide: BorderSide(
           color: color,
           width: 1,
@@ -177,7 +174,7 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
   Widget build(BuildContext context) {
     InputBorder getBorder(Color color) {
       return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(100),
         borderSide: BorderSide(
           color: color,
           width: 1,
@@ -215,13 +212,10 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
       scrollPadding: const EdgeInsets.all(180),
       decoration: InputDecoration(
         suffixIcon: GestureDetector(
-          child: SvgPicture.asset(
-            colorFilter: ColorFilter.mode(
-              !_show ? AppColors.primaryBlack : AppColors.primaryBlue,
-              BlendMode.srcIn,
-            ),
-            AppAssets.passwordIcon,
-            fit: BoxFit.scaleDown,
+          child: Icon(
+            color: AppColors.primaryBlue,
+            _show ? Icons.visibility_off_sharp : Icons.visibility_sharp,
+            size: 24,
           ),
           onTap: () => setState(
             () => _show = !_show,

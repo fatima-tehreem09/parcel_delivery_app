@@ -1,6 +1,7 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,9 +35,25 @@ class UserType extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _getTile("User", AppAssets.userIcon),
+            _getTile(
+              "User",
+              AppAssets.userIcon,
+              () {
+                context.pushNamed(SignUp.name, queryParameters: {
+                  'isDriver': 'false',
+                });
+              },
+            ),
             20.heightBox,
-            _getTile("Driver", AppAssets.driverIcon),
+            _getTile(
+              "Driver",
+              AppAssets.driverIcon,
+              () {
+                context.pushNamed(SignUp.name, queryParameters: {
+                  'isDriver': 'true',
+                });
+              },
+            ),
             const Spacer(),
           ],
         ),
@@ -44,8 +61,9 @@ class UserType extends StatelessWidget {
     );
   }
 
-  Widget _getTile(String title, String iconPath) {
+  Widget _getTile(String title, String iconPath, VoidCallback onTap) {
     return ListTile(
+      onTap: onTap,
       contentPadding: const EdgeInsets.all(14),
       style: ListTileStyle.drawer,
       shape: RoundedRectangleBorder(

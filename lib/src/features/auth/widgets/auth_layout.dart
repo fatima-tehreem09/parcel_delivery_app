@@ -28,14 +28,26 @@ class AuthLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      body: Column(
-        children: [
-          Image.asset(AppAssets.logo),
-          30.heightBox,
-          _heading(heading),
-          50.heightBox,
-          ...formChildren,
-        ],
+      body: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(
+            20, MediaQuery.paddingOf(context).top + 14.0, 20, 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Image.asset(
+                AppAssets.logo,
+                width: 78,
+                fit: BoxFit.cover,
+              ),
+            ),
+            30.heightBox,
+            _heading(heading),
+            30.heightBox,
+            ...formChildren,
+          ],
+        ),
       ),
     );
   }

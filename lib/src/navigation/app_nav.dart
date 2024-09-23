@@ -1,7 +1,9 @@
+import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/auth/views/sign_in/views/sign_in.dart';
 import '../features/user_type.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
@@ -17,16 +19,16 @@ final routerConfigProvider = Provider<GoRouter>(
           name: UserType.name,
           builder: UserType.builder,
         ),
-        //   GoRoute(
-        //     path: SignUp.path,
-        //     name: SignUp.name,
-        //     builder: SignUp.builder,
-        //   ),
-        //   GoRoute(
-        //     path: SignIn.path,
-        //     name: SignIn.name,
-        //     builder: SignIn.builder,
-        //   ),
+        GoRoute(
+          path: SignUp.path,
+          name: SignUp.name,
+          builder: SignUp.builder,
+        ),
+        GoRoute(
+          path: SignIn.path,
+          name: SignIn.name,
+          builder: SignIn.builder,
+        ),
         //   StatefulShellRoute.indexedStack(
         //     builder: (BuildContext context, GoRouterState state,
         //         StatefulNavigationShell navigationShell) {
