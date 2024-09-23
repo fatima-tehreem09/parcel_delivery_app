@@ -1,13 +1,16 @@
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/forget_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
+import 'package:abiola_along_client_app/src/features/bottom_nav_bar/views/bottom_nav_bar.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/views/sign_in/views/sign_in.dart';
+import '../features/home/views/home.dart';
 import '../features/notification/views/notification.dart';
+import '../features/tag/views/tag.dart';
 import '../features/user_type.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
@@ -16,7 +19,7 @@ final routerConfigProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: ProfileView.path,
+      initialLocation: UserType.path,
       routes: [
         GoRoute(
           path: UserType.path,
@@ -43,95 +46,85 @@ final routerConfigProvider = Provider<GoRouter>(
           name: UpdatePassword.name,
           builder: UpdatePassword.builder,
         ),
-        GoRoute(
-          path: ProfileView.path,
-          name: ProfileView.name,
-          builder: ProfileView.builder,
+        StatefulShellRoute.indexedStack(
+          builder: (BuildContext context, GoRouterState state,
+              StatefulNavigationShell navigationShell) {
+            return NavigationView(
+              navigationShell: navigationShell,
+            );
+          },
+          branches: <StatefulShellBranch>[
+            StatefulShellBranch(
+              initialLocation: Home.path,
+              routes: <RouteBase>[
+                GoRoute(
+                  path: Home.path,
+                  name: Home.name,
+                  builder: Home.builder,
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: Tag.path,
+                  name: Tag.name,
+                  builder: Tag.builder,
+                )
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: NotificationView.path,
+                  name: NotificationView.name,
+                  builder: NotificationView.builder,
+                )
+              ],
+            ),
+            StatefulShellBranch(
+              routes: <RouteBase>[
+                GoRoute(
+                  path: ProfileView.path,
+                  name: ProfileView.name,
+                  builder: ProfileView.builder,
+                  // routes: [
+                  //   GoRoute(
+                  //     parentNavigatorKey: _navigatorKey,
+                  //     path: Notifications.path,
+                  //     name: Notifications.name,
+                  //     builder: Notifications.builder,
+                  //   ),
+                  //   GoRoute(
+                  //     path: UpdateProfile.path,
+                  //     name: UpdateProfile.name,
+                  //     builder: UpdateProfile.builder,
+                  //     parentNavigatorKey: _navigatorKey,
+                  //   ),
+                  //   GoRoute(
+                  //     path: ChangePassword.path,
+                  //     name: ChangePassword.name,
+                  //     builder: ChangePassword.builder,
+                  //     parentNavigatorKey: _navigatorKey,
+                  //   ),
+                  //   GoRoute(
+                  //     parentNavigatorKey: _navigatorKey,
+                  //     path: TermsConditions.path,
+                  //     name: TermsConditions.name,
+                  //     builder: TermsConditions.builder,
+                  //   ),
+                  //   GoRoute(
+                  //     parentNavigatorKey: _navigatorKey,
+                  //     path: PrivacyPolicy.path,
+                  //     name: PrivacyPolicy.name,
+                  //     builder: PrivacyPolicy.builder,
+                  //   ),
+                  // ],
+                )
+              ],
+            ),
+          ],
         ),
-        GoRoute(
-          path: NotificationView.path,
-          name: NotificationView.name,
-          builder: NotificationView.builder,
-        ),
-        //   StatefulShellRoute.indexedStack(
-        //     builder: (BuildContext context, GoRouterState state,
-        //         StatefulNavigationShell navigationShell) {
-        //       return DashboardView(
-        //         navigationShell: navigationShell,
-        //       );
-        //     },
-        //     branches: <StatefulShellBranch>[
-        //       StatefulShellBranch(
-        //         initialLocation: Home.path,
-        //         routes: <RouteBase>[
-        //           GoRoute(
-        //             path: Home.path,
-        //             name: Home.name,
-        //             builder: (context, state) => const Home(),
-        //           ),
-        //         ],
-        //       ),
-        //       StatefulShellBranch(
-        //         routes: <RouteBase>[
-        //           GoRoute(
-        //             path: Transactions.path,
-        //             name: Transactions.name,
-        //             builder: (context, state) => const Transactions(),
-        //           )
-        //         ],
-        //       ),
-        //       StatefulShellBranch(
-        //         routes: <RouteBase>[
-        //           GoRoute(
-        //             path: Gift.path,
-        //             name: Gift.name,
-        //             builder: (context, state) => const Gift(),
-        //           )
-        //         ],
-        //       ),
-        //       StatefulShellBranch(
-        //         routes: <RouteBase>[
-        //           GoRoute(
-        //             path: Profile.path,
-        //             name: Profile.name,
-        //             builder: (context, state) => const Profile(),
-        //             routes: [
-        //               GoRoute(
-        //                 parentNavigatorKey: _navigatorKey,
-        //                 path: Notifications.path,
-        //                 name: Notifications.name,
-        //                 builder: Notifications.builder,
-        //               ),
-        //               GoRoute(
-        //                 path: UpdateProfile.path,
-        //                 name: UpdateProfile.name,
-        //                 builder: UpdateProfile.builder,
-        //                 parentNavigatorKey: _navigatorKey,
-        //               ),
-        //               GoRoute(
-        //                 path: ChangePassword.path,
-        //                 name: ChangePassword.name,
-        //                 builder: ChangePassword.builder,
-        //                 parentNavigatorKey: _navigatorKey,
-        //               ),
-        //               GoRoute(
-        //                 parentNavigatorKey: _navigatorKey,
-        //                 path: TermsConditions.path,
-        //                 name: TermsConditions.name,
-        //                 builder: TermsConditions.builder,
-        //               ),
-        //               GoRoute(
-        //                 parentNavigatorKey: _navigatorKey,
-        //                 path: PrivacyPolicy.path,
-        //                 name: PrivacyPolicy.name,
-        //                 builder: PrivacyPolicy.builder,
-        //               ),
-        //             ],
-        //           )
-        //         ],
-        //       ),
-        //     ],
-        //   ),
       ],
       // redirect: (_, state) {
       //   final fullPath = state.fullPath;

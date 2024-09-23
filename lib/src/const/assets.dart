@@ -17,4 +17,12 @@ class AppAssets {
   static const logoutIcon = '${iconPath}logout-icon.svg';
   static const walletIcon = '${iconPath}wallet-icon.svg';
   static const profileSwitch = '${iconPath}profile-switch-icon.svg';
+  static const homeGrey = '${iconPath}home-grey.svg';
+  static const tagGrey = '${iconPath}tag-grey.svg';
+  static const notificationGrey = '${iconPath}notification-grey.svg';
+  static const profileGrey = '${iconPath}profile-grey.svg';
+  static const profileBlack = '${iconPath}profile-black.svg';
+  static const homeBlack = '${iconPath}home-black.svg';
+  static const notificationBlack = '${iconPath}notification-black.svg';
+  static const tagBlack = '${iconPath}tag-black.svg';
 }

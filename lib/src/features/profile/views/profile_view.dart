@@ -18,7 +18,7 @@ class ProfileView extends ConsumerStatefulWidget {
     super.key,
   }) : isDriver = state.uri.queryParameters['isDriver'] == 'false';
 
-  static const path = "/profile";
+  static const path = "/profile_path";
   static const name = "profile";
 
   final bool isDriver;

@@ -3,6 +3,7 @@ import 'package:abiola_along_client_app/src/features/auth/views/forget_password/
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/auth_layout.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/field_heading.dart';
+import 'package:abiola_along_client_app/src/features/home/views/home.dart';
 import 'package:abiola_along_client_app/src/widgets/app_textfield.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/gestures.dart';
@@ -81,7 +82,11 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
           ),
         ),
         50.heightBox,
-        PrimaryButton(onPressed: () {}, text: "Sign In"),
+        PrimaryButton(
+            onPressed: () {
+              context.pushNamed(Home.name);
+            },
+            text: "Sign In"),
         50.heightBox,
         Align(
           alignment: Alignment.bottomCenter,
