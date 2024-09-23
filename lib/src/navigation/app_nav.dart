@@ -1,6 +1,7 @@
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/forget_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +16,7 @@ final routerConfigProvider = Provider<GoRouter>(
   (ref) {
     return GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: NotificationView.path,
+      initialLocation: ProfileView.path,
       routes: [
         GoRoute(
           path: UserType.path,
@@ -41,6 +42,11 @@ final routerConfigProvider = Provider<GoRouter>(
           path: UpdatePassword.path,
           name: UpdatePassword.name,
           builder: UpdatePassword.builder,
+        ),
+        GoRoute(
+          path: ProfileView.path,
+          name: ProfileView.name,
+          builder: ProfileView.builder,
         ),
         GoRoute(
           path: NotificationView.path,

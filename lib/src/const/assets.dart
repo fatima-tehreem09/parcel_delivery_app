@@ -12,4 +12,9 @@ class AppAssets {
   static const forwardColoredIcon = '${iconPath}forward-colored-icon.svg';
   static const yellowTruckIcon = '${iconPath}yellow-truck-icon.svg';
   static const redCancelIcon = '${iconPath}red-cancel-icon.svg';
+  static const changePasswordIcon = '${iconPath}change-password-icon.svg';
+  static const helpSupportIcon = '${iconPath}help-support-icon.svg';
+  static const logoutIcon = '${iconPath}logout-icon.svg';
+  static const walletIcon = '${iconPath}wallet-icon.svg';
+  static const profileSwitch = '${iconPath}profile-switch-icon.svg';
 }
