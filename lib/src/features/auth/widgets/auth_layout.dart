@@ -42,7 +42,7 @@ class AuthLayout extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            30.heightBox,
+            25.heightBox,
             _heading(heading),
             30.heightBox,
             ...formChildren,

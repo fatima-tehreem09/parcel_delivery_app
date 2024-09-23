@@ -1,4 +1,5 @@
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/forget_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/auth_layout.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/field_heading.dart';
@@ -68,7 +69,9 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               minimumSize: Size.zero,
             ),
-            onPressed: () {},
+            onPressed: () {
+              context.pushNamed(ForgetPassword.name);
+            },
             child: OnestText(
               "Forgot Password?",
               color: Color(0xff6B7280),

@@ -1,3 +1,5 @@
+import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/forget_password.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +30,16 @@ final routerConfigProvider = Provider<GoRouter>(
           path: SignIn.path,
           name: SignIn.name,
           builder: SignIn.builder,
+        ),
+        GoRoute(
+          path: ForgetPassword.path,
+          name: ForgetPassword.name,
+          builder: ForgetPassword.builder,
+        ),
+        GoRoute(
+          path: UpdatePassword.path,
+          name: UpdatePassword.name,
+          builder: UpdatePassword.builder,
         ),
         //   StatefulShellRoute.indexedStack(
         //     builder: (BuildContext context, GoRouterState state,
