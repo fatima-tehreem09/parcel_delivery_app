@@ -1,16 +1,22 @@
+import 'package:abiola_along_client_app/src/core/local/shared_preferences_provider.dart';
 import 'package:abiola_along_client_app/src/navigation/app_nav.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class App extends ConsumerStatefulWidget {
   const App({super.key});
 
   static Future<void> init() async {
-    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-    // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+    WidgetsFlutterBinding.ensureInitialized();
+    final pref = await SharedPreferences.getInstance();
+    // await pref.clear();
     runApp(
       ProviderScope(
-        child: App(),
+        overrides: [
+          preferencesProvider.overrideWithValue(pref),
+        ],
+        child: const App(),
       ),
     );
   }

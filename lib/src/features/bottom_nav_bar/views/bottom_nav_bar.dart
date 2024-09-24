@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/local/local_storage_repository.dart';
+
 class NavigationView extends ConsumerStatefulWidget {
   const NavigationView({
     super.key,
@@ -19,62 +21,86 @@ class NavigationView extends ConsumerStatefulWidget {
 class _DashboardViewState extends ConsumerState<NavigationView> {
   @override
   Widget build(BuildContext context) {
+    final _ = ref.watch(localDataProvider);
+    final bool isDriver = _.getUserType == "driver";
+    print("isDriver: $isDriver  ");
+
     return Scaffold(
+      backgroundColor: AppColors.primaryWhite,
       extendBody: true,
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: SizedBox(
-        height: 80,
-        child: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.homeGrey,
-                fit: BoxFit.scaleDown,
+      bottomNavigationBar: Container(
+        color: AppColors.primaryWhite,
+        height: 85,
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            highlightColor: Colors.transparent,
+          ),
+          child: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  AppAssets.homeGrey,
+                  fit: BoxFit.scaleDown,
+                ),
+                activeIcon: SvgPicture.asset(
+                  AppAssets.homeBlack,
+                  fit: BoxFit.scaleDown,
+                ),
+                label: '',
               ),
-              activeIcon: SvgPicture.asset(
-                AppAssets.homeBlack,
-                fit: BoxFit.scaleDown,
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  AppAssets.tagGrey,
+                  fit: BoxFit.scaleDown,
+                ),
+                activeIcon: SvgPicture.asset(
+                  AppAssets.tagBlack,
+                  fit: BoxFit.scaleDown,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.tagGrey,
-                fit: BoxFit.scaleDown,
+              if (!isDriver)
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    AppAssets.addTag,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  activeIcon: SvgPicture.asset(
+                    AppAssets.addTag,
+                    fit: BoxFit.scaleDown,
+                  ),
+                  label: '',
+                ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  AppAssets.notificationGrey,
+                  fit: BoxFit.scaleDown,
+                ),
+                activeIcon: SvgPicture.asset(
+                  AppAssets.notificationBlack,
+                  fit: BoxFit.scaleDown,
+                ),
+                label: '',
               ),
-              activeIcon: SvgPicture.asset(
-                AppAssets.tagBlack,
-                fit: BoxFit.scaleDown,
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  AppAssets.profileGrey,
+                  fit: BoxFit.scaleDown,
+                ),
+                activeIcon: SvgPicture.asset(
+                  AppAssets.profileBlack,
+                  fit: BoxFit.scaleDown,
+                ),
+                label: '',
               ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.notificationGrey,
-                fit: BoxFit.scaleDown,
-              ),
-              activeIcon: SvgPicture.asset(
-                AppAssets.notificationBlack,
-                fit: BoxFit.scaleDown,
-              ),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.profileGrey,
-                fit: BoxFit.scaleDown,
-              ),
-              activeIcon: SvgPicture.asset(
-                AppAssets.profileBlack,
-                fit: BoxFit.scaleDown,
-              ),
-              label: '',
-            ),
-          ],
-          onTap: (index) => _onTap(context, index),
-          currentIndex: widget.navigationShell.currentIndex,
-          backgroundColor: AppColors.primaryBlue,
-          elevation: 0.0,
+            ],
+            onTap: (index) => _onTap(context, index),
+            currentIndex: widget.navigationShell.currentIndex,
+            backgroundColor: AppColors.primaryWhite,
+            elevation: 0.0,
+            type: BottomNavigationBarType.fixed,
+          ),
         ),
       ),
       body: widget.navigationShell,

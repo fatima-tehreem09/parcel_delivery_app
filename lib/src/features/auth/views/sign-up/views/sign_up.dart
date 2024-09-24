@@ -1,3 +1,4 @@
+import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign_in/views/sign_in.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/auth_layout.dart';
@@ -16,16 +17,14 @@ import 'package:reusables/mixins/form_state_mixin.dart';
 import '../../../../../const/colors.dart';
 
 class SignUp extends ConsumerStatefulWidget {
-  SignUp.builder(
+  const SignUp.builder(
     BuildContext context,
     GoRouterState state, {
     super.key,
-  }) : isDriver = state.uri.queryParameters['isDriver'] == 'false';
+  });
 
   static const path = '/sign_up';
   static const name = 'SignUp';
-
-  final bool isDriver;
 
   @override
   ConsumerState createState() => _SignUpState();
@@ -54,6 +53,9 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
+    final _ = ref.watch(localDataProvider);
+    final bool isDriver = _.getUserType == "driver";
+    print("isDriver: $isDriver  ");
     return AuthLayout(
       heading: "Sign Up",
       formChildren: [
@@ -76,7 +78,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
           ],
           textInputAction: TextInputAction.go,
         ),
-        if (!widget.isDriver) ...[
+        if (isDriver) ...[
           const FieldHeading(text: "Vehicle Model"),
           AppTextField(
             textEditingController: _vehicleModelController,
@@ -125,7 +127,9 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
                   text: "Sign In",
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      context.pushNamed(SignIn.name);
+                      context.pushNamed(
+                        SignIn.name,
+                      );
                     },
                   style: GoogleFonts.onest(
                     color: AppColors.lightBlack,

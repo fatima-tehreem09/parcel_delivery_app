@@ -14,6 +14,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:reusables/mixins/form_state_mixin.dart';
 
 import '../../../../../const/colors.dart';
+import '../../../../../core/local/local_storage_repository.dart';
 import '../../../../../widgets/primary_button.dart';
 
 class SignIn extends ConsumerStatefulWidget {
@@ -44,6 +45,9 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
+    final _ = ref.watch(localDataProvider);
+    final bool isDriver = _.getUserType == "driver";
+    print("isDriver: $isDriver  ");
     return AuthLayout(
       heading: "Sign In",
       formChildren: [

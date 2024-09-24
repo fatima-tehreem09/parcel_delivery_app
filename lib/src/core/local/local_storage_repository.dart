@@ -31,6 +31,10 @@ abstract interface class SharedPrefService {
   Future<void> saveUserId(String userId);
 
   String get getUserId;
+
+  Future<void> saveUserType(String userType);
+
+  String get getUserType;
 }
 
 final localDataProvider = Provider<SharedPrefService>(

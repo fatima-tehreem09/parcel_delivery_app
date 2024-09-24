@@ -1,3 +1,5 @@
+import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
+import 'package:abiola_along_client_app/src/features/add_tag.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/forget_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
@@ -17,6 +19,8 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 
 final routerConfigProvider = Provider<GoRouter>(
   (ref) {
+    ref.watch(localDataProvider).getUserType;
+    final bool driver = ref.watch(localDataProvider).getUserType == "driver";
     return GoRouter(
       navigatorKey: _navigatorKey,
       initialLocation: UserType.path,
@@ -73,6 +77,16 @@ final routerConfigProvider = Provider<GoRouter>(
                 )
               ],
             ),
+            if (!driver)
+              StatefulShellBranch(
+                routes: <RouteBase>[
+                  GoRoute(
+                    path: AddTag.path,
+                    name: AddTag.name,
+                    builder: AddTag.builder,
+                  )
+                ],
+              ),
             StatefulShellBranch(
               routes: <RouteBase>[
                 GoRoute(

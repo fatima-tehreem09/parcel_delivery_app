@@ -1,13 +1,15 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
+import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class UserType extends StatelessWidget {
+class UserType extends ConsumerWidget {
   const UserType.builder(
     BuildContext context,
     GoRouterState state, {
@@ -18,7 +20,7 @@ class UserType extends StatelessWidget {
   static const name = 'UserType';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
       body: Padding(
@@ -39,9 +41,8 @@ class UserType extends StatelessWidget {
               "User",
               AppAssets.userIcon,
               () {
-                context.pushNamed(SignUp.name, queryParameters: {
-                  'isDriver': 'false',
-                });
+                ref.read(localDataProvider).saveUserType("user");
+                context.pushNamed(SignUp.name);
               },
             ),
             20.heightBox,
@@ -49,9 +50,9 @@ class UserType extends StatelessWidget {
               "Driver",
               AppAssets.driverIcon,
               () {
-                context.pushNamed(SignUp.name, queryParameters: {
-                  'isDriver': 'true',
-                });
+                ref.read(localDataProvider).saveUserType("driver");
+
+                context.pushNamed(SignUp.name);
               },
             ),
             const Spacer(),

@@ -11,27 +11,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/local/local_storage_repository.dart';
+
 class ProfileView extends ConsumerStatefulWidget {
-  ProfileView.builder(
+  const ProfileView.builder(
     BuildContext context,
     GoRouterState state, {
     super.key,
-  }) : isDriver = state.uri.queryParameters['isDriver'] == 'false';
+  });
 
   static const path = "/profile_path";
   static const name = "profile";
-
-  final bool isDriver;
 
   @override
   ConsumerState createState() => _ProfileViewState();
 }
 
 class _ProfileViewState extends ConsumerState<ProfileView> {
-  bool get isDriver => widget.isDriver;
-
   @override
   Widget build(BuildContext context) {
+    final _ = ref.watch(localDataProvider);
+    final bool isDriver = _.getUserType == "driver";
+    print("isDriver: $isDriver  ");
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
       appBar: const AppBarWidget(
@@ -42,7 +43,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
           children: [
-            if (!isDriver)
+            if (isDriver)
               PrimaryWhiteContainer(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Row(
@@ -118,13 +119,13 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
               child: Column(
                 children: [
                   PropertyTile(
-                    isDriver: !isDriver,
+                    isDriver: isDriver,
                     assetName: AppAssets.profileSwitch,
                     actionHeading: "Profile Switch",
                     showSubHeading: true,
                     actionSubHeading: "Switch to Driver Profile",
                   ),
-                  if (isDriver) ...[
+                  if (!isDriver) ...[
                     25.heightBox,
                     const PropertyTile(
                       assetName: AppAssets.walletIcon,
@@ -135,7 +136,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                   ],
                   25.heightBox,
                   PropertyTile(
-                    isDriver: !isDriver,
+                    isDriver: isDriver,
                     assetName: AppAssets.changePasswordIcon,
                     actionHeading: "Change Password",
                     showSubHeading: true,
@@ -149,13 +150,13 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
               child: Column(
                 children: [
                   PropertyTile(
-                    isDriver: !isDriver,
+                    isDriver: isDriver,
                     assetName: AppAssets.helpSupportIcon,
                     actionHeading: "Help & Support",
                   ),
                   25.heightBox,
                   PropertyTile(
-                    isDriver: !isDriver,
+                    isDriver: isDriver,
                     assetName: AppAssets.logoutIcon,
                     actionHeading: "Logout",
                   ),

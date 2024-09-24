@@ -13,6 +13,7 @@ class SharedPreferencesService implements SharedPrefService {
   final name = 'name-user';
   final userRole = 'role-user';
   final idKey = 'id-user';
+  final userTypeKey = 'type-user';
 
   @override
   String? get accessToken => sharedPreferences.getString(_tokenKey);
@@ -68,4 +69,12 @@ class SharedPreferencesService implements SharedPrefService {
 
   @override
   String get getHeaderCookie => sharedPreferences.getString(_cookiesKey) ?? "";
+
+  @override
+  String get getUserType => sharedPreferences.getString(userTypeKey) ?? "";
+
+  @override
+  Future<void> saveUserType(String userType) {
+    return sharedPreferences.setString(userTypeKey, userType);
+  }
 }
