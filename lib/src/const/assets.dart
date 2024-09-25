@@ -31,5 +31,7 @@ class AppAssets {
   static const distanceIcon = '${iconPath}distance-icon.svg';
   static const weightIcon = '${iconPath}weight-icon.svg';
   static const locationIcon = '${iconPath}location.svg';
+  static const locationGreyIcon = '${iconPath}location-grey.svg';
   static const searchIcon = '${iconPath}search-icon.svg';
+  static const dropDownIcon = '${iconPath}drop-down-icon.svg';
 }

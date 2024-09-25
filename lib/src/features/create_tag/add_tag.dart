@@ -1,4 +1,5 @@
 import 'package:abiola_along_client_app/src/const/colors.dart';
+import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,6 +23,7 @@ class _AddTagState extends ConsumerState<AddTag> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
+      appBar: AppBarWidget(title: "Create Tag"),
       body: Center(
         child: Text("data"),
       ),
