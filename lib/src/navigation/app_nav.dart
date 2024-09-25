@@ -4,6 +4,9 @@ import 'package:abiola_along_client_app/src/features/auth/views/forget_password/
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:abiola_along_client_app/src/features/bottom_nav_bar/views/bottom_nav_bar.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/add_payment_method.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/edit_profile.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -102,38 +105,38 @@ final routerConfigProvider = Provider<GoRouter>(
                   path: ProfileView.path,
                   name: ProfileView.name,
                   builder: ProfileView.builder,
-                  // routes: [
-                  //   GoRoute(
-                  //     parentNavigatorKey: _navigatorKey,
-                  //     path: Notifications.path,
-                  //     name: Notifications.name,
-                  //     builder: Notifications.builder,
-                  //   ),
-                  //   GoRoute(
-                  //     path: UpdateProfile.path,
-                  //     name: UpdateProfile.name,
-                  //     builder: UpdateProfile.builder,
-                  //     parentNavigatorKey: _navigatorKey,
-                  //   ),
-                  //   GoRoute(
-                  //     path: ChangePassword.path,
-                  //     name: ChangePassword.name,
-                  //     builder: ChangePassword.builder,
-                  //     parentNavigatorKey: _navigatorKey,
-                  //   ),
-                  //   GoRoute(
-                  //     parentNavigatorKey: _navigatorKey,
-                  //     path: TermsConditions.path,
-                  //     name: TermsConditions.name,
-                  //     builder: TermsConditions.builder,
-                  //   ),
-                  //   GoRoute(
-                  //     parentNavigatorKey: _navigatorKey,
-                  //     path: PrivacyPolicy.path,
-                  //     name: PrivacyPolicy.name,
-                  //     builder: PrivacyPolicy.builder,
-                  //   ),
-                  // ],
+                  routes: [
+                    GoRoute(
+                      parentNavigatorKey: _navigatorKey,
+                      path: EditProfile.path,
+                      name: EditProfile.name,
+                      builder: EditProfile.builder,
+                    ),
+                    GoRoute(
+                      path: PaymentMethod.path,
+                      name: PaymentMethod.name,
+                      builder: PaymentMethod.builder,
+                      parentNavigatorKey: _navigatorKey,
+                    ),
+                    GoRoute(
+                      path: AddPaymentMethod.path,
+                      name: AddPaymentMethod.name,
+                      builder: AddPaymentMethod.builder,
+                      parentNavigatorKey: _navigatorKey,
+                    ),
+                    // GoRoute(
+                    //   parentNavigatorKey: _navigatorKey,
+                    //   path: TermsConditions.path,
+                    //   name: TermsConditions.name,
+                    //   builder: TermsConditions.builder,
+                    // ),
+                    // GoRoute(
+                    //   parentNavigatorKey: _navigatorKey,
+                    //   path: PrivacyPolicy.path,
+                    //   name: PrivacyPolicy.name,
+                    //   builder: PrivacyPolicy.builder,
+                    // ),
+                  ],
                 )
               ],
             ),

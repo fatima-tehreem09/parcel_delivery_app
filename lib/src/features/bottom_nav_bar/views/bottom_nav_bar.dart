@@ -31,7 +31,7 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
       extendBodyBehindAppBar: true,
       bottomNavigationBar: Container(
         color: AppColors.primaryWhite,
-        height: 85,
+        height: isDriver ? 80 : 85,
         child: Theme(
           data: Theme.of(context).copyWith(
             highlightColor: Colors.transparent,

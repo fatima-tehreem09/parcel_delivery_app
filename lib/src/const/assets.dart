@@ -26,4 +26,5 @@ class AppAssets {
   static const notificationBlack = '${iconPath}notification-black.svg';
   static const tagBlack = '${iconPath}tag-black.svg';
   static const addTag = '${iconPath}add-tag.svg';
+  static const editIcon = '${iconPath}edit-icon.svg';
 }

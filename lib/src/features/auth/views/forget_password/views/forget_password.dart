@@ -54,7 +54,7 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
             onPressed: () {
               /// Just to show dialog and navigation, will be changed to actual logic later
               Future.delayed(const Duration(seconds: 1), () {
-                const EmailVerificationDialog(isVerificationLink: true)
+                const VerificationDialog(isVerificationLink: true)
                     .show(context);
                 context.pushNamed(UpdatePassword.name);
               });

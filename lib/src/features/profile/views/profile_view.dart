@@ -1,6 +1,8 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/edit_profile.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/widgets/edit_button.dart';
 import 'package:abiola_along_client_app/src/features/profile/widgets/property_tile.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
@@ -109,7 +111,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     ),
                   ),
                   EditButton(
-                    onPressed: () {},
+                    onPressed: () => context.pushNamed(EditProfile.name),
                   ),
                 ],
               ),
@@ -124,10 +126,12 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     actionHeading: "Profile Switch",
                     showSubHeading: true,
                     actionSubHeading: "Switch to Driver Profile",
+                    onTap: () {},
                   ),
                   if (!isDriver) ...[
                     25.heightBox,
-                    const PropertyTile(
+                    PropertyTile(
+                      onTap: () => context.pushNamed(PaymentMethod.name),
                       assetName: AppAssets.walletIcon,
                       actionHeading: "Payment Management",
                       showSubHeading: true,
@@ -141,6 +145,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     actionHeading: "Change Password",
                     showSubHeading: true,
                     actionSubHeading: "Change your password",
+                    onTap: () {},
                   ),
                 ],
               ),
@@ -153,12 +158,14 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     isDriver: isDriver,
                     assetName: AppAssets.helpSupportIcon,
                     actionHeading: "Help & Support",
+                    onTap: () {},
                   ),
                   25.heightBox,
                   PropertyTile(
                     isDriver: isDriver,
                     assetName: AppAssets.logoutIcon,
                     actionHeading: "Logout",
+                    onTap: () {},
                   ),
                 ],
               ),
