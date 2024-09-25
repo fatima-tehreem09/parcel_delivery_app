@@ -65,6 +65,7 @@ class AppTextField extends StatefulWidget {
   final TextInputAction textInputAction;
   final bool bigField;
   final bool isSearchField;
+
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }

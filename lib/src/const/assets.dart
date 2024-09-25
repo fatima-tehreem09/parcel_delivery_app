@@ -34,4 +34,5 @@ class AppAssets {
   static const locationGreyIcon = '${iconPath}location-grey.svg';
   static const searchIcon = '${iconPath}search-icon.svg';
   static const dropDownIcon = '${iconPath}drop-down-icon.svg';
+  static const uploadIcon = '${iconPath}upload-icon.svg';
 }

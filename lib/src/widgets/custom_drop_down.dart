@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../const/assets.dart';
+import '../const/colors.dart';
 
 class CustomDropdown<T> extends StatefulWidget {
   const CustomDropdown({
@@ -15,7 +16,6 @@ class CustomDropdown<T> extends StatefulWidget {
     this.builder,
     this.label,
     this.hint,
-    this.suffixIcon,
     this.onSaved,
   });
 
@@ -27,7 +27,6 @@ class CustomDropdown<T> extends StatefulWidget {
   final String? errorMessage;
   final String? hint;
   final String? label;
-  final Widget? suffixIcon;
   final T? value;
 
   @override
@@ -45,8 +44,28 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
 
   @override
   Widget build(BuildContext context) {
-    final decoration = Theme.of(context).inputDecorationTheme;
-    final theme = Theme.of(context);
+    InputBorder getBorder(Color color) {
+      return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(100),
+        borderSide: BorderSide(
+          color: color,
+          width: 1,
+        ),
+      );
+    }
+
+    TextStyle getStyle(Color color) {
+      return GoogleFonts.onest(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+        decoration: TextDecoration.none,
+        decorationStyle: TextDecorationStyle.solid,
+        decorationColor: Colors.transparent,
+        decorationThickness: 0,
+      );
+    }
+
     return DropdownButtonFormField<T>(
       isExpanded: true,
       value: _value,
@@ -54,61 +73,42 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
       onSaved: widget.onSaved,
       validator: widget.validator,
       padding: EdgeInsets.zero,
-      // iconSize: 0,
-      icon: Padding(
-        padding: const EdgeInsets.only(right: 20),
-        child: SvgPicture.asset(AppAssets.dropDownIcon),
-      ),
-
-      style: theme.primaryTextTheme.titleSmall,
+      icon: SizedBox(),
+      style: getStyle(AppColors.primaryBlack),
       hint: Align(
         alignment: Alignment.centerLeft,
         child: Text(
           widget.hint ?? '',
-          style: decoration.hintStyle,
+          style: getStyle(AppColors.hintDarkGrey),
         ),
       ),
       decoration: InputDecoration(
         isDense: true,
-
-        // prefix: widget.prefix == null
-        //     ? const SizedBox()
-        //     : Text(
-        //   widget.prefix!,
-        //   style: GoogleFonts.lato(
-        //     color: Colors.black,
-        //     fontWeight: FontWeight.w500,
-        //     fontSize: 21,
-        //   ),
-        // ),
-        // suffixIcon: widget.suffixIcon,
-        filled: decoration.filled,
-        // suffixIcon: widget.suffixIcon,
-        fillColor: decoration.fillColor,
-        border: decoration.border,
-        // counterText: widget.counterText,
-        enabledBorder: decoration.enabledBorder,
-        focusedBorder: decoration.focusedBorder,
-        labelText: widget.label,
-        // hintText: widget.hint,
-        contentPadding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
-        // hintStyle: decoration.hintStyle,
-        suffixIconColor: decoration.suffixIconColor,
-        iconColor: decoration.iconColor,
-        labelStyle: GoogleFonts.poppins(
-          color: Colors.black.withOpacity(0.4),
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
+        suffixIcon: SvgPicture.asset(
+          AppAssets.dropDownIcon,
+          fit: BoxFit.scaleDown,
         ),
+        filled: true,
+        fillColor: AppColors.primaryWhite,
+        border: getBorder(AppColors.primaryWhite),
+        enabledBorder: getBorder(AppColors.primaryWhite),
+        focusedBorder: getBorder(AppColors.primaryBlue),
+        labelText: widget.label,
+        hintText: widget.hint,
+        contentPadding:
+            const EdgeInsets.only(left: 20, top: 16, bottom: 18, right: 20),
+        hintStyle: getStyle(AppColors.hintDarkGrey),
       ),
-
+      dropdownColor: AppColors.primaryWhite,
+      elevation: 0,
+      borderRadius: BorderRadius.circular(20),
       items: widget.dynamicValues
           .map(
             (e) => DropdownMenuItem(
               value: e,
               child: Text(
                 widget.builder != null ? widget.builder!(e) : e.toString(),
-                style: theme.primaryTextTheme.titleSmall,
+                style: getStyle(AppColors.lightBlack),
               ),
             ),
           )

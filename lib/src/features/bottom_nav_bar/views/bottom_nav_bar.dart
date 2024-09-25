@@ -27,8 +27,8 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
 
     return Scaffold(
       backgroundColor: AppColors.primaryWhite,
-      extendBody: true,
-      extendBodyBehindAppBar: true,
+      // extendBody: true,
+      // extendBodyBehindAppBar: true,
       bottomNavigationBar: Container(
         color: AppColors.primaryWhite,
         height: isDriver ? 80 : 85,
