@@ -6,6 +6,7 @@ import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/si
 import 'package:abiola_along_client_app/src/features/bottom_nav_bar/views/bottom_nav_bar.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/add_payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/edit_profile.dart';
+import 'package:abiola_along_client_app/src/features/profile/views/help_support.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
@@ -124,12 +125,12 @@ final routerConfigProvider = Provider<GoRouter>(
                       builder: AddPaymentMethod.builder,
                       parentNavigatorKey: _navigatorKey,
                     ),
-                    // GoRoute(
-                    //   parentNavigatorKey: _navigatorKey,
-                    //   path: TermsConditions.path,
-                    //   name: TermsConditions.name,
-                    //   builder: TermsConditions.builder,
-                    // ),
+                    GoRoute(
+                      parentNavigatorKey: _navigatorKey,
+                      path: HelpSupport.path,
+                      name: HelpSupport.name,
+                      builder: HelpSupport.builder,
+                    ),
                     // GoRoute(
                     //   parentNavigatorKey: _navigatorKey,
                     //   path: PrivacyPolicy.path,

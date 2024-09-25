@@ -14,6 +14,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/local/local_storage_repository.dart';
+import 'help_support.dart';
 
 class ProfileView extends ConsumerStatefulWidget {
   const ProfileView.builder(
@@ -42,7 +43,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
         isHome: true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           children: [
             if (isDriver)
@@ -158,7 +159,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     isDriver: isDriver,
                     assetName: AppAssets.helpSupportIcon,
                     actionHeading: "Help & Support",
-                    onTap: () {},
+                    onTap: () => context.pushNamed(HelpSupport.name),
                   ),
                   25.heightBox,
                   PropertyTile(

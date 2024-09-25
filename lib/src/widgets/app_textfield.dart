@@ -32,6 +32,7 @@ class AppTextField extends StatefulWidget {
     this.onChanged,
     this.inputFormatters,
     this.textInputAction = TextInputAction.done,
+    this.bigField = false,
   });
 
   // final bool obscure;
@@ -60,7 +61,7 @@ class AppTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Key? textKey;
   final TextInputAction textInputAction;
-
+  final bool bigField;
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
@@ -70,7 +71,7 @@ class _AppTextFieldState extends State<AppTextField> {
   Widget build(BuildContext context) {
     InputBorder getBorder(Color color) {
       return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(widget.bigField ? 20 : 100),
         borderSide: BorderSide(
           color: color,
           width: 1,

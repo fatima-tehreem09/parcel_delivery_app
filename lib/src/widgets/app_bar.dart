@@ -16,30 +16,34 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0.0,
-      leading: isHome
-          ? null
-          : IconButton(
-              icon: SvgPicture.asset(
-                AppAssets.backArrowIcon,
-                fit: BoxFit.scaleDown,
+    return Container(
+      // color: Colors.brown,
+      padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
+      child: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        leading: isHome
+            ? null
+            : IconButton(
+                icon: SvgPicture.asset(
+                  AppAssets.backArrowIcon,
+                  // fit: BoxFit.scaleDown,
+                ),
+                onPressed: () {
+                  context.pop();
+                },
               ),
-              onPressed: () {
-                context.pop();
-              },
-            ),
-      centerTitle: false,
-      title: OnestText(
-        title,
-        size: 24,
-        fontWeight: FontWeight.w700,
-        color: AppColors.primaryBlack,
+        centerTitle: false,
+        title: OnestText(
+          title,
+          size: 24,
+          fontWeight: FontWeight.w700,
+          color: AppColors.primaryBlack,
+        ),
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56.0);
+  Size get preferredSize => const Size.fromHeight(70.0);
 }
