@@ -6,6 +6,7 @@ import 'package:abiola_along_client_app/src/features/profile/views/payment_metho
 import 'package:abiola_along_client_app/src/features/profile/widgets/edit_button.dart';
 import 'package:abiola_along_client_app/src/features/profile/widgets/property_tile.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
+import 'package:abiola_along_client_app/src/widgets/dialog/log_out.dart';
 import 'package:abiola_along_client_app/src/widgets/inter_text.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_white_container.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
@@ -166,7 +167,9 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     isDriver: isDriver,
                     assetName: AppAssets.logoutIcon,
                     actionHeading: "Logout",
-                    onTap: () {},
+                    onTap: () {
+                      SignOutDialog().show(context);
+                    },
                   ),
                 ],
               ),

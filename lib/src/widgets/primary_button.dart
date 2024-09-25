@@ -7,9 +7,11 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.onPressed,
     required this.text,
+    this.isLogout = false,
   });
   final VoidCallback onPressed;
   final String text;
+  final bool isLogout;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +19,11 @@ class PrimaryButton extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor: AppColors.primaryBlue,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(isLogout ? 20 : 100),
         ),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: EdgeInsets.symmetric(
+            horizontal: isLogout ? 10 : 20, vertical: isLogout ? 10 : 16),
         minimumSize: const Size(double.infinity, 52),
         elevation: 0.0,
         overlayColor: Colors.transparent,
