@@ -1,3 +1,4 @@
+import 'package:abiola_along_client_app/src/modals/card_modal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'local_storage_repository.dart';
@@ -76,5 +77,15 @@ class SharedPreferencesService implements SharedPrefService {
   @override
   Future<void> saveUserType(String userType) {
     return sharedPreferences.setString(userTypeKey, userType);
+  }
+
+  @override
+  CardModal? get getUserCard {
+    return null;
+  }
+
+  @override
+  Future<void> saveUserCard(CardModal modal) {
+    return Future.value();
   }
 }

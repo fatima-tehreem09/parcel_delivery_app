@@ -1,39 +1,41 @@
+import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTextField extends StatefulWidget {
-  const AppTextField({
-    super.key,
-    this.hint,
-    this.label,
-    this.validator,
-    this.keyboardType,
-    this.textEditingController,
-    this.suffixIcon,
-    this.readOnly,
-    this.prefix,
-    this.obscureText,
-    this.onCountryTap,
-    BuildContext? context,
-    this.onTap,
-    this.textFieldUpperText,
-    this.onSaved,
-    this.onFieldSubmitted,
-    this.autofillHints,
-    this.initialValue,
-    this.maxLines,
-    this.maxLength,
-    this.counterText,
-    this.hintStyle,
-    this.borderRadius,
-    this.textKey,
-    this.onChanged,
-    this.inputFormatters,
-    this.textInputAction = TextInputAction.done,
-    this.bigField = false,
-  });
+  const AppTextField(
+      {super.key,
+      this.hint,
+      this.label,
+      this.validator,
+      this.keyboardType,
+      this.textEditingController,
+      this.suffixIcon,
+      this.readOnly,
+      this.prefix,
+      this.obscureText,
+      this.onCountryTap,
+      BuildContext? context,
+      this.onTap,
+      this.textFieldUpperText,
+      this.onSaved,
+      this.onFieldSubmitted,
+      this.autofillHints,
+      this.initialValue,
+      this.maxLines,
+      this.maxLength,
+      this.counterText,
+      this.hintStyle,
+      this.borderRadius,
+      this.textKey,
+      this.onChanged,
+      this.inputFormatters,
+      this.textInputAction = TextInputAction.done,
+      this.bigField = false,
+      this.isSearchField = false});
 
   // final bool obscure;
   final String? hint;
@@ -62,6 +64,7 @@ class AppTextField extends StatefulWidget {
   final Key? textKey;
   final TextInputAction textInputAction;
   final bool bigField;
+  final bool isSearchField;
   @override
   State<AppTextField> createState() => _AppTextFieldState();
 }
@@ -110,14 +113,23 @@ class _AppTextFieldState extends State<AppTextField> {
       maxLines: widget.maxLines,
       maxLength: widget.maxLength,
       decoration: InputDecoration(
+        prefixIcon: widget.isSearchField
+            ? SvgPicture.asset(
+                AppAssets.searchIcon,
+                fit: BoxFit.scaleDown,
+              )
+            : widget.prefix,
         prefix: widget.prefix,
         suffixIcon: widget.suffixIcon,
         filled: true,
         fillColor: AppColors.primaryWhite,
-        border: getBorder(AppColors.primaryWhite),
+        border: getBorder(
+            widget.isSearchField ? Color(0xffF9FAFB) : AppColors.primaryWhite),
         counterText: widget.counterText,
-        enabledBorder: getBorder(AppColors.primaryWhite),
-        focusedBorder: getBorder(AppColors.primaryBlue),
+        enabledBorder: getBorder(
+            widget.isSearchField ? Color(0xffF9FAFB) : AppColors.primaryWhite),
+        focusedBorder: getBorder(
+            widget.isSearchField ? Color(0xffF9FAFB) : AppColors.primaryBlue),
         labelText: widget.label,
         hintText: widget.hint,
         contentPadding:

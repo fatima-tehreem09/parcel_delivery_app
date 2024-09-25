@@ -27,4 +27,9 @@ class AppAssets {
   static const tagBlack = '${iconPath}tag-black.svg';
   static const addTag = '${iconPath}add-tag.svg';
   static const editIcon = '${iconPath}edit-icon.svg';
+  static const calendarIcon = '${iconPath}calendar-icon.svg';
+  static const distanceIcon = '${iconPath}distance-icon.svg';
+  static const weightIcon = '${iconPath}weight-icon.svg';
+  static const locationIcon = '${iconPath}location.svg';
+  static const searchIcon = '${iconPath}search-icon.svg';
 }

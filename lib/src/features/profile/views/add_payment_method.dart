@@ -2,11 +2,13 @@ import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/widgets/dialog/email_verification_dialog.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../const/colors.dart';
 import '../../../core/local/local_storage_repository.dart';
+import '../../../utils/date_picker.dart';
 import '../../../widgets/app_bar.dart';
 import '../../../widgets/app_textfield.dart';
 import '../../auth/widgets/field_heading.dart';
@@ -29,6 +31,8 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
   final TextEditingController _expiryDateController = TextEditingController();
   final TextEditingController _cvvController = TextEditingController();
 
+  DateTime selectedDate = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     final _ = ref.watch(localDataProvider);
@@ -37,7 +41,7 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
       appBar: const AppBarWidget(
-        title: "Payment Management",
+        title: "Payment Method",
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(
@@ -62,7 +66,10 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
             AppTextField(
               textEditingController: _cardNumberController,
               hint: "1234 3234 2388 2372",
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
               textInputAction: TextInputAction.go,
             ),
             const FieldHeading(
@@ -71,7 +78,10 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
             AppTextField(
               textEditingController: _cvvController,
               hint: "225",
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
               textInputAction: TextInputAction.go,
             ),
             const FieldHeading(
@@ -80,7 +90,17 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
             AppTextField(
               textEditingController: _expiryDateController,
               hint: "24/24",
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.datetime,
+              readOnly: true,
+              onTap: () => DatePickerUtil.dateSelection(
+                context,
+                onDateSelected: (date) {
+                  selectedDate = date;
+                  _expiryDateController.text =
+                      "${date.month}/${date.year.toString().substring(2)}";
+                },
+                selectedDate: selectedDate,
+              ),
               textInputAction: TextInputAction.go,
             ),
             50.heightBox,
