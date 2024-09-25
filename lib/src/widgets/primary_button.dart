@@ -8,16 +8,18 @@ class PrimaryButton extends StatelessWidget {
     required this.onPressed,
     required this.text,
     this.isLogout = false,
+    this.isLoading = false,
   });
   final VoidCallback onPressed;
   final String text;
   final bool isLogout;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        backgroundColor: AppColors.primaryBlue,
+        backgroundColor: isLoading ? Color(0xffE5E7EB) : AppColors.primaryBlue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(isLogout ? 20 : 100),
         ),
@@ -28,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
         elevation: 0.0,
         overlayColor: Colors.transparent,
       ),
-      onPressed: onPressed,
+      onPressed: isLoading ? () {} : onPressed,
       child: Center(
         child: OnestText(
           text,

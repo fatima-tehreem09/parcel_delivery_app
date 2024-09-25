@@ -51,6 +51,7 @@ class _ImagePickerSheetState extends ConsumerState<ImagePickerSheet> {
             Transform.scale(
               scale: 0.8,
               child: PrimaryButton(
+                isLoading: false,
                 text: 'Camera',
                 onPressed: () {
                   Navigator.pop(context);
@@ -62,6 +63,7 @@ class _ImagePickerSheetState extends ConsumerState<ImagePickerSheet> {
             Transform.scale(
               scale: 0.8,
               child: PrimaryButton(
+                isLoading: false,
                 text: 'Gallery',
                 onPressed: () {
                   Navigator.pop(context);

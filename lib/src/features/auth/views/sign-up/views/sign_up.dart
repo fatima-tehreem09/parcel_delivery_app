@@ -107,6 +107,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
         ),
         50.heightBox,
         PrimaryButton(
+            isLoading: false,
             onPressed: () {
               const VerificationDialog().show(context);
             },

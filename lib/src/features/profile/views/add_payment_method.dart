@@ -105,6 +105,7 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
             ),
             50.heightBox,
             PrimaryButton(
+                isLoading: false,
                 onPressed: () {
                   VerificationDialog(
                     isPaymentMethodVerification: true,

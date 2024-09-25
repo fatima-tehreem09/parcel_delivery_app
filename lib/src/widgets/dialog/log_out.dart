@@ -65,6 +65,7 @@ class _SignOutDialogState extends ConsumerState<SignOutDialog> {
             ),
             Expanded(
               child: PrimaryButton(
+                isLoading: false,
                 isLogout: true,
                 onPressed: () {
                   ref.read(localDataProvider).clearAllData();

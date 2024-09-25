@@ -63,6 +63,7 @@ class _HelpSupportState extends ConsumerState<HelpSupport> {
             ),
             50.heightBox,
             PrimaryButton(
+              isLoading: false,
               onPressed: () {},
               text: "Submit",
             ),

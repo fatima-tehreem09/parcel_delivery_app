@@ -51,15 +51,16 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
         ),
         50.heightBox,
         PrimaryButton(
-            onPressed: () {
-              /// Just to show dialog and navigation, will be changed to actual logic later
-              Future.delayed(const Duration(seconds: 1), () {
-                const VerificationDialog(isVerificationLink: true)
-                    .show(context);
-                context.pushNamed(UpdatePassword.name);
-              });
-            },
-            text: "Get Link"),
+          onPressed: () {
+            /// Just to show dialog and navigation, will be changed to actual logic later
+            Future.delayed(const Duration(seconds: 1), () {
+              const VerificationDialog(isVerificationLink: true).show(context);
+              context.pushNamed(UpdatePassword.name);
+            });
+          },
+          text: "Get Link",
+          isLoading: false,
+        ),
       ],
     );
   }

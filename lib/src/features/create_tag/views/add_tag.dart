@@ -1,15 +1,18 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
+import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/create_tag/views/create_tag.dart';
 import 'package:abiola_along_client_app/src/features/create_tag/widgets/image_field.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
+import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../widgets/app_textfield.dart';
-import '../../widgets/custom_drop_down.dart';
-import '../auth/widgets/field_heading.dart';
+import '../../../widgets/app_textfield.dart';
+import '../../../widgets/custom_drop_down.dart';
+import '../../auth/widgets/field_heading.dart';
 
 class AddTag extends ConsumerStatefulWidget {
   const AddTag.builder(
@@ -38,11 +41,16 @@ class _AddTagState extends ConsumerState<AddTag> {
 
   String nameOfImage = '';
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(title: "Create Tag"),
+      appBar: AppBarWidget(
+        title: "Create Tag",
+        isHome: true,
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -135,6 +143,14 @@ class _AddTagState extends ConsumerState<AddTag> {
                 nameOfImage = file.path;
               },
               packageImage: nameOfImage,
+            ),
+            50.heightBox,
+            PrimaryButton(
+              isLoading: isLoading,
+              onPressed: () {
+                context.pushNamed(CreateTag.name);
+              },
+              text: "Proceed",
             ),
           ],
         ),

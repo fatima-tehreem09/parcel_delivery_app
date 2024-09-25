@@ -50,7 +50,11 @@ class _SignUpState extends ConsumerState<UpdatePassword> with FormStateMixin {
           textEditingController: _passwordController,
         ),
         50.heightBox,
-        PrimaryButton(onPressed: () {}, text: "Update Password"),
+        PrimaryButton(
+          onPressed: () {},
+          text: "Update Password",
+          isLoading: false,
+        ),
       ],
     );
   }

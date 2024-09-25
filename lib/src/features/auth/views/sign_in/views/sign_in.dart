@@ -87,6 +87,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
         ),
         50.heightBox,
         PrimaryButton(
+            isLoading: false,
             onPressed: () {
               context.pushNamed(Home.name);
             },

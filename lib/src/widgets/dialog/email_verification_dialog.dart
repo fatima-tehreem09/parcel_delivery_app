@@ -11,10 +11,12 @@ class VerificationDialog extends StatelessWidget {
     super.key,
     this.isVerificationLink = false,
     this.isPaymentMethodVerification = false,
+    this.isPaymentSuccessful = false,
   });
 
   final bool isVerificationLink;
   final bool isPaymentMethodVerification;
+  final bool isPaymentSuccessful;
 
   Future<bool> show(BuildContext context) async {
     return await showDialog<bool>(
@@ -28,7 +30,7 @@ class VerificationDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseDialog(
       children: [
-        if (isPaymentMethodVerification) ...[
+        if (isPaymentMethodVerification || isPaymentSuccessful) ...[
           SvgPicture.asset(
             AppAssets.greenTick,
             width: 48,
@@ -37,11 +39,13 @@ class VerificationDialog extends StatelessWidget {
           20.heightBox,
         ],
         OnestText(
-          isPaymentMethodVerification
-              ? 'Payment Method Verified'
-              : isVerificationLink
-                  ? 'Verification Link'
-                  : 'Email Verification',
+          isPaymentSuccessful
+              ? 'Payment Successful'
+              : isPaymentMethodVerification
+                  ? 'Payment Method Verified'
+                  : isVerificationLink
+                      ? 'Verification Link'
+                      : 'Email Verification',
           size: 24,
           fontWeight: FontWeight.w700,
           color: AppColors.primaryBlack,
@@ -49,9 +53,11 @@ class VerificationDialog extends StatelessWidget {
         15.heightBox,
         OnestText(
           textAlign: TextAlign.center,
-          isPaymentMethodVerification
-              ? "Your payment method has been successfully verified. Now you can pay with this card."
-              : "A verification link is shared on your Email. Please check your email for account verification.",
+          isPaymentSuccessful
+              ? "Your delivery request is currently live, and a nearby driver has accepted your request in a while."
+              : isPaymentMethodVerification
+                  ? "Your payment method has been successfully verified. Now you can pay with this card."
+                  : "A verification link is shared on your Email. Please check your email for account verification.",
           size: 16,
           fontWeight: FontWeight.w400,
           color: AppColors.hintDarkGrey,

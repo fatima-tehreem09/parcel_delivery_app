@@ -127,7 +127,8 @@ class _EditProfileState extends ConsumerState<EditProfile> {
               ),
             ],
             50.heightBox,
-            PrimaryButton(onPressed: () {}, text: "Update Profile"),
+            PrimaryButton(
+                isLoading: false, onPressed: () {}, text: "Update Profile"),
           ],
         ),
       ),
