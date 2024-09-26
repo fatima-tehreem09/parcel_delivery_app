@@ -1,5 +1,4 @@
-import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
-import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
+import 'package:abiola_along_client_app/src/features/home/widgets/bottomsheet_tag_data.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,8 +8,6 @@ import '../../../const/colors.dart';
 import '../../../core/local/local_storage_repository.dart';
 import '../../../widgets/app_bar.dart';
 import '../../../widgets/inter_text.dart';
-import '../../../widgets/primary_white_container.dart';
-import '../../tag/views/progress_tag.dart';
 
 class DriverHome extends ConsumerStatefulWidget {
   const DriverHome({super.key});
@@ -51,60 +48,10 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
             InkWell(
               onTap: () {
                 showModalBottomSheet(
-                  showDragHandle: true,
+                  enableDrag: true,
                   context: context,
                   builder: (_) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          topLeft: Radius.circular(20),
-                        ),
-                        color: Color(0xffF8F8FA),
-                      ),
-                      height: 270,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const PrimaryWhiteContainer(
-                              margin: EdgeInsets.only(bottom: 10),
-                              child: Column(
-                                children: [
-                                  getRow(
-                                      text: "Tag", info: "Walnut Workstation"),
-                                  getRow(text: "Dimension", info: "50” X 70”"),
-                                  getRow(text: "Notes", info: "Wooden"),
-                                  getRow(text: "Package Size", info: "20kg"),
-                                  getRow(text: "Delivery Time", info: "Urgent"),
-                                  getRow(
-                                      text: "Sender Point",
-                                      info: "7529 E. Pecan St."),
-                                  getRow(
-                                      text: "Receiver Point",
-                                      info: "7529 E. Pecan St."),
-                                  getRow(
-                                      text: "Total Distance", info: "5.2 km"),
-                                  getRow(text: "Delivery Fare", info: "\$20"),
-                                ],
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(
-                                  height: 200,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
-                                  "https://plus.unsplash.com/premium_vector-1721289859111-870a76649cba?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
-                            ),
-                            30.heightBox,
-                            AppButton(
-                              onPressed: () {},
-                              text: "Accept",
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                    return BottomSheetTagData();
                   },
                 );
               },
