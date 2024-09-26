@@ -1,10 +1,13 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
+import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/tag/widgets/status_tag.dart';
 import 'package:abiola_along_client_app/src/widgets/icon_box.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CourierInfo extends ConsumerWidget {
   const CourierInfo({super.key});
@@ -13,49 +16,130 @@ class CourierInfo extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final _ = ref.watch(localDataProvider).getUserType;
     bool isDriver = _.contains("driver");
+    final __ = ref.watch(localDataProvider);
+    final bool isDelivered = __.getTagProgress == "delivered";
 
     return Column(
       children: [
-        Row(
-          children: [
-            Column(
-              children: [
-                OnestText(
-                  isDriver ? "Call Tag Owner" : "Call a Courier",
-                  size: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xff15171C),
+        if (!isDelivered) ...[
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    OnestText(
+                      isDriver ? "Call Tag Owner" : "Call a Courier",
+                      size: 20,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xff15171C),
+                    ),
+                    OnestText(
+                      "Coffee Packet",
+                      size: 14,
+                      maxLines: 2,
+                      textOverflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.hintDarkGrey,
+                    ),
+                  ],
                 ),
+              ),
+              const IconBox(
+                  color: Color(0xffEFF6FF), icon: AppAssets.messageIcon),
+              10.widthBox,
+              const IconBox(
+                  color: Color(0xffECFDF5), icon: AppAssets.phoneIcon),
+            ],
+          ),
+          const Divider(
+            height: 20,
+            color: Color(0xffE5E7EB),
+          ),
+        ],
+        StatusRow(
+          text: "Status",
+          isStatus: true,
+          statusWidget: StatusTag(
+            text: isDelivered ? "Delivered" : "In Progress",
+            textColor:
+                isDelivered ? const Color(0xff059669) : const Color(0xffF59E0B),
+            boxColor:
+                isDelivered ? const Color(0xffECFDF5) : const Color(0xffFFFBEB),
+          ),
+        ),
+        StatusRow(
+          text: isDelivered ? "Delivered On" : "Pickup Time",
+          desc: isDelivered ? "02:00PM, 20 July 24" : "10:00 AM",
+        ),
+        if (isDelivered && isDriver)
+          StatusRow(
+            text: "Review",
+            desc: " (3.4)",
+            ratingStar: SvgPicture.asset(
+              AppAssets.starIcon,
+              width: 16,
+              height: 16,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class StatusRow extends StatelessWidget {
+  const StatusRow({
+    super.key,
+    required this.text,
+    this.isStatus = false,
+    this.statusWidget = const SizedBox(),
+    this.ratingStar = const SizedBox(),
+    this.desc = "",
+  });
+  final String text;
+  final String desc;
+  final bool isStatus;
+  final Widget statusWidget;
+  final Widget ratingStar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          OnestText(
+            text,
+            fontWeight: FontWeight.w500,
+            size: 16,
+            color: const Color(0xff15171C),
+          ),
+          if (isStatus)
+            statusWidget
+          else
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ratingStar,
                 OnestText(
-                  "#15171C",
-                  size: 14,
+                  desc,
+                  size: 16,
                   fontWeight: FontWeight.w400,
                   color: AppColors.hintDarkGrey,
                 ),
               ],
-            ),
-            IconBox(color: Color(0xffEFF6FF), icon: AppAssets.messageIcon),
-            IconBox(color: Color(0xffECFDF5), icon: AppAssets.phoneIcon),
-          ],
-        ),
-        Divider(
-          color: Color(0xffE5E7EB),
-        ),
-        Row(
-          children: [
-            getText("Status"),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Text getText(String text) {
-    return OnestText(
-      text,
-      fontWeight: FontWeight.w500,
-      size: 16,
-      color: Color(0xff15171C),
+            )
+        ],
+      ),
     );
   }
 }

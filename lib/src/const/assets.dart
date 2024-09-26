@@ -37,4 +37,5 @@ class AppAssets {
   static const uploadIcon = '${iconPath}upload-icon.svg';
   static const messageIcon = '${iconPath}message-icon.svg';
   static const phoneIcon = '${iconPath}phone-icon.svg';
+  static const starIcon = '${iconPath}star.svg';
 }
