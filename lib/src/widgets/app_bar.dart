@@ -13,18 +13,25 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.isHome = false,
     this.isHomeView = false,
+    this.isDriver = false,
+    this.onTap,
   });
   final String title;
   final bool isHome;
   final bool isHomeView;
+  final bool isDriver;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.brown,
+      color: Colors.transparent,
       padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
       child: AppBar(
-        backgroundColor: Colors.transparent,
+        forceMaterialTransparency: isDriver ? true : false,
+        backgroundColor: isDriver
+            ? AppColors.primaryWhite.withOpacity(0.5)
+            : Colors.transparent,
         elevation: 0.0,
         scrolledUnderElevation: 0.0,
         leading: isHome
@@ -68,6 +75,16 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryBlack,
               ),
+        actions: [
+          if (isDriver)
+            GestureDetector(
+              onTap: onTap,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: SvgPicture.asset(AppAssets.targetIcon),
+              ),
+            ),
+        ],
       ),
     );
   }

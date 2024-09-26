@@ -21,14 +21,15 @@ class NavigationView extends ConsumerStatefulWidget {
 class _DashboardViewState extends ConsumerState<NavigationView> {
   @override
   Widget build(BuildContext context) {
+    // ref.refresh(localDataProvider);
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
-    print("isDriver: $isDriver  ");
+    print("isDriver on bbbb"
+        ": $isDriver  ");
 
     return Scaffold(
       backgroundColor: AppColors.primaryWhite,
-      // extendBody: true,
-      // extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: isDriver ? true : false,
       bottomNavigationBar: Container(
         color: AppColors.primaryWhite,
         height: isDriver ? 80 : 85,

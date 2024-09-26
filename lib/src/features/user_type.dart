@@ -51,7 +51,6 @@ class UserType extends ConsumerWidget {
               AppAssets.driverIcon,
               () {
                 ref.read(localDataProvider).saveUserType("driver");
-
                 context.pushNamed(SignUp.name);
               },
             ),

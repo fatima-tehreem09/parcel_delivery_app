@@ -2,8 +2,8 @@ import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
+class AppButton extends StatelessWidget {
+  const AppButton({
     super.key,
     required this.onPressed,
     required this.text,

@@ -1,5 +1,6 @@
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/home/views/driver_home.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/my_tag_widget.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
 import 'package:abiola_along_client_app/src/widgets/app_textfield.dart';
@@ -30,46 +31,50 @@ class _HomeState extends ConsumerState<Home> {
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
-    return Scaffold(
-      backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(
-        isHomeView: true,
-        title: "Home",
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppTextField(
-              isSearchField: true,
-              hint: "Search",
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.search,
+
+    return !isDriver
+        ? Scaffold(
+            backgroundColor: AppColors.primaryScaffoldBg,
+            appBar: AppBarWidget(
+              isDriver: isDriver,
+              isHomeView: true,
+              title: "Home",
             ),
-            20.heightBox,
-            OnestText(
-              "My Tags",
-              size: 24,
-              fontWeight: FontWeight.w700,
-              color: AppColors.primaryBlack,
-            ),
-            20.heightBox,
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) => 10.heightBox,
-                shrinkWrap: true,
-                itemCount: 20,
-                itemBuilder: (index, context) {
-                  return MyTagWidget(
-                    onTap: () {},
-                  );
-                },
+            body: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const AppTextField(
+                    isSearchField: true,
+                    hint: "Search",
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.search,
+                  ),
+                  20.heightBox,
+                  OnestText(
+                    "My Tags",
+                    size: 24,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primaryBlack,
+                  ),
+                  20.heightBox,
+                  Expanded(
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => 10.heightBox,
+                      shrinkWrap: true,
+                      itemCount: 20,
+                      itemBuilder: (index, context) {
+                        return MyTagWidget(
+                          onTap: () {},
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : DriverHome();
   }
 }

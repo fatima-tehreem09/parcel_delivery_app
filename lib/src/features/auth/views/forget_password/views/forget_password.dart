@@ -50,7 +50,7 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
           textInputAction: TextInputAction.go,
         ),
         50.heightBox,
-        PrimaryButton(
+        AppButton(
           onPressed: () {
             /// Just to show dialog and navigation, will be changed to actual logic later
             Future.delayed(const Duration(seconds: 1), () {

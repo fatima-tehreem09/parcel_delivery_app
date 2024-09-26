@@ -63,19 +63,19 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
                 ],
               ),
             ),
-            PrimaryWhiteContainer(
-              margin: const EdgeInsets.only(bottom: 10),
+            const PrimaryWhiteContainer(
+              margin: EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
-                  getRow("Tag", "Walnut Workstation"),
-                  getRow("Dimension", "50” X 70”"),
-                  getRow("Notes", "Wooden"),
-                  getRow("Package Size", "20kg"),
-                  getRow("Delivery Time", "Urgent"),
-                  getRow("Sender Point", "7529 E. Pecan St."),
-                  getRow("Receiver Point", "7529 E. Pecan St."),
-                  getRow("Total Distance", "5.2 km"),
-                  getRow("Delivery Fare", "\$20"),
+                  getRow(text: "Tag", info: "Walnut Workstation"),
+                  getRow(text: "Dimension", info: "50” X 70”"),
+                  getRow(text: "Notes", info: "Wooden"),
+                  getRow(text: "Package Size", info: "20kg"),
+                  getRow(text: "Delivery Time", info: "Urgent"),
+                  getRow(text: "Sender Point", info: "7529 E. Pecan St."),
+                  getRow(text: "Receiver Point", info: "7529 E. Pecan St."),
+                  getRow(text: "Total Distance", info: "5.2 km"),
+                  getRow(text: "Delivery Fare", info: "\$20"),
                 ],
               ),
             ),
@@ -98,7 +98,16 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
     );
   }
 
-  Column getRow(String text, String info) {
+  //
+}
+
+class getRow extends StatelessWidget {
+  const getRow({super.key, required this.text, required this.info});
+  final String text;
+  final String info;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Row(

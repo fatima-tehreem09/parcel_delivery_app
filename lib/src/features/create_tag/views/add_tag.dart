@@ -145,7 +145,7 @@ class _AddTagState extends ConsumerState<AddTag> {
               packageImage: nameOfImage,
             ),
             50.heightBox,
-            PrimaryButton(
+            AppButton(
               isLoading: isLoading,
               onPressed: () {
                 context.pushNamed(CreateTag.name);

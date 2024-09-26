@@ -106,7 +106,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
           textEditingController: _confirmPasswordController,
         ),
         50.heightBox,
-        PrimaryButton(
+        AppButton(
             isLoading: false,
             onPressed: () {
               const VerificationDialog().show(context);

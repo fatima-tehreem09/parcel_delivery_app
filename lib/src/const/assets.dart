@@ -38,5 +38,8 @@ class AppAssets {
   static const messageIcon = '${iconPath}message-icon.svg';
   static const phoneIcon = '${iconPath}phone-icon.svg';
   static const starIcon = '${iconPath}star.svg';
+  static const targetIcon = '${iconPath}target.svg';
   static const starOutlineIcon = '${iconPath}star-outline.svg';
+  static const pinSvg = '${iconPath}pin.svg';
+  static const pinPng = '${imagePath}pin.png';
 }

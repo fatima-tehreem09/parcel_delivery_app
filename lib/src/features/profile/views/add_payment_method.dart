@@ -104,7 +104,7 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
               textInputAction: TextInputAction.go,
             ),
             50.heightBox,
-            PrimaryButton(
+            AppButton(
                 isLoading: false,
                 onPressed: () {
                   VerificationDialog(

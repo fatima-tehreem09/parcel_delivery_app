@@ -64,7 +64,7 @@ class _SignOutDialogState extends ConsumerState<SignOutDialog> {
               ),
             ),
             Expanded(
-              child: PrimaryButton(
+              child: AppButton(
                 isLoading: false,
                 isLogout: true,
                 onPressed: () {

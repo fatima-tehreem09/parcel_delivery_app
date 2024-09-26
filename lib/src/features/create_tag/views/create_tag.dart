@@ -65,7 +65,7 @@ class _CreateTagState extends ConsumerState<CreateTag> {
               desc: "\$2",
             ),
             50.heightBox,
-            PrimaryButton(
+            AppButton(
               onPressed: () {
                 VerificationDialog(
                   isPaymentSuccessful: true,

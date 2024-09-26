@@ -50,7 +50,7 @@ class _ImagePickerSheetState extends ConsumerState<ImagePickerSheet> {
             25.heightBox,
             Transform.scale(
               scale: 0.8,
-              child: PrimaryButton(
+              child: AppButton(
                 isLoading: false,
                 text: 'Camera',
                 onPressed: () {
@@ -62,7 +62,7 @@ class _ImagePickerSheetState extends ConsumerState<ImagePickerSheet> {
             20.heightBox,
             Transform.scale(
               scale: 0.8,
-              child: PrimaryButton(
+              child: AppButton(
                 isLoading: false,
                 text: 'Gallery',
                 onPressed: () {
