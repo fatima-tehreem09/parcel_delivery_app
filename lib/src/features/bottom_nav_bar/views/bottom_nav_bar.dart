@@ -32,7 +32,7 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
       backgroundColor: const Color(0xffF8F8FA),
       extendBodyBehindAppBar: isDriver ? true : false,
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(
           items: [
