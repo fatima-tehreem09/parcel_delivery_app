@@ -1,4 +1,5 @@
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/call_view.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/pickup_dialog.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/sheet_layout.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/tag_delivered_dialog.dart';
@@ -9,11 +10,13 @@ import 'package:abiola_along_client_app/src/widgets/primary_white_container.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../const/assets.dart';
 import '../../../const/colors.dart';
 import '../../../widgets/icon_box.dart';
 import '../../../widgets/text_widget.dart';
+import '../../message_view.dart';
 import '../../tag/widgets/status_tag.dart';
 
 class ReachedPickupSheet extends ConsumerStatefulWidget {
@@ -71,11 +74,17 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
                       ],
                     ),
                   ),
-                  const IconBox(
-                      color: Color(0xffEFF6FF), icon: AppAssets.messageIcon),
+                  GestureDetector(
+                    onTap: () => context.pushNamed(MessageView.name),
+                    child: const IconBox(
+                        color: Color(0xffEFF6FF), icon: AppAssets.messageIcon),
+                  ),
                   10.widthBox,
-                  const IconBox(
-                      color: Color(0xffECFDF5), icon: AppAssets.phoneIcon),
+                  GestureDetector(
+                    onTap: () => context.pushNamed(CallView.name),
+                    child: const IconBox(
+                        color: Color(0xffECFDF5), icon: AppAssets.phoneIcon),
+                  ),
                 ],
               ),
               const Divider(

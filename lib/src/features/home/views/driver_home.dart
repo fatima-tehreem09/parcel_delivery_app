@@ -32,6 +32,12 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
     super.dispose();
   }
 
+  void updateMapCenter(LatLng coordinates) async {
+    final GoogleMapController controller =
+        await _customInfoWindowController.googleMapController!;
+    controller.animateCamera(CameraUpdate.newLatLng(coordinates));
+  }
+
   Set<Marker> _markers = {};
   @override
   Widget build(BuildContext context) {
@@ -81,7 +87,9 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.primaryScaffoldBg,
       appBar: AppBarWidget(
+        location: "SparkoSol",
         onTap: () {
+          updateMapCenter(LatLng(30.201032472218316, 71.50381142698191));
           // ref.read(mapProvider.notifier).updateMapCenter(
           //   LatLng(30.201106652712188, 71.5038758),
           // );

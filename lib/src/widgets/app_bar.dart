@@ -15,13 +15,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.isHomeView = false,
     this.isDriver = false,
     this.onTap,
+    this.location = "xyz",
   });
   final String title;
   final bool isHome;
   final bool isHomeView;
   final bool isDriver;
   final void Function()? onTap;
-
+  final String location;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +63,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   5.heightBox,
                   OnestText(
-                    "Washington DC, USA",
+                    location,
                     size: 16,
                     fontWeight: FontWeight.w700,
                     color: Color(0xff15171C),

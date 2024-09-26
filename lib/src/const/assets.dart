@@ -43,4 +43,6 @@ class AppAssets {
   static const pinSvg = '${iconPath}pin.svg';
   static const pinPng = '${imagePath}pin.png';
   static const dragHandle = '${iconPath}drag-handle.svg';
+  static const callDecline = '${iconPath}call-decline.svg';
+  static const callAccept = '${iconPath}call-accept.svg';
 }

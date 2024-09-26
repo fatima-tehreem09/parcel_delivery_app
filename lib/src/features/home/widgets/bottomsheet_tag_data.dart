@@ -65,18 +65,21 @@ class _BottomSheetTagDataState extends ConsumerState<BottomSheetTagData> {
               "https://plus.unsplash.com/premium_vector-1721289859111-870a76649cba?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
         ),
         30.heightBox,
-        AppButton(
-          onPressed: () {
-            context.pop();
-            showModalBottomSheet(
-              context: context,
-              useRootNavigator: true,
-              builder: (_) {
-                return ReachedPickupSheet();
-              },
-            );
-          },
-          text: "Accept",
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: AppButton(
+            onPressed: () {
+              context.pop();
+              showModalBottomSheet(
+                context: context,
+                useRootNavigator: true,
+                builder: (_) {
+                  return const ReachedPickupSheet();
+                },
+              );
+            },
+            text: "Accept",
+          ),
         ),
       ],
     );

@@ -52,15 +52,16 @@ class _ImageFieldCreateTagState extends ConsumerState<ImageFieldCreateTag> {
                 fit: BoxFit.cover,
               )
             : file != null && file!.path.isNotEmpty
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                ? Stack(
+                    alignment: Alignment.topRight,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.file(
                           File(file!.path),
-                          width: 300,
+                          width: double.infinity,
                           height: 200,
                           fit: BoxFit.cover,
                         ),

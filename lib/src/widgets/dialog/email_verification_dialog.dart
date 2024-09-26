@@ -29,6 +29,7 @@ class VerificationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (isPaymentMethodVerification || isPaymentSuccessful) ...[
           SvgPicture.asset(

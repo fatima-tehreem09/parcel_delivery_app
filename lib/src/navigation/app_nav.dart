@@ -3,8 +3,10 @@ import 'package:abiola_along_client_app/src/features/auth/views/forget_password/
 import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
 import 'package:abiola_along_client_app/src/features/bottom_nav_bar/views/bottom_nav_bar.dart';
+import 'package:abiola_along_client_app/src/features/call_view.dart';
 import 'package:abiola_along_client_app/src/features/create_tag/views/add_tag.dart';
 import 'package:abiola_along_client_app/src/features/home/views/camera.dart';
+import 'package:abiola_along_client_app/src/features/message_view.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/add_payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/edit_profile.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/help_support.dart';
@@ -171,6 +173,18 @@ final routerConfigProvider = Provider<GoRouter>(
               ],
             ),
           ],
+        ),
+        GoRoute(
+          parentNavigatorKey: _navigatorKey,
+          path: CallView.path,
+          name: CallView.name,
+          builder: CallView.builder,
+        ),
+        GoRoute(
+          parentNavigatorKey: _navigatorKey,
+          path: MessageView.path,
+          name: MessageView.name,
+          builder: MessageView.builder,
         ),
       ],
       // redirect: (_, state) {

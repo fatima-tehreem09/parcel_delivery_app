@@ -80,7 +80,7 @@ class _RatingDialogState extends ConsumerState<RatingDialog> {
             context.pop();
           },
           child: OnestText(
-            "Confirm Rating",
+            "Confirm Delivered",
             color: const Color(0xff1364FF),
             fontWeight: FontWeight.w600,
             size: 16,
