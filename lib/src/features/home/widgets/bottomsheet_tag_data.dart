@@ -26,9 +26,12 @@ class _BottomSheetTagDataState extends ConsumerState<BottomSheetTagData> {
     return SheetLayout(
       children: [
         4.heightBox,
-        SvgPicture.asset(
-          AppAssets.dragHandle,
-          fit: BoxFit.scaleDown,
+        Align(
+          alignment: Alignment.topCenter,
+          child: SvgPicture.asset(
+            AppAssets.dragHandle,
+            fit: BoxFit.scaleDown,
+          ),
         ),
         12.heightBox,
         OnestText(

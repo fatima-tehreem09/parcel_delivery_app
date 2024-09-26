@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../views/camera.dart';
+
 class PickupDialog extends ConsumerStatefulWidget {
   const PickupDialog({super.key});
 
@@ -51,6 +53,8 @@ class _RatingDialogState extends ConsumerState<PickupDialog> {
           ),
           onPressed: () {
             context.pop();
+            context.pop();
+            context.pushNamed(CameraPage.name);
           },
           child: OnestText(
             "Take Image",
