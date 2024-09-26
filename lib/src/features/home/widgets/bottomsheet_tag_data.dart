@@ -70,6 +70,7 @@ class _BottomSheetTagDataState extends ConsumerState<BottomSheetTagData> {
             context.pop();
             showModalBottomSheet(
               context: context,
+              useRootNavigator: true,
               builder: (_) {
                 return ReachedPickupSheet();
               },

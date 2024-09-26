@@ -1,6 +1,7 @@
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/pickup_dialog.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/sheet_layout.dart';
+import 'package:abiola_along_client_app/src/features/home/widgets/tag_delivered_dialog.dart';
 import 'package:abiola_along_client_app/src/features/tag/widgets/action_tag_button.dart';
 import 'package:abiola_along_client_app/src/features/tag/widgets/courier_info.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
@@ -16,7 +17,11 @@ import '../../../widgets/text_widget.dart';
 import '../../tag/widgets/status_tag.dart';
 
 class ReachedPickupSheet extends ConsumerStatefulWidget {
-  const ReachedPickupSheet({super.key});
+  const ReachedPickupSheet({
+    super.key,
+    this.isTagDelivered = false,
+  });
+  final bool isTagDelivered;
 
   @override
   ConsumerState createState() => _ReachedPickupSheetState();
@@ -96,9 +101,15 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
         30.heightBox,
         AppButton(
             onPressed: () {
-              PickupDialog().show(context);
+              if (widget.isTagDelivered) {
+                TagDeliveredDialog().show(context);
+              } else {
+                const PickupDialog().show(context);
+              }
             },
-            text: "Reached At Pickup Point"),
+            text: widget.isTagDelivered
+                ? "Tag Delivered"
+                : "Reached At Pickup Point"),
         16.heightBox,
         Padding(
           padding: const EdgeInsets.only(bottom: 20.0),

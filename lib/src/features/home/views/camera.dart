@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:abiola_along_client_app/src/const/colors.dart';
+import 'package:abiola_along_client_app/src/features/home/widgets/reached_pickup_sheet.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +21,7 @@ class CameraPage extends StatefulWidget {
 class _CameraPageState extends State<CameraPage> {
   late CameraController _cameraController;
   bool _isRearCameraSelected = true;
+  XFile? takenPicture;
   final List<CameraDescription>? cameras = [
     const CameraDescription(
         name: "0",
@@ -38,32 +42,28 @@ class _CameraPageState extends State<CameraPage> {
   @override
   void initState() {
     super.initState();
-    initCamera(cameras![0]);
+    initCamera(cameras![1]);
   }
 
-  Future takePicture() async {
+  Future<void> takePicture() async {
     if (!_cameraController.value.isInitialized) {
-      return null;
+      return;
     }
     if (_cameraController.value.isTakingPicture) {
-      return null;
+      return;
     }
     try {
       await _cameraController.setFlashMode(FlashMode.off);
       XFile picture = await _cameraController.takePicture();
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => PreviewPage(
-      //               picture: picture,
-      //             )));
+      setState(() {
+        takenPicture = picture;
+      });
     } on CameraException catch (e) {
-      debugPrint('Error occured while taking picture: $e');
-      return null;
+      debugPrint('Error occurred while taking picture: $e');
     }
   }
 
-  Future initCamera(CameraDescription cameraDescription) async {
+  Future<void> initCamera(CameraDescription cameraDescription) async {
     _cameraController =
         CameraController(cameraDescription, ResolutionPreset.high);
     try {
@@ -82,19 +82,28 @@ class _CameraPageState extends State<CameraPage> {
       backgroundColor: Color(0xffF8F8FA),
       body: Stack(
         children: [
-          (_cameraController.value.isInitialized)
-              ? Expanded(
-                  flex: 2,
-                  child: CameraPreview(
-                    _cameraController,
-                  ),
-                )
-              : Container(
-                  color: Colors.black,
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
+          if (takenPicture != null)
+            Expanded(
+              flex: 2,
+              child: Image.file(
+                File(takenPicture!.path),
+                fit: BoxFit.cover,
+              ),
+            )
+          else if (_cameraController.value.isInitialized)
+            Expanded(
+              flex: 2,
+              child: CameraPreview(
+                _cameraController,
+              ),
+            )
+          else
+            Container(
+              color: Colors.black,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -114,9 +123,10 @@ class _CameraPageState extends State<CameraPage> {
                         color: AppColors.hintDarkGrey,
                       ),
                       onPressed: () {
-                        setState(() =>
-                            _isRearCameraSelected = !_isRearCameraSelected);
-                        initCamera(cameras![_isRearCameraSelected ? 0 : 1]);
+                        setState(() {
+                          takenPicture = null;
+                        });
+                        takePicture();
                       },
                     ),
                   ),
@@ -147,9 +157,13 @@ class _CameraPageState extends State<CameraPage> {
                         color: AppColors.primaryBlue,
                       ),
                       onPressed: () {
-                        setState(() =>
-                            _isRearCameraSelected = !_isRearCameraSelected);
-                        initCamera(cameras![_isRearCameraSelected ? 0 : 1]);
+                        context.pop();
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (_) => ReachedPickupSheet(
+                            isTagDelivered: true,
+                          ),
+                        );
                       },
                     ),
                   ),

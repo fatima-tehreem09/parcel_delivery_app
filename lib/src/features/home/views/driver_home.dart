@@ -50,6 +50,7 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
                 showModalBottomSheet(
                   enableDrag: true,
                   context: context,
+                  useRootNavigator: true,
                   builder: (_) {
                     return BottomSheetTagData();
                   },
