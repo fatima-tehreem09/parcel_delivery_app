@@ -9,6 +9,7 @@ import 'package:abiola_along_client_app/src/features/profile/views/edit_profile.
 import 'package:abiola_along_client_app/src/features/profile/views/help_support.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/profile_view.dart';
+import 'package:abiola_along_client_app/src/features/tag/views/progress_tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -79,6 +80,14 @@ final routerConfigProvider = Provider<GoRouter>(
                   path: Tag.path,
                   name: Tag.name,
                   builder: Tag.builder,
+                  routes: [
+                    GoRoute(
+                      parentNavigatorKey: _navigatorKey,
+                      path: ProgressTag.path,
+                      name: ProgressTag.name,
+                      builder: ProgressTag.builder,
+                    ),
+                  ],
                 )
               ],
             ),
@@ -91,6 +100,7 @@ final routerConfigProvider = Provider<GoRouter>(
                     builder: AddTag.builder,
                     routes: [
                       GoRoute(
+                        parentNavigatorKey: _navigatorKey,
                         path: CreateTag.path,
                         name: CreateTag.name,
                         builder: CreateTag.builder,

@@ -40,6 +40,10 @@ abstract interface class SharedPrefService {
   Future<void> saveUserCard(CardModal modal);
 
   CardModal? get getUserCard;
+
+  Future<void> saveTagProgress(String value);
+
+  String get getTagProgress;
 }
 
 final localDataProvider = Provider<SharedPrefService>(

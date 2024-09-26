@@ -1,6 +1,7 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/widgets/icon_box.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,21 +30,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         leading: isHome
             ? null
             : isHomeView
-                ? Container(
-                    padding: EdgeInsets.all(10),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Color(0xffECFDF5),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        AppAssets.locationIcon,
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                  )
+                ? IconBox(
+                    color: Color(0xffECFDF5), icon: AppAssets.locationIcon)
                 : IconButton(
                     icon: SvgPicture.asset(
                       AppAssets.backArrowIcon,

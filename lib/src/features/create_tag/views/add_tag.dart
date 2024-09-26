@@ -69,7 +69,7 @@ class _AddTagState extends ConsumerState<AddTag> {
               text: "Dimension",
             ),
             AppTextField(
-              textEditingController: _tagNameController,
+              textEditingController: _dimensionController,
               hint: "Width X Height",
               keyboardType: TextInputType.numberWithOptions(),
               textInputAction: TextInputAction.go,
@@ -119,7 +119,7 @@ class _AddTagState extends ConsumerState<AddTag> {
               ),
               textEditingController: _senderPointController,
               hint: "Enter location",
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.go,
             ),
             const FieldHeading(
@@ -132,7 +132,7 @@ class _AddTagState extends ConsumerState<AddTag> {
               ),
               textEditingController: _receiverPointController,
               hint: "Enter location",
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.text,
               textInputAction: TextInputAction.go,
             ),
             const FieldHeading(

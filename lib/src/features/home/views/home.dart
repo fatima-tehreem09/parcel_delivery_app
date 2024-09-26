@@ -61,7 +61,9 @@ class _HomeState extends ConsumerState<Home> {
                 shrinkWrap: true,
                 itemCount: 20,
                 itemBuilder: (index, context) {
-                  return MyTagWidget();
+                  return MyTagWidget(
+                    onTap: () {},
+                  );
                 },
               ),
             ),

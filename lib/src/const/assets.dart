@@ -35,4 +35,6 @@ class AppAssets {
   static const searchIcon = '${iconPath}search-icon.svg';
   static const dropDownIcon = '${iconPath}drop-down-icon.svg';
   static const uploadIcon = '${iconPath}upload-icon.svg';
+  static const messageIcon = '${iconPath}message-icon.svg';
+  static const phoneIcon = '${iconPath}phone-icon.svg';
 }

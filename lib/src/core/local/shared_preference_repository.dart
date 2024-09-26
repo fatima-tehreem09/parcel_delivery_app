@@ -15,6 +15,7 @@ class SharedPreferencesService implements SharedPrefService {
   final userRole = 'role-user';
   final idKey = 'id-user';
   final userTypeKey = 'type-user';
+  final progressTag = 'progress-tag';
 
   @override
   String? get accessToken => sharedPreferences.getString(_tokenKey);
@@ -87,5 +88,13 @@ class SharedPreferencesService implements SharedPrefService {
   @override
   Future<void> saveUserCard(CardModal modal) {
     return Future.value();
+  }
+
+  @override
+  String get getTagProgress => sharedPreferences.getString(progressTag) ?? "";
+
+  @override
+  Future<void> saveTagProgress(String value) {
+    return sharedPreferences.setString(progressTag, value);
   }
 }
