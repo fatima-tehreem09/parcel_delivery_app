@@ -12,6 +12,7 @@ class NavigationView extends ConsumerStatefulWidget {
     super.key,
     required this.navigationShell,
   });
+
   final StatefulNavigationShell navigationShell;
 
   @override
@@ -28,80 +29,77 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
         ": $isDriver  ");
 
     return Scaffold(
-      backgroundColor: AppColors.primaryWhite,
+      backgroundColor: const Color(0xffF8F8FA),
       extendBodyBehindAppBar: isDriver ? true : false,
-      bottomNavigationBar: Container(
-        color: AppColors.primaryWhite,
-        height: isDriver ? 80 : 85,
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            highlightColor: Colors.transparent,
-          ),
-          child: BottomNavigationBar(
-            items: [
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        clipBehavior: Clip.antiAlias,
+        child: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppAssets.homeGrey,
+                fit: BoxFit.scaleDown,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppAssets.homeBlack,
+                fit: BoxFit.scaleDown,
+              ),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppAssets.tagGrey,
+                fit: BoxFit.scaleDown,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppAssets.tagBlack,
+                fit: BoxFit.scaleDown,
+              ),
+              label: '',
+            ),
+            if (!isDriver)
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  AppAssets.homeGrey,
+                  AppAssets.addTag,
                   fit: BoxFit.scaleDown,
                 ),
                 activeIcon: SvgPicture.asset(
-                  AppAssets.homeBlack,
+                  AppAssets.addTag,
                   fit: BoxFit.scaleDown,
                 ),
                 label: '',
               ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.tagGrey,
-                  fit: BoxFit.scaleDown,
-                ),
-                activeIcon: SvgPicture.asset(
-                  AppAssets.tagBlack,
-                  fit: BoxFit.scaleDown,
-                ),
-                label: '',
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppAssets.notificationGrey,
+                fit: BoxFit.scaleDown,
               ),
-              if (!isDriver)
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    AppAssets.addTag,
-                    fit: BoxFit.scaleDown,
-                  ),
-                  activeIcon: SvgPicture.asset(
-                    AppAssets.addTag,
-                    fit: BoxFit.scaleDown,
-                  ),
-                  label: '',
-                ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.notificationGrey,
-                  fit: BoxFit.scaleDown,
-                ),
-                activeIcon: SvgPicture.asset(
-                  AppAssets.notificationBlack,
-                  fit: BoxFit.scaleDown,
-                ),
-                label: '',
+              activeIcon: SvgPicture.asset(
+                AppAssets.notificationBlack,
+                fit: BoxFit.scaleDown,
               ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.profileGrey,
-                  fit: BoxFit.scaleDown,
-                ),
-                activeIcon: SvgPicture.asset(
-                  AppAssets.profileBlack,
-                  fit: BoxFit.scaleDown,
-                ),
-                label: '',
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppAssets.profileGrey,
+                fit: BoxFit.scaleDown,
               ),
-            ],
-            onTap: (index) => _onTap(context, index),
-            currentIndex: widget.navigationShell.currentIndex,
-            backgroundColor: AppColors.primaryWhite,
-            elevation: 0.0,
-            type: BottomNavigationBarType.fixed,
-          ),
+              activeIcon: SvgPicture.asset(
+                AppAssets.profileBlack,
+                fit: BoxFit.scaleDown,
+              ),
+              label: '',
+            ),
+          ],
+          onTap: (index) => _onTap(context, index),
+          currentIndex: widget.navigationShell.currentIndex,
+          backgroundColor: AppColors.primaryWhite,
+          elevation: 0.0,
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
+          type: BottomNavigationBarType.fixed,
         ),
       ),
       body: widget.navigationShell,
