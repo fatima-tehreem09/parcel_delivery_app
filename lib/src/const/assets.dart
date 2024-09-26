@@ -38,4 +38,5 @@ class AppAssets {
   static const messageIcon = '${iconPath}message-icon.svg';
   static const phoneIcon = '${iconPath}phone-icon.svg';
   static const starIcon = '${iconPath}star.svg';
+  static const starOutlineIcon = '${iconPath}star-outline.svg';
 }

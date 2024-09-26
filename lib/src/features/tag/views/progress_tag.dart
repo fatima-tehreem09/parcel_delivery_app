@@ -1,6 +1,9 @@
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
+import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/tag/widgets/action_tag_button.dart';
 import 'package:abiola_along_client_app/src/features/tag/widgets/courier_info.dart';
+import 'package:abiola_along_client_app/src/features/tag/widgets/rating_dialog.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_white_container.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
@@ -24,18 +27,35 @@ class ProgressTag extends ConsumerStatefulWidget {
 
 class _ProgressTagState extends ConsumerState<ProgressTag> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (ref.read(localDataProvider).getTagProgress == "delivered" &&
+          ref.read(localDataProvider).getUserType != "driver") {
+        Future.delayed(
+          const Duration(seconds: 5),
+          () {
+            if (!mounted) return;
+            const RatingDialog().show(context);
+          },
+        );
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final _ = ref.watch(localDataProvider);
     final bool isDelivered = _.getTagProgress == "delivered";
     print("isDelivered: $isDelivered");
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(title: "Tag Details"),
+      appBar: const AppBarWidget(title: "Tag Details"),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
           children: [
-            PrimaryWhiteContainer(
+            const PrimaryWhiteContainer(
               margin: EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
@@ -44,7 +64,7 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
               ),
             ),
             PrimaryWhiteContainer(
-              margin: EdgeInsets.only(bottom: 10),
+              margin: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
                   getRow("Tag", "Walnut Workstation"),
@@ -67,6 +87,11 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
                   fit: BoxFit.cover,
                   "https://plus.unsplash.com/premium_vector-1721289859111-870a76649cba?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
             ),
+            30.heightBox,
+            ActionTagButton(
+              onPressed: () {},
+              text: isDelivered ? "Delete" : "Cancel Tag",
+            ),
           ],
         ),
       ),
@@ -83,7 +108,7 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
               text,
               size: 16,
               fontWeight: FontWeight.w600,
-              color: Color(0xff15171C),
+              color: const Color(0xff15171C),
             ),
             OnestText(
               info,
@@ -93,7 +118,7 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
             ),
           ],
         ),
-        Divider(
+        const Divider(
           height: 22,
           color: Color(
             0xffF3F4F6,

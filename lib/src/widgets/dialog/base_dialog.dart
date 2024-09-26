@@ -7,8 +7,10 @@ class BaseDialog extends StatelessWidget {
   const BaseDialog({
     super.key,
     required this.children,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
   });
   final List<Widget> children;
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class BaseDialog extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: crossAxisAlignment,
               mainAxisSize: MainAxisSize.min,
               children: children,
             ),
