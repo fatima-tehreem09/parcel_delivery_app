@@ -32,7 +32,7 @@ final routerConfigProvider = Provider<GoRouter>(
     final bool driver = ref.watch(localDataProvider).getUserType == "driver";
     return GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: Home.path,
+      initialLocation: UserType.path,
       routes: [
         GoRoute(
           path: UserType.path,

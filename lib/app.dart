@@ -10,7 +10,7 @@ class App extends ConsumerStatefulWidget {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
     final pref = await SharedPreferences.getInstance();
-    // await pref.clear();
+    await pref.clear();
     runApp(
       ProviderScope(
         overrides: [

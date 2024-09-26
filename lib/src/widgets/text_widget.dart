@@ -1,3 +1,4 @@
+import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,28 +8,20 @@ class OnestText extends Text {
     super.key,
     super.textAlign,
     super.maxLines,
-    Color? color,
-    double? height,
-    double? letterSpacing,
-    double? decorationThickness,
-    double? size,
+    Color color = AppColors.primaryBlack,
+    double size = 14.0,
     FontWeight? fontWeight,
-    FontStyle? fontStyle,
     TextDecoration? decoration,
     TextOverflow? textOverflow,
   }) : super(
           textDirection: TextDirection.ltr,
           style: GoogleFonts.onest(
-                  color: color,
-                  fontSize: size,
-                  height: height,
-                  fontStyle: fontStyle,
-                  decoration: decoration,
-                  decorationColor: color,
-                  letterSpacing: letterSpacing,
-                  fontWeight: fontWeight,
-                  decorationThickness: decorationThickness)
-              .copyWith(
+            color: color,
+            fontSize: size,
+            decoration: decoration,
+            decorationColor: color,
+            fontWeight: fontWeight,
+          ).copyWith(
             overflow: textOverflow,
           ),
         );
