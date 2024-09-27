@@ -58,12 +58,13 @@ class _TagState extends ConsumerState<Tag> with SingleTickerProviderStateMixin {
                 Tab(text: "Delivered"),
               ],
             ),
-            20.heightBox,
+            // 20.heightBox,
             Expanded(
               child: TabBarView(
                 controller: _controller,
                 children: [
                   ListView.separated(
+                    padding: const EdgeInsets.only(top: 20),
                     separatorBuilder: (_, index) => 10.heightBox,
                     shrinkWrap: true,
                     itemCount: 20,
@@ -79,6 +80,7 @@ class _TagState extends ConsumerState<Tag> with SingleTickerProviderStateMixin {
                     },
                   ),
                   ListView.separated(
+                    padding: const EdgeInsets.only(top: 20),
                     separatorBuilder: (_, index) => 10.heightBox,
                     shrinkWrap: true,
                     itemCount: 20,

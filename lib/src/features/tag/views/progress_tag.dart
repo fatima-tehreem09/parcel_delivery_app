@@ -56,6 +56,7 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
         child: Column(
           children: [
             const PrimaryWhiteContainer(
+              padding: EdgeInsets.fromLTRB(20, 23, 20, 21),
               margin: EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
