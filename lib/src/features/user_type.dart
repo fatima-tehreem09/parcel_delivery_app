@@ -70,12 +70,11 @@ class UserType extends ConsumerWidget {
   Widget _getTile(String title, String iconPath, VoidCallback onTap) {
     return ListTile(
       onTap: onTap,
-      dense: true,
       contentPadding: const EdgeInsets.all(14),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100),
       ),
-      visualDensity: VisualDensity.compact,
+      visualDensity: const VisualDensity(vertical: -4, horizontal: -4),
       tileColor: AppColors.primaryWhite,
       title: OnestText(
         "Continue as $title",

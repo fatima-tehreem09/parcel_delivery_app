@@ -21,7 +21,7 @@ class TabBarWidget extends StatefulWidget {
 class _TabBarWidgetState extends State<TabBarWidget> {
   @override
   Widget build(BuildContext context) {
-    return PrimaryWhiteContainer(
+    return AppWhiteContainer(
       borderRadius: 100,
       padding: const EdgeInsets.all(5),
       child: TabBar(
