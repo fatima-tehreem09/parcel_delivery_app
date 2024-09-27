@@ -56,15 +56,9 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
         child: Column(
           children: [
             const AppWhiteContainer(
-              margin: EdgeInsets.only(bottom: 10),
-              child: Column(
-                children: [
-                  CourierInfo(),
-                ],
-              ),
+              child: CourierInfo(),
             ),
             const AppWhiteContainer(
-              margin: EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
                   getRow(text: "Tag", info: "Walnut Workstation"),
@@ -98,7 +92,7 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
     );
   }
 
-  //
+//
 }
 
 class getRow extends StatelessWidget {
@@ -108,6 +102,7 @@ class getRow extends StatelessWidget {
     required this.info,
     this.isLast = false,
   });
+
   final String text;
   final String info;
   final bool isLast;
