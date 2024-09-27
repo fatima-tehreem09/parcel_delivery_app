@@ -48,7 +48,7 @@ class _ProfilePictureWidgetState extends ConsumerState<ProfilePictureWidget> {
                 ? image(widget.profileImage!)
                 : file != null && file!.path.isNotEmpty
                     ? ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(100),
                         child: image(file!.path),
                       )
                     : const Center(

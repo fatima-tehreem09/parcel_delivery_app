@@ -60,7 +60,7 @@ class _PaymentMethodState extends ConsumerState<PaymentMethod> {
             20.heightBox,
             ListTile(
               leading: Container(
-                padding: EdgeInsets.all(9),
+                padding: const EdgeInsets.all(9),
                 decoration: BoxDecoration(
                   color: AppColors.primaryWhite,
                   borderRadius: BorderRadius.circular(50),
@@ -69,7 +69,7 @@ class _PaymentMethodState extends ConsumerState<PaymentMethod> {
               ),
               title: OnestText(
                 "Master Card",
-                color: Color(0xff010101),
+                color: const Color(0xff010101),
                 size: 16,
                 fontWeight: FontWeight.w600,
               ),
