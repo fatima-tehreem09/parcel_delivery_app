@@ -5,6 +5,7 @@ import 'package:abiola_along_client_app/src/features/profile/views/edit_profile.
 import 'package:abiola_along_client_app/src/features/profile/views/payment_method.dart';
 import 'package:abiola_along_client_app/src/features/profile/widgets/edit_button.dart';
 import 'package:abiola_along_client_app/src/features/profile/widgets/property_tile.dart';
+import 'package:abiola_along_client_app/src/navigation/app_nav.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
 import 'package:abiola_along_client_app/src/widgets/dialog/log_out.dart';
 import 'package:abiola_along_client_app/src/widgets/inter_text.dart';
@@ -133,6 +134,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                       const SignOutDialog(
                         isSwitchAccount: true,
                       ).show(context);
+                      ref.refresh(routerConfigProvider);
                     },
                   ),
                   if (!isDriver) ...[

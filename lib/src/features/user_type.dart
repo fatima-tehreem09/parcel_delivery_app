@@ -3,6 +3,7 @@ import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign-up/views/sign_up.dart';
+import 'package:abiola_along_client_app/src/navigation/app_nav.dart';
 import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class UserType extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.refresh(routerConfigProvider);
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
       body: Padding(

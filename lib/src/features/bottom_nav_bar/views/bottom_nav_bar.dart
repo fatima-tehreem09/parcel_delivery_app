@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/local/local_storage_repository.dart';
+import '../../../navigation/app_nav.dart';
 
 class NavigationView extends ConsumerStatefulWidget {
   const NavigationView({
@@ -22,7 +23,7 @@ class NavigationView extends ConsumerStatefulWidget {
 class _DashboardViewState extends ConsumerState<NavigationView> {
   @override
   Widget build(BuildContext context) {
-    // ref.refresh(localDataProvider);
+    ref.refresh(routerConfigProvider);
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver on bbbb"

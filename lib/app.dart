@@ -28,7 +28,7 @@ class App extends ConsumerStatefulWidget {
 class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
-    // ref.refresh(localDataProvider);
+    ref.refresh(routerConfigProvider);
     return MaterialApp.router(
       builder: (context, child) {
         return MediaQuery(
