@@ -10,7 +10,10 @@ class SheetLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 100),
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(20),

@@ -162,8 +162,8 @@ class _CameraPageState extends State<CameraPage> {
                       onPressed: () {
                         if (isTagDelivered) {
                           context.pop();
-                          context.pop();
                           const TagDeliveredDialog().show(context);
+                          // context.goNamed(Home.name);
                         } else {
                           context.pop();
                           showModalBottomSheet(

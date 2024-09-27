@@ -29,6 +29,11 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
     final bool isDriver = ref.watch(localDataProvider).getUserType == "driver";
     final location = ref.watch(locationNotifierProvider);
     final state = ref.read(locationNotifierProvider.notifier);
+    void showInfoWindow() {
+      state.customInfoWindowController.googleMapController
+          ?.showMarkerInfoWindow(const MarkerId("marker_id"));
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.primaryScaffoldBg,
@@ -88,12 +93,14 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
                                 useRootNavigator: true,
                                 isScrollControlled: true,
                                 enableDrag: true,
-                                useSafeArea: false,
+                                backgroundColor: Colors.transparent,
                                 context: context,
                                 builder: (_) {
                                   return const BottomSheetTagData();
                                 },
-                              );
+                              ).whenComplete(() {
+                                showInfoWindow();
+                              });
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
