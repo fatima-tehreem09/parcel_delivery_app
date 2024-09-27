@@ -35,7 +35,8 @@ class AppTextField extends StatefulWidget {
       this.inputFormatters,
       this.textInputAction = TextInputAction.done,
       this.bigField = false,
-      this.isSearchField = false});
+      this.isSearchField = false,
+      this.isMessageField = false});
 
   // final bool obscure;
   final String? hint;
@@ -65,6 +66,7 @@ class AppTextField extends StatefulWidget {
   final TextInputAction textInputAction;
   final bool bigField;
   final bool isSearchField;
+  final bool isMessageField;
 
   @override
   State<AppTextField> createState() => _AppTextFieldState();
@@ -123,7 +125,9 @@ class _AppTextFieldState extends State<AppTextField> {
         prefix: widget.prefix,
         suffixIcon: widget.suffixIcon,
         filled: true,
-        fillColor: AppColors.primaryWhite,
+        fillColor: widget.isMessageField
+            ? const Color(0xffF8F8FA)
+            : AppColors.primaryWhite,
         border: getBorder(widget.isSearchField
             ? const Color(0xffF9FAFB)
             : AppColors.primaryWhite),

@@ -1,8 +1,11 @@
+import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
+import 'package:abiola_along_client_app/src/widgets/app_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../widgets/text_widget.dart';
@@ -25,7 +28,7 @@ class _MessageViewState extends ConsumerState<MessageView> {
       backgroundColor: const Color(0xffF8F8FA),
       appBar: const AppBarWidget(title: "Message"),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+        padding: EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -55,44 +58,75 @@ class _MessageViewState extends ConsumerState<MessageView> {
               height: 50,
               color: Color(0xffE5E7EB),
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 12),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        color: AppColors.primaryBlue.withOpacity(0.2),
+                      ),
+                      child: OnestText(
+                        "Hi, How are you?",
+                        color: AppColors.hintDarkGrey,
+                      ),
+                    ),
                   ),
-                  color: AppColors.primaryBlue.withOpacity(0.2),
-                ),
-                child: OnestText(
-                  "Hi, How are you?",
-                  color: AppColors.hintDarkGrey,
-                ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 12),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        color: AppColors.primaryWhite,
+                      ),
+                      child: OnestText(
+                        "Hi, How are you?",
+                        color: AppColors.hintDarkGrey,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                    topRight: Radius.circular(20),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              width: double.infinity,
+              color: AppColors.primaryWhite,
+              child: Row(
+                children: [
+                  const Expanded(
+                    flex: 2,
+                    child: AppTextField(
+                      isMessageField: true,
+                      hint: "Type a message",
+                    ),
                   ),
-                  color: AppColors.primaryWhite,
-                ),
-                child: OnestText(
-                  "Hi, How are you?",
-                  color: AppColors.hintDarkGrey,
-                ),
+                  10.widthBox,
+                  CircleAvatar(
+                    backgroundColor: AppColors.primaryBlue,
+                    radius: 20,
+                    child: Center(
+                      child: SvgPicture.asset(AppAssets.sendButtonIcon),
+                    ),
+                  )
+                ],
               ),
             ),
           ],
