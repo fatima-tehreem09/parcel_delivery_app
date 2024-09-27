@@ -7,17 +7,17 @@ class AppWhiteContainer extends StatelessWidget {
     required this.child,
     this.borderRadius = 16.0,
     this.padding = const EdgeInsets.all(20),
-    this.margin = const EdgeInsets.all(0),
+    this.margin,
   });
   final Widget child;
   final EdgeInsets padding;
   final double borderRadius;
-  final EdgeInsets margin;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin,
+      margin: margin ?? EdgeInsets.only(bottom: 10),
       width: double.infinity,
       padding: padding,
       decoration: BoxDecoration(

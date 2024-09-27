@@ -44,9 +44,7 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
       child: AuthLayout(
         heading: "Recover Password",
         formChildren: [
-          const FieldHeading(
-            text: "Enter Email For Verification Link",
-          ),
+          const FieldHeading(text: "Enter Email For Verification Link"),
           AppTextField(
             textEditingController: _emailController,
             hint: "Email Address",
