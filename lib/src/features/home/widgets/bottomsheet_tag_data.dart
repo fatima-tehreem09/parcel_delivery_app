@@ -1,5 +1,6 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/home/widgets/bottom_sheet_map.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/reached_pickup_sheet.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/sheet_layout.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,12 @@ class _BottomSheetTagDataState extends ConsumerState<BottomSheetTagData> {
               ),
             ],
           ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(bottom: 10),
+          height: 140,
+          width: double.infinity,
+          child: const BottomSheetMap(),
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(20),

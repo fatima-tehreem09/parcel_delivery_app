@@ -14,7 +14,7 @@ class CameraPage extends StatefulWidget {
     BuildContext context,
     GoRouterState state, {
     super.key,
-  }) : isTagDelivered = state.uri.queryParameters["isTagDelivered"] == "false";
+  }) : isTagDelivered = state.uri.queryParameters["isTagDelivered"] == "true";
 
   static const path = "camera_path";
   static const name = "camera";
@@ -161,8 +161,9 @@ class _CameraPageState extends State<CameraPage> {
                       ),
                       onPressed: () {
                         if (isTagDelivered) {
+                          context.pop();
+                          context.pop();
                           const TagDeliveredDialog().show(context);
-                          print("Tag Delivered   $isTagDelivered");
                         } else {
                           context.pop();
                           showModalBottomSheet(

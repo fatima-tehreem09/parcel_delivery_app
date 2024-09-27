@@ -85,9 +85,10 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
                           InkWell(
                             onTap: () {
                               showModalBottomSheet(
-                                useRootNavigator: false,
+                                useRootNavigator: true,
                                 isScrollControlled: true,
                                 enableDrag: true,
+                                useSafeArea: false,
                                 context: context,
                                 builder: (_) {
                                   return const BottomSheetTagData();

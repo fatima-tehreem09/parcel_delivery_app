@@ -45,7 +45,6 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
         ),
         12.heightBox,
         AppWhiteContainer(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: Column(
             children: [
               Row(
@@ -104,6 +103,7 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
               const StatusRow(
                 text: "Pickup Point",
                 desc: "7529 E. Pecan St.",
+                bottom: 0,
               ),
             ],
           ),
@@ -116,7 +116,7 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
                 context.pushNamed(
                   CameraPage.name,
                   queryParameters: {
-                    "isTagDelivered": widget.isTagDelivered.toString(),
+                    "isTagDelivered": "true",
                   },
                 );
               } else {
