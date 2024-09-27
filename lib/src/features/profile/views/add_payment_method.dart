@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:reusables/mixins/form_state_mixin.dart';
+import 'package:reusables/reusables.dart';
 
 import '../../../const/colors.dart';
 import '../../../core/local/local_storage_repository.dart';
@@ -24,7 +26,8 @@ class AddPaymentMethod extends ConsumerStatefulWidget {
   ConsumerState createState() => _AddPaymentMethodState();
 }
 
-class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
+class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod>
+    with FormStateMixin {
   final TextEditingController _cardHolderNameController =
       TextEditingController();
   final TextEditingController _cardNumberController = TextEditingController();
@@ -48,73 +51,115 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
           horizontal: 20,
           vertical: 30,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const FieldHeading(
-              text: "Card Holder Name",
-            ),
-            AppTextField(
-              textEditingController: _cardHolderNameController,
-              hint: "Itunuoluwa Abidoye",
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.go,
-            ),
-            const FieldHeading(
-              text: "Card Number",
-            ),
-            AppTextField(
-              textEditingController: _cardNumberController,
-              hint: "1234 3234 2388 2372",
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              textInputAction: TextInputAction.go,
-            ),
-            const FieldHeading(
-              text: "CVV",
-            ),
-            AppTextField(
-              textEditingController: _cvvController,
-              hint: "225",
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              textInputAction: TextInputAction.go,
-            ),
-            const FieldHeading(
-              text: "Expiry",
-            ),
-            AppTextField(
-              textEditingController: _expiryDateController,
-              hint: "24/24",
-              keyboardType: TextInputType.datetime,
-              readOnly: true,
-              onTap: () => DatePickerUtil.dateSelection(
-                context,
-                onDateSelected: (date) {
-                  selectedDate = date;
-                  _expiryDateController.text =
-                      "${date.month}/${date.year.toString().substring(2)}";
-                },
-                selectedDate: selectedDate,
+        child: Form(
+          key: formKey,
+          autovalidateMode: autovalidateMode,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const FieldHeading(
+                text: "Card Holder Name",
               ),
-              textInputAction: TextInputAction.go,
-            ),
-            50.heightBox,
-            AppButton(
-                isLoading: false,
-                onPressed: () {
-                  const VerificationDialog(
-                    isPaymentMethodVerification: true,
-                  ).show(context);
+              AppTextField(
+                textEditingController: _cardHolderNameController,
+                hint: "Itunuoluwa Abidoye",
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.go,
+                validator: InputValidator.required(),
+                onFieldSubmitted: (value) {
+                  final bbb =
+                      _.saveCardHolderName(_cardHolderNameController.text);
+                  print("bbb: $bbb");
                 },
-                text: "Verify"),
-          ],
+              ),
+              const FieldHeading(
+                text: "Card Number",
+              ),
+              AppTextField(
+                textEditingController: _cardNumberController,
+                hint: "1234 3234 2388 2372",
+                keyboardType: TextInputType.number,
+                validator: InputValidator.required(),
+                onFieldSubmitted: (value) {
+                  final bbb = _.saveCardNumber(_cardNumberController.text);
+                  print("bbb: $bbb");
+                },
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                textInputAction: TextInputAction.go,
+              ),
+              const FieldHeading(
+                text: "CVV",
+              ),
+              AppTextField(
+                textEditingController: _cvvController,
+                hint: "225",
+                validator: InputValidator.required(),
+                onFieldSubmitted: (value) {
+                  final bbb = _.saveCvv(_cvvController.text);
+                  print("bbb: $bbb");
+                },
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                textInputAction: TextInputAction.go,
+              ),
+              const FieldHeading(
+                text: "Expiry",
+              ),
+              AppTextField(
+                textEditingController: _expiryDateController,
+                hint: "24/24",
+                keyboardType: TextInputType.datetime,
+                readOnly: true,
+                validator: InputValidator.required(),
+                onFieldSubmitted: (value) {
+                  final bbb = _.saveCardHolderName(_expiryDateController.text);
+                  print("bbb: $bbb");
+                },
+                onTap: () => DatePickerUtil.dateSelection(
+                  context,
+                  onDateSelected: (date) {
+                    selectedDate = date;
+                    _expiryDateController.text =
+                        "${date.month}/${date.year.toString().substring(2)}";
+                  },
+                  selectedDate: selectedDate,
+                ),
+                textInputAction: TextInputAction.go,
+              ),
+              50.heightBox,
+              AppButton(
+                  isLoading: false,
+                  onPressed: () {
+                    submitter();
+                  },
+                  text: "Verify"),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  @override
+  void onSubmit() async {
+    final data = ref.read(localDataProvider);
+    data.saveCardHolderName(_cardHolderNameController.text);
+    data.saveCardNumber(_cardNumberController.text);
+    data.saveCvv(_cvvController.text);
+    data.saveExpiry(_expiryDateController.text);
+    const VerificationDialog(
+      isPaymentMethodVerification: true,
+    ).show(context);
+    Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        context.pop();
+        context.pop();
+      },
     );
   }
 }

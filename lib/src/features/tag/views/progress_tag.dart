@@ -75,7 +75,7 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
                   getRow(text: "Sender Point", info: "7529 E. Pecan St."),
                   getRow(text: "Receiver Point", info: "7529 E. Pecan St."),
                   getRow(text: "Total Distance", info: "5.2 km"),
-                  getRow(text: "Delivery Fare", info: "\$20"),
+                  getRow(text: "Delivery Fare", info: "\$20", isLast: true),
                 ],
               ),
             ),
@@ -102,9 +102,15 @@ class _ProgressTagState extends ConsumerState<ProgressTag> {
 }
 
 class getRow extends StatelessWidget {
-  const getRow({super.key, required this.text, required this.info});
+  const getRow({
+    super.key,
+    required this.text,
+    required this.info,
+    this.isLast = false,
+  });
   final String text;
   final String info;
+  final bool isLast;
 
   @override
   Widget build(BuildContext context) {
@@ -127,12 +133,13 @@ class getRow extends StatelessWidget {
             ),
           ],
         ),
-        const Divider(
-          height: 22,
-          color: Color(
-            0xffF3F4F6,
+        if (!isLast)
+          const Divider(
+            height: 22,
+            color: Color(
+              0xffF3F4F6,
+            ),
           ),
-        ),
       ],
     );
   }

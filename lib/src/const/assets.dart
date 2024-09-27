@@ -43,8 +43,10 @@ class AppAssets {
   static const pinSvg = '${iconPath}pin.svg';
   static const sendButtonIcon = '${iconPath}send-button.svg';
   static const pinPng = '${imagePath}pin.png';
+  static const masterCardIcon = '${imagePath}master-card.png';
 
   static const dragHandle = '${iconPath}drag-handle.svg';
   static const callDecline = '${iconPath}call-decline.svg';
   static const callAccept = '${iconPath}call-accept.svg';
+  static const arrowForward = '${iconPath}arrow-forward.svg';
 }

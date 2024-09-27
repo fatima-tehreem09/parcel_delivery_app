@@ -127,8 +127,13 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     assetName: AppAssets.profileSwitch,
                     actionHeading: "Profile Switch",
                     showSubHeading: true,
-                    actionSubHeading: "Switch to Driver Profile",
-                    onTap: () {},
+                    actionSubHeading:
+                        "Switch to ${isDriver ? "user" : "driver"} Profile",
+                    onTap: () {
+                      const SignOutDialog(
+                        isSwitchAccount: true,
+                      ).show(context);
+                    },
                   ),
                   if (!isDriver) ...[
                     25.heightBox,

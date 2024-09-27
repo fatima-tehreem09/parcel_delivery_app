@@ -3,6 +3,7 @@ import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign_in/views/sign_in.dart';
+import 'package:abiola_along_client_app/src/features/user_type.dart';
 import 'package:abiola_along_client_app/src/widgets/dialog/base_dialog.dart';
 import 'package:abiola_along_client_app/src/widgets/inter_text.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
@@ -12,7 +13,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SignOutDialog extends ConsumerStatefulWidget {
-  const SignOutDialog({super.key});
+  const SignOutDialog({
+    super.key,
+    this.isSwitchAccount = false,
+  });
+  final bool isSwitchAccount;
 
   @override
   ConsumerState createState() => _SignOutDialogState();
@@ -29,7 +34,10 @@ class SignOutDialog extends ConsumerStatefulWidget {
 class _SignOutDialogState extends ConsumerState<SignOutDialog> {
   @override
   Widget build(BuildContext context) {
+    final bool isSwitchAccount = widget.isSwitchAccount;
+    final bool isDriver = ref.read(localDataProvider).getUserType == "driver";
     return BaseDialog(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(
           AppAssets.logo,
@@ -38,7 +46,7 @@ class _SignOutDialogState extends ConsumerState<SignOutDialog> {
         20.heightBox,
         OnestText(
           textAlign: TextAlign.center,
-          "Are you sure you want to sign out?",
+          "Are you sure you want to ${isSwitchAccount ? "Switch account" : "sign out"}?",
           size: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.primaryBlack,
@@ -68,8 +76,16 @@ class _SignOutDialogState extends ConsumerState<SignOutDialog> {
                 isLoading: false,
                 isLogout: true,
                 onPressed: () {
-                  ref.read(localDataProvider).clearAllData();
-                  context.goNamed(SignIn.name);
+                  if (isSwitchAccount) {
+                    ref
+                        .read(localDataProvider)
+                        .removeUserType(isDriver ? "driver" : "user");
+                    ref.refresh(localDataProvider);
+                    context.goNamed(UserType.name);
+                  } else {
+                    ref.read(localDataProvider).clearAllData();
+                    context.goNamed(SignIn.name);
+                  }
                 },
                 text: "Yes",
               ),

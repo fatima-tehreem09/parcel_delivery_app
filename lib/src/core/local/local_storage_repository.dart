@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:abiola_along_client_app/src/core/local/shared_preference_repository.dart';
 import 'package:abiola_along_client_app/src/core/local/shared_preferences_provider.dart';
-import 'package:abiola_along_client_app/src/modals/card_modal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -37,9 +36,23 @@ abstract interface class SharedPrefService {
 
   String get getUserType;
 
-  Future<void> saveUserCard(CardModal modal);
+  Future<void> removeUserType(String userType);
 
-  CardModal? get getUserCard;
+  Future<void> saveCardHolderName(String name);
+
+  Future<void> saveCardNumber(String number);
+
+  Future<void> saveCvv(String cvv);
+
+  Future<void> saveExpiry(String expiry);
+
+  String get getCardHolderName;
+
+  String get getCardNumber;
+
+  String get getCvv;
+
+  String get getExpiry;
 
   Future<void> saveTagProgress(String value);
 

@@ -1,4 +1,3 @@
-import 'package:abiola_along_client_app/src/modals/card_modal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'local_storage_repository.dart';
@@ -16,6 +15,10 @@ class SharedPreferencesService implements SharedPrefService {
   final idKey = 'id-user';
   final userTypeKey = 'type-user';
   final progressTag = 'progress-tag';
+  final cardHolderName = 'card-holder-name';
+  final cardNumber = 'card-number';
+  final cvvKey = 'cvv';
+  final expiryKey = 'expiry';
 
   @override
   String? get accessToken => sharedPreferences.getString(_tokenKey);
@@ -81,20 +84,48 @@ class SharedPreferencesService implements SharedPrefService {
   }
 
   @override
-  CardModal? get getUserCard {
-    return null;
-  }
-
-  @override
-  Future<void> saveUserCard(CardModal modal) {
-    return Future.value();
-  }
-
-  @override
   String get getTagProgress => sharedPreferences.getString(progressTag) ?? "";
 
   @override
   Future<void> saveTagProgress(String value) {
     return sharedPreferences.setString(progressTag, value);
+  }
+
+  @override
+  Future<void> removeUserType(String userType) {
+    return sharedPreferences.remove(userType);
+  }
+
+  @override
+  String get getCardHolderName =>
+      sharedPreferences.getString(cardHolderName) ?? "";
+
+  @override
+  String get getCardNumber => sharedPreferences.getString(cardNumber) ?? "";
+
+  @override
+  String get getCvv => sharedPreferences.getString(cvvKey) ?? "";
+
+  @override
+  String get getExpiry => sharedPreferences.getString(expiryKey) ?? "";
+
+  @override
+  Future<void> saveCardHolderName(String name) {
+    return sharedPreferences.setString(cardHolderName, name);
+  }
+
+  @override
+  Future<void> saveCardNumber(String number) {
+    return sharedPreferences.setString(cardNumber, number);
+  }
+
+  @override
+  Future<void> saveCvv(String cvv) {
+    return sharedPreferences.setString(cvvKey, cvv);
+  }
+
+  @override
+  Future<void> saveExpiry(String expiry) {
+    return sharedPreferences.setString(expiryKey, expiry);
   }
 }
