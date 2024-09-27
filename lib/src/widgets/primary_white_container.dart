@@ -1,8 +1,8 @@
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryWhiteContainer extends StatelessWidget {
-  const PrimaryWhiteContainer({
+class AppWhiteContainer extends StatelessWidget {
+  const AppWhiteContainer({
     super.key,
     required this.child,
     this.borderRadius = 16.0,

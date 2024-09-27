@@ -49,7 +49,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
         child: Column(
           children: [
             if (isDriver)
-              PrimaryWhiteContainer(
+              AppWhiteContainer(
                 margin: const EdgeInsets.only(bottom: 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -72,7 +72,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                   ],
                 ),
               ),
-            PrimaryWhiteContainer(
+            AppWhiteContainer(
               padding: const EdgeInsets.fromLTRB(22, 14, 18, 14),
               margin: const EdgeInsets.only(bottom: 10),
               child: Row(
@@ -119,7 +119,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                 ],
               ),
             ),
-            PrimaryWhiteContainer(
+            AppWhiteContainer(
               margin: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [
@@ -160,7 +160,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                 ],
               ),
             ),
-            PrimaryWhiteContainer(
+            AppWhiteContainer(
               margin: const EdgeInsets.only(bottom: 10),
               child: Column(
                 children: [

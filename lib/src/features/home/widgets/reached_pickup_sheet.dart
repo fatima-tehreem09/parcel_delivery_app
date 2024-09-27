@@ -44,7 +44,7 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
           ),
         ),
         12.heightBox,
-        PrimaryWhiteContainer(
+        AppWhiteContainer(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: Column(
             children: [

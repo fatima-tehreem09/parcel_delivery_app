@@ -40,7 +40,7 @@ class _BottomSheetTagDataState extends ConsumerState<BottomSheetTagData> {
           fontWeight: FontWeight.w700,
           color: AppColors.primaryBlack,
         ),
-        const PrimaryWhiteContainer(
+        const AppWhiteContainer(
           margin: EdgeInsets.only(bottom: 10, top: 20),
           child: Column(
             children: [

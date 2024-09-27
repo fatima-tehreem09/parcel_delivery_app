@@ -26,7 +26,7 @@ class _MyTagWidgetState extends ConsumerState<MyTagWidget> {
       onTap: widget.onTap,
       overlayColor: WidgetStateProperty.all(AppColors.primaryWhite),
       borderRadius: BorderRadius.circular(16),
-      child: PrimaryWhiteContainer(
+      child: AppWhiteContainer(
         child: Column(
           children: [
             Row(

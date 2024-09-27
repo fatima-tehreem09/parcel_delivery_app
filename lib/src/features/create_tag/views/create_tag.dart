@@ -33,7 +33,7 @@ class _CreateTagState extends ConsumerState<CreateTag> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            const PrimaryWhiteContainer(
+            const AppWhiteContainer(
               margin: EdgeInsets.only(bottom: 20),
               child: Column(
                 children: [
