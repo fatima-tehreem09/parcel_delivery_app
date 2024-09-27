@@ -2,9 +2,9 @@ import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/profile/views/add_payment_method.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../const/colors.dart';
@@ -57,34 +57,54 @@ class _PaymentMethodState extends ConsumerState<PaymentMethod> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-            20.heightBox,
-            ListTile(
-              leading: Container(
-                padding: const EdgeInsets.all(9),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryWhite,
-                  borderRadius: BorderRadius.circular(50),
+            if (cardNumber.isNotEmpty) ...[
+              20.heightBox,
+              ListTile(
+                leading: Container(
+                  padding: const EdgeInsets.all(9),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryWhite,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Image.asset(AppAssets.masterCardIcon),
                 ),
-                child: Image.asset(AppAssets.masterCardIcon),
+                title: OnestText(
+                  "Master Card",
+                  color: const Color(0xff010101),
+                  size: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+                subtitle: OnestText(
+                  maskCardNumber(cardNumber),
+                  color: AppColors.hintDarkGrey,
+                  size: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+                trailing: GestureDetector(
+                  onTap: () {
+                    deleteCard();
+                    ref.refresh(localDataProvider);
+                  },
+                  child: const Icon(
+                    CupertinoIcons.delete_solid,
+                    color: Color(0xffEB5545),
+                  ),
+                ),
               ),
-              title: OnestText(
-                "Master Card",
-                color: const Color(0xff010101),
-                size: 16,
-                fontWeight: FontWeight.w600,
-              ),
-              subtitle: OnestText(
-                maskCardNumber(cardNumber),
-                color: AppColors.hintDarkGrey,
-                size: 12,
-                fontWeight: FontWeight.w400,
-              ),
-              trailing: SvgPicture.asset(AppAssets.arrowForward),
-            ),
+            ]
           ],
         ),
       ),
     );
+  }
+
+  Future<void> deleteCard() async {
+    final data = ref.watch(localDataProvider);
+    final delete = ref.read(localDataProvider);
+    delete.removeCardHolderName(data.getCardHolderName);
+    delete.removeCardNumber(data.getCardNumber);
+    delete.removeExpiry(data.getExpiry);
+    delete.removeCvv(data.getCvv);
   }
 
   String maskCardNumber(String cardNumber) {

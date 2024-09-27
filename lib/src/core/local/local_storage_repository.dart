@@ -46,6 +46,14 @@ abstract interface class SharedPrefService {
 
   Future<void> saveExpiry(String expiry);
 
+  Future<void> removeCardHolderName(String name);
+
+  Future<void> removeCardNumber(String number);
+
+  Future<void> removeCvv(String cvv);
+
+  Future<void> removeExpiry(String expiry);
+
   String get getCardHolderName;
 
   String get getCardNumber;

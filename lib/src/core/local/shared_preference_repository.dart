@@ -93,7 +93,7 @@ class SharedPreferencesService implements SharedPrefService {
 
   @override
   Future<void> removeUserType(String userType) {
-    return sharedPreferences.remove(userType);
+    return sharedPreferences.remove(userTypeKey);
   }
 
   @override
@@ -127,5 +127,25 @@ class SharedPreferencesService implements SharedPrefService {
   @override
   Future<void> saveExpiry(String expiry) {
     return sharedPreferences.setString(expiryKey, expiry);
+  }
+
+  @override
+  Future<void> removeCardHolderName(String name) {
+    return sharedPreferences.remove(cardHolderName);
+  }
+
+  @override
+  Future<void> removeCardNumber(String number) {
+    return sharedPreferences.remove(cardNumber);
+  }
+
+  @override
+  Future<void> removeCvv(String cvv) {
+    return sharedPreferences.remove(cvvKey);
+  }
+
+  @override
+  Future<void> removeExpiry(String expiry) {
+    return sharedPreferences.remove(expiryKey);
   }
 }

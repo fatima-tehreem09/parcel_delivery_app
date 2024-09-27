@@ -31,7 +31,9 @@ class _NotificationViewState extends ConsumerState<NotificationView> {
         isHome: true,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+        padding: EdgeInsets.symmetric(
+          horizontal: 20.0,
+        ),
         child: Column(
           children: [
             NotificationTile(

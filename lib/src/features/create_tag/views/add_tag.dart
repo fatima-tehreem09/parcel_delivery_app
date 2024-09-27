@@ -1,6 +1,5 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
-import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/create_tag/views/create_tag.dart';
 import 'package:abiola_along_client_app/src/features/create_tag/widgets/image_field.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
@@ -144,13 +143,15 @@ class _AddTagState extends ConsumerState<AddTag> {
               },
               packageImage: nameOfImage,
             ),
-            50.heightBox,
-            AppButton(
-              isLoading: isLoading,
-              onPressed: () {
-                context.pushNamed(CreateTag.name);
-              },
-              text: "Proceed",
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50.0),
+              child: AppButton(
+                isLoading: isLoading,
+                onPressed: () {
+                  context.pushNamed(CreateTag.name);
+                },
+                text: "Proceed",
+              ),
             ),
           ],
         ),
