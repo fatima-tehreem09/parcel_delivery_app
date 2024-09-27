@@ -37,9 +37,9 @@ class _ProfilePictureWidgetState extends ConsumerState<ProfilePictureWidget> {
           Container(
             width: 100,
             height: 100,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: const Color(0xffD1D5DB),
+              color: Color(0xffD1D5DB),
             ),
             child: file == null &&
                     widget.profileImage != null &&
@@ -51,7 +51,7 @@ class _ProfilePictureWidgetState extends ConsumerState<ProfilePictureWidget> {
                         borderRadius: BorderRadius.circular(16),
                         child: image(file!.path),
                       )
-                    : Center(
+                    : const Center(
                         child: Icon(
                           Icons.person,
                           size: 30,
@@ -77,8 +77,8 @@ class _ProfilePictureWidgetState extends ConsumerState<ProfilePictureWidget> {
                 );
               },
               child: Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
                   color: AppColors.primaryWhite,
                   shape: BoxShape.circle,
                 ),

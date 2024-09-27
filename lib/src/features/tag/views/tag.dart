@@ -43,12 +43,12 @@ class _TagState extends ConsumerState<Tag> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(
+      appBar: const AppBarWidget(
         title: "Tag Details",
         isHome: true,
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: Column(
           children: [
             TabBarWidget(

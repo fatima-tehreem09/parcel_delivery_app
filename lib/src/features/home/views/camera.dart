@@ -79,7 +79,7 @@ class _CameraPageState extends State<CameraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF8F8FA),
+      backgroundColor: const Color(0xffF8F8FA),
       body: Stack(
         children: [
           if (takenPicture != null)
@@ -108,7 +108,7 @@ class _CameraPageState extends State<CameraPage> {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: 109,
-              color: Color(0xffF8F8FA),
+              color: const Color(0xffF8F8FA),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -140,7 +140,7 @@ class _CameraPageState extends State<CameraPage> {
                           shape: BoxShape.circle,
                           color: AppColors.primaryWhite,
                           border: Border.all(
-                            color: Color(0xffE5E7EB),
+                            color: const Color(0xffE5E7EB),
                           ),
                         ),
                       ),
@@ -160,7 +160,7 @@ class _CameraPageState extends State<CameraPage> {
                         context.pop();
                         showModalBottomSheet(
                           context: context,
-                          builder: (_) => ReachedPickupSheet(
+                          builder: (_) => const ReachedPickupSheet(
                             isTagDelivered: true,
                           ),
                         );

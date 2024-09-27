@@ -25,7 +25,7 @@ class GoogleMaps extends ConsumerWidget {
       polylines: hasPolylines ? state.polylines : {},
       circles: makeCircles(notifier.polygonPoints + notifier.polylinePoints),
       onMapCreated: notifier.finalizeController,
-      initialCameraPosition: map.CameraPosition(
+      initialCameraPosition: const map.CameraPosition(
         zoom: 17, // Initial zoom level
         target: map.LatLng(30.201106652712188, 71.5038758),
       ),

@@ -28,7 +28,7 @@ class _CallViewState extends ConsumerState<CallView> {
   int _minutes = 0;
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _seconds++;
         if (_seconds == 60) {

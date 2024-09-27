@@ -168,7 +168,7 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     assetName: AppAssets.logoutIcon,
                     actionHeading: "Logout",
                     onTap: () {
-                      SignOutDialog().show(context);
+                      const SignOutDialog().show(context);
                     },
                   ),
                 ],

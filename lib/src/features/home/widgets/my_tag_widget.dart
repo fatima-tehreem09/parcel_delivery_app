@@ -71,12 +71,12 @@ class _MyTagWidgetState extends ConsumerState<MyTagWidget> {
               children: [
                 const Expanded(
                   child: SpecsWidget(
-                      asset: AppAssets.distanceIcon, desc: "${"234567"}"),
+                      asset: AppAssets.distanceIcon, desc: "234567"),
                 ),
                 15.widthBox,
                 const Expanded(
-                  child: SpecsWidget(
-                      asset: AppAssets.weightIcon, desc: "${"234567"}"),
+                  child:
+                      SpecsWidget(asset: AppAssets.weightIcon, desc: "234567"),
                 ),
                 15.widthBox,
                 const Expanded(

@@ -107,7 +107,7 @@ class _AddPaymentMethodState extends ConsumerState<AddPaymentMethod> {
             AppButton(
                 isLoading: false,
                 onPressed: () {
-                  VerificationDialog(
+                  const VerificationDialog(
                     isPaymentMethodVerification: true,
                   ).show(context);
                 },

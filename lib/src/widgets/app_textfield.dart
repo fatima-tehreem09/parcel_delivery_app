@@ -124,13 +124,16 @@ class _AppTextFieldState extends State<AppTextField> {
         suffixIcon: widget.suffixIcon,
         filled: true,
         fillColor: AppColors.primaryWhite,
-        border: getBorder(
-            widget.isSearchField ? Color(0xffF9FAFB) : AppColors.primaryWhite),
+        border: getBorder(widget.isSearchField
+            ? const Color(0xffF9FAFB)
+            : AppColors.primaryWhite),
         counterText: widget.counterText,
-        enabledBorder: getBorder(
-            widget.isSearchField ? Color(0xffF9FAFB) : AppColors.primaryWhite),
-        focusedBorder: getBorder(
-            widget.isSearchField ? Color(0xffF9FAFB) : AppColors.primaryBlue),
+        enabledBorder: getBorder(widget.isSearchField
+            ? const Color(0xffF9FAFB)
+            : AppColors.primaryWhite),
+        focusedBorder: getBorder(widget.isSearchField
+            ? const Color(0xffF9FAFB)
+            : AppColors.primaryBlue),
         labelText: widget.label,
         hintText: widget.hint,
         contentPadding:

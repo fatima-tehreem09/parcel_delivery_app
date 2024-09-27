@@ -8,6 +8,10 @@ import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../call_view.dart';
+import '../../message_view.dart';
 
 class CourierInfo extends ConsumerWidget {
   const CourierInfo({super.key});
@@ -49,11 +53,17 @@ class CourierInfo extends ConsumerWidget {
                   ],
                 ),
               ),
-              const IconBox(
-                  color: Color(0xffEFF6FF), icon: AppAssets.messageIcon),
+              GestureDetector(
+                onTap: () => context.pushNamed(MessageView.name),
+                child: const IconBox(
+                    color: Color(0xffEFF6FF), icon: AppAssets.messageIcon),
+              ),
               10.widthBox,
-              const IconBox(
-                  color: Color(0xffECFDF5), icon: AppAssets.phoneIcon),
+              GestureDetector(
+                onTap: () => context.pushNamed(CallView.name),
+                child: const IconBox(
+                    color: Color(0xffECFDF5), icon: AppAssets.phoneIcon),
+              ),
             ],
           ),
           const Divider(

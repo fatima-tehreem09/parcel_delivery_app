@@ -35,9 +35,9 @@ class _HelpSupportState extends ConsumerState<HelpSupport> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(title: "Help & Support"),
+      appBar: const AppBarWidget(title: "Help & Support"),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

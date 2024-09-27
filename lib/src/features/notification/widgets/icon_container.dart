@@ -48,7 +48,7 @@ class NotificationTile extends StatelessWidget {
       // tileColor: Colors.brown,
       dense: true,
 
-      contentPadding: EdgeInsets.symmetric(vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(vertical: 10),
       leading: IconContainer(assetName: assetName),
       title: OnestText(
         heading,
@@ -68,7 +68,7 @@ class NotificationTile extends StatelessWidget {
       ),
       trailing: OnestText(
         date,
-        color: Color(0xff9CA3AF),
+        color: const Color(0xff9CA3AF),
         size: 12,
         fontWeight: FontWeight.w400,
       ),

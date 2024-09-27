@@ -54,9 +54,9 @@ class _EditProfileState extends ConsumerState<EditProfile> {
     print("isDriver on edit profile: $isDriver");
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(title: "Edit Profile"),
+      appBar: const AppBarWidget(title: "Edit Profile"),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 30,
         ),

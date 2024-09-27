@@ -20,7 +20,7 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
   final CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
 
-  final LatLng _latLng = LatLng(30.201106652712188, 71.5038758);
+  final LatLng _latLng = const LatLng(30.201106652712188, 71.5038758);
   final double _zoom = 15.0;
   final double offset = 50;
   final double height = 75;
@@ -44,7 +44,7 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
-    final markerId = MarkerId("marker_id");
+    const markerId = MarkerId("marker_id");
     _markers.add(
       Marker(
         markerId: markerId,
@@ -58,14 +58,15 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
                   context: context,
                   useRootNavigator: true,
                   builder: (_) {
-                    return BottomSheetTagData();
+                    return const BottomSheetTagData();
                   },
                 );
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 decoration: BoxDecoration(
-                  color: Color(0xff1F2937),
+                  color: const Color(0xff1F2937),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: Center(
@@ -89,7 +90,7 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
       appBar: AppBarWidget(
         location: "SparkoSol",
         onTap: () {
-          updateMapCenter(LatLng(30.201032472218316, 71.50381142698191));
+          updateMapCenter(const LatLng(30.201032472218316, 71.50381142698191));
           // ref.read(mapProvider.notifier).updateMapCenter(
           //   LatLng(30.201106652712188, 71.5038758),
           // );

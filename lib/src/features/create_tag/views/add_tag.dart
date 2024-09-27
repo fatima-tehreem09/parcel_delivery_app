@@ -47,12 +47,12 @@ class _AddTagState extends ConsumerState<AddTag> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(
+      appBar: const AppBarWidget(
         title: "Create Tag",
         isHome: true,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -71,7 +71,7 @@ class _AddTagState extends ConsumerState<AddTag> {
             AppTextField(
               textEditingController: _dimensionController,
               hint: "Width X Height",
-              keyboardType: TextInputType.numberWithOptions(),
+              keyboardType: const TextInputType.numberWithOptions(),
               textInputAction: TextInputAction.go,
             ),
             const FieldHeading(

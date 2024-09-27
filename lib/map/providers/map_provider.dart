@@ -31,7 +31,7 @@ final class map extends _$map {
 
   @override
   MapState build() {
-    return MapState();
+    return const MapState();
   }
 
   void updateMapCenter(LatLng coordinates) async {
@@ -49,14 +49,14 @@ final class map extends _$map {
         ...state.markers,
         Marker(
           icon: BitmapDescriptor.defaultMarker,
-          markerId: MarkerId('selected_location'),
+          markerId: const MarkerId('selected_location'),
           position: coordinates,
           onTap: () {
             _customInfoWindowController.addInfoWindow!(
               Container(
                 height: 300,
                 color: Colors.green,
-                child: Column(
+                child: const Column(
                   children: [
                     Text('4.5 Miles'),
                     Text('4.5 Miles'),
@@ -210,8 +210,8 @@ final class map extends _$map {
           points: polygonPoints,
           consumeTapEvents: false,
           polygonId: const PolygonId('polygon'),
-          strokeColor: Color.fromARGB(255, 0, 0, 0),
-          fillColor: Color.fromARGB(255, 247, 203, 9)
+          strokeColor: const Color.fromARGB(255, 0, 0, 0),
+          fillColor: const Color.fromARGB(255, 247, 203, 9)
               .withOpacity(0.75)
               .withOpacity(0.3),
         )
@@ -229,7 +229,7 @@ final class map extends _$map {
         Polyline(
           polylineId: const PolylineId('polyline'),
           points: polylinePoints, // Set points for the polyline
-          color: Color.fromARGB(255, 0, 0, 0), // Set polyline color
+          color: const Color.fromARGB(255, 0, 0, 0), // Set polyline color
           width: 5, // Set polyline width
         )
       });
@@ -252,7 +252,6 @@ final class map extends _$map {
 
     // Concatenate direction and polygon point data, then send.
     // _channel.sink.add('${state.direction} ,$_polygonPointData');
-    print('\nMessage sent: ${state.direction}, $_polygonPointData');
   }
 
   void enableTap() {

@@ -67,7 +67,7 @@ class _CreateTagState extends ConsumerState<CreateTag> {
             50.heightBox,
             AppButton(
               onPressed: () {
-                VerificationDialog(
+                const VerificationDialog(
                   isPaymentSuccessful: true,
                 ).show(context);
               },

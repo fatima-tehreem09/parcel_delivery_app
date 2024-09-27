@@ -21,14 +21,14 @@ class SpecsWidget extends ConsumerWidget {
     return Row(
       children: [
         Container(
-          margin: EdgeInsets.only(right: 12),
+          margin: const EdgeInsets.only(right: 12),
           width: 32,
           height: 32,
           decoration: BoxDecoration(
-            color: Color(0xffF9FAFB),
+            color: const Color(0xffF9FAFB),
             shape: BoxShape.circle,
             border: Border.all(
-              color: Color(0xffF3F4F6),
+              color: const Color(0xffF3F4F6),
               width: 1,
             ),
           ),
@@ -52,7 +52,7 @@ class SpecsWidget extends ConsumerWidget {
             maxLines: 1,
             textOverflow: TextOverflow.ellipsis,
             fontWeight: FontWeight.w500,
-            color: Color(0xff6B7280),
+            color: const Color(0xff6B7280),
           ),
         ),
       ],

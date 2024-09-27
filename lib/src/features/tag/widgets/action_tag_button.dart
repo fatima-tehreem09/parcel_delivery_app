@@ -13,13 +13,13 @@ class ActionTagButton extends StatelessWidget {
       style: TextButton.styleFrom(
         visualDensity: VisualDensity.compact,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        foregroundColor: Color(0xffEF4444).withOpacity(0.5),
+        foregroundColor: const Color(0xffEF4444).withOpacity(0.5),
         minimumSize: Size.zero,
       ),
       onPressed: onPressed,
       child: OnestText(
         text,
-        color: Color(0xffEF4444),
+        color: const Color(0xffEF4444),
         fontWeight: FontWeight.w600,
         size: 16,
       ),

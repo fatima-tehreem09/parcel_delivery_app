@@ -73,7 +73,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
       onSaved: widget.onSaved,
       validator: widget.validator,
       padding: EdgeInsets.zero,
-      icon: SizedBox(),
+      icon: const SizedBox(),
       style: getStyle(AppColors.primaryBlack),
       hint: Align(
         alignment: Alignment.centerLeft,

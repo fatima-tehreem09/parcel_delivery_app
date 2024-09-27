@@ -19,7 +19,8 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        backgroundColor: isLoading ? Color(0xffE5E7EB) : AppColors.primaryBlue,
+        backgroundColor:
+            isLoading ? const Color(0xffE5E7EB) : AppColors.primaryBlue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(isLogout ? 20 : 100),
         ),

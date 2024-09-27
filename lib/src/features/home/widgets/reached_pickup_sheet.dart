@@ -111,7 +111,7 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
         AppButton(
             onPressed: () {
               if (widget.isTagDelivered) {
-                TagDeliveredDialog().show(context);
+                const TagDeliveredDialog().show(context);
               } else {
                 const PickupDialog().show(context);
               }

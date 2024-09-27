@@ -30,11 +30,11 @@ class _PaymentMethodState extends ConsumerState<PaymentMethod> {
     print("isDriver: $isDriver  ");
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
-      appBar: AppBarWidget(
+      appBar: const AppBarWidget(
         title: "Payment Management",
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 20,
         ),
         child: Column(
@@ -47,7 +47,7 @@ class _PaymentMethodState extends ConsumerState<PaymentMethod> {
               onPressed: () => context.pushNamed(AddPaymentMethod.name),
               child: OnestText(
                 "Add Payment Method",
-                color: Color(0xff1AA7B4),
+                color: const Color(0xff1AA7B4),
                 size: 16,
                 fontWeight: FontWeight.w600,
               ),

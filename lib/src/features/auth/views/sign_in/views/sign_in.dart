@@ -79,7 +79,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
             },
             child: OnestText(
               "Forgot Password?",
-              color: Color(0xff6B7280),
+              color: const Color(0xff6B7280),
               size: 14,
               fontWeight: FontWeight.w400,
             ),

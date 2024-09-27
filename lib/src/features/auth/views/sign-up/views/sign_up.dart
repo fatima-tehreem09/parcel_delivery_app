@@ -110,6 +110,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
             isLoading: false,
             onPressed: () {
               const VerificationDialog().show(context);
+
               Future.delayed(
                 Duration(seconds: 1),
                 () {
