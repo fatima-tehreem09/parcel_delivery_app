@@ -36,7 +36,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : isHomeView
               ? const IconBox(
-                  color: Color(0xffECFDF5), icon: AppAssets.locationIcon)
+                  margin: EdgeInsets.only(left: 20),
+                  color: Color(0xffECFDF5),
+                  icon: AppAssets.locationIcon)
               : IconButton(
                   icon: SvgPicture.asset(
                     AppAssets.backArrowIcon,

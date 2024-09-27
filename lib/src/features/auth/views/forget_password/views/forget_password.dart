@@ -1,5 +1,5 @@
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
-import 'package:abiola_along_client_app/src/features/auth/views/forget_password/views/update_password.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/sign_in/views/sign_in.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/auth_layout.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/field_heading.dart';
 import 'package:abiola_along_client_app/src/widgets/app_textfield.dart';
@@ -52,7 +52,7 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
             hint: "Email Address",
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.go,
-            validator: InputValidator.required(),
+            validator: InputValidator.email(),
           ),
           50.heightBox,
           AppButton(
@@ -61,7 +61,8 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
               Future.delayed(const Duration(seconds: 1), () {
                 const VerificationDialog(isVerificationLink: true)
                     .show(context);
-                context.pushNamed(UpdatePassword.name);
+
+                context.goNamed(SignIn.name);
               });
             },
             text: "Get Link",

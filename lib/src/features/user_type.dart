@@ -23,12 +23,16 @@ class UserType extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.refresh(routerConfigProvider);
+    ref.watch(routerConfigProvider);
     return Scaffold(
       backgroundColor: AppColors.primaryScaffoldBg,
       body: Padding(
         padding: EdgeInsets.fromLTRB(
-            20, MediaQuery.paddingOf(context).top + 14.0, 20, 20),
+          20,
+          MediaQuery.paddingOf(context).top + 14.0,
+          20,
+          20,
+        ),
         child: Column(
           children: [
             Image.asset(
@@ -43,6 +47,7 @@ class UserType extends ConsumerWidget {
               () {
                 ref.read(localDataProvider).saveUserType("user");
                 context.pushNamed(SignUp.name);
+                final _ = ref.refresh(routerConfigProvider);
               },
             ),
             20.heightBox,
@@ -52,6 +57,7 @@ class UserType extends ConsumerWidget {
               () {
                 ref.read(localDataProvider).saveUserType("driver");
                 context.pushNamed(SignUp.name);
+                final _ = ref.refresh(routerConfigProvider);
               },
             ),
             const Spacer(),

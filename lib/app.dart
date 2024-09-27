@@ -1,3 +1,4 @@
+import 'package:abiola_along_client_app/src/core/local/local_storage_repository.dart';
 import 'package:abiola_along_client_app/src/core/local/shared_preferences_provider.dart';
 import 'package:abiola_along_client_app/src/navigation/app_nav.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class App extends ConsumerStatefulWidget {
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
     final pref = await SharedPreferences.getInstance();
-    // await pref.clear();
+    await pref.clear();
     runApp(
       ProviderScope(
         overrides: [
@@ -28,7 +29,8 @@ class App extends ConsumerStatefulWidget {
 class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
-    ref.refresh(routerConfigProvider);
+    ref.watch(routerConfigProvider);
+    ref.watch(localDataProvider);
     return MaterialApp.router(
       builder: (context, child) {
         return MediaQuery(

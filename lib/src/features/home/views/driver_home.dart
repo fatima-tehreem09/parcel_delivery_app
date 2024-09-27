@@ -24,8 +24,14 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
       CustomInfoWindowController();
   final LatLng _latLng = const LatLng(30.201106652712188, 71.5038758);
   final double _zoom = 15.0;
-  String _currentAddress = "You current location";
+  String _currentAddress = "....";
   Position? _currentPosition;
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentPosition();
+  }
 
   @override
   void dispose() {
@@ -112,16 +118,11 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
                   _customInfoWindowController.addInfoWindow!(
                     InkWell(
                       onTap: () {
-                        showBottomSheet(
-                          constraints: BoxConstraints(
-                            maxHeight: MediaQuery.of(context).size.height * 0.8,
-                          ),
+                        showModalBottomSheet(
+                          useRootNavigator: false,
+                          isScrollControlled: true,
                           enableDrag: true,
-                          // useSafeArea: true,
-                          // isDismissible: true,
                           context: context,
-
-                          // useRootNavigator: true,
                           builder: (_) {
                             return const BottomSheetTagData();
                           },

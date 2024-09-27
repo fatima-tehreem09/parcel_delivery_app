@@ -85,6 +85,7 @@ class CourierInfo extends ConsumerWidget {
         StatusRow(
           text: isDelivered ? "Delivered On" : "Pickup Time",
           desc: isDelivered ? "02:00PM, 20 July 24" : "10:00 AM",
+          bottom: 0,
         ),
         if (isDelivered && isDriver)
           StatusRow(
@@ -110,17 +111,19 @@ class StatusRow extends StatelessWidget {
     this.statusWidget = const SizedBox(),
     this.ratingStar = const SizedBox(),
     this.desc = "",
+    this.bottom,
   });
   final String text;
   final String desc;
   final bool isStatus;
+  final double? bottom;
   final Widget statusWidget;
   final Widget ratingStar;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10.0),
+      padding: EdgeInsets.only(bottom: bottom ?? 10.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

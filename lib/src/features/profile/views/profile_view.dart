@@ -130,11 +130,12 @@ class _ProfileViewState extends ConsumerState<ProfileView> {
                     showSubHeading: true,
                     actionSubHeading:
                         "Switch to ${isDriver ? "user" : "driver"} Profile",
-                    onTap: () {
-                      const SignOutDialog(
+                    onTap: () async {
+                      print('Here');
+                      await const SignOutDialog(
                         isSwitchAccount: true,
                       ).show(context);
-                      ref.refresh(routerConfigProvider);
+                      final _ = ref.refresh(routerConfigProvider);
                     },
                   ),
                   if (!isDriver) ...[

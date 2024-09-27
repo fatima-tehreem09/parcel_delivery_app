@@ -28,6 +28,7 @@ class _ImageFieldCreateTagState extends ConsumerState<ImageFieldCreateTag> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(100),
       onTap: () {
         imageSelection();
       },

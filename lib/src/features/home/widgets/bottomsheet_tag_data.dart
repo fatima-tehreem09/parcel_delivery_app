@@ -52,7 +52,11 @@ class _BottomSheetTagDataState extends ConsumerState<BottomSheetTagData> {
               getRow(text: "Sender Point", info: "7529 E. Pecan St."),
               getRow(text: "Receiver Point", info: "7529 E. Pecan St."),
               getRow(text: "Total Distance", info: "5.2 km"),
-              getRow(text: "Delivery Fare", info: "\$20"),
+              getRow(
+                text: "Delivery Fare",
+                info: "\$20",
+                isLast: true,
+              ),
             ],
           ),
         ),

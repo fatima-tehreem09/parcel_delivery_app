@@ -2,7 +2,6 @@ import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/call_view.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/pickup_dialog.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/sheet_layout.dart';
-import 'package:abiola_along_client_app/src/features/home/widgets/tag_delivered_dialog.dart';
 import 'package:abiola_along_client_app/src/features/tag/widgets/action_tag_button.dart';
 import 'package:abiola_along_client_app/src/features/tag/widgets/courier_info.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
@@ -46,6 +45,7 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
         ),
         12.heightBox,
         PrimaryWhiteContainer(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: Column(
             children: [
               Row(
@@ -112,13 +112,11 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
         AppButton(
             onPressed: () {
               if (widget.isTagDelivered) {
-                const TagDeliveredDialog().show(context);
-                Future.delayed(
-                  const Duration(seconds: 1),
-                  () {
-                    context.pop();
-                    context.pop();
-                    context.pushNamed(CameraPage.name);
+                context.pop();
+                context.pushNamed(
+                  CameraPage.name,
+                  queryParameters: {
+                    "isTagDelivered": widget.isTagDelivered.toString(),
                   },
                 );
               } else {

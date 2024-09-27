@@ -24,6 +24,7 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
   @override
   Widget build(BuildContext context) {
     ref.watch(routerConfigProvider);
+    ref.watch(localDataProvider);
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver on bbbb"

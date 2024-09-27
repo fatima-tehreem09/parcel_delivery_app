@@ -27,110 +27,112 @@ class _MessageViewState extends ConsumerState<MessageView> {
     return Scaffold(
       backgroundColor: const Color(0xffF8F8FA),
       appBar: const AppBarWidget(title: "Message"),
-      body: Padding(
-        padding: EdgeInsets.only(top: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // Container(
-            //   width: 40,
-            //   height: 40,
-            //   decoration: const BoxDecoration(
-            //     shape: BoxShape.circle,
-            //     color: Color(0xffD1D5DB),
-            //   ),
-            //   child: const Center(
-            //     child: Icon(
-            //       Icons.person,
-            //       size: 20,
-            //     ),
-            //   ),
-            // ),
-            // 10.heightBox,
-            // OnestText(
-            //   "Coffee Packet Tag Owner",
-            //   size: 16,
-            //   fontWeight: FontWeight.w600,
-            //   color: AppColors.hintDarkGrey,
-            // ),
-            // const Divider(
-            //   height: 50,
-            //   color: Color(0xffE5E7EB),
-            // ),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 12),
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          // Container(
+          //   width: 40,
+          //   height: 40,
+          //   decoration: const BoxDecoration(
+          //     shape: BoxShape.circle,
+          //     color: Color(0xffD1D5DB),
+          //   ),
+          //   child: const Center(
+          //     child: Icon(
+          //       Icons.person,
+          //       size: 20,
+          //     ),
+          //   ),
+          // ),
+          // 10.heightBox,
+          // OnestText(
+          //   "Coffee Packet Tag Owner",
+          //   size: 16,
+          //   fontWeight: FontWeight.w600,
+          //   color: AppColors.hintDarkGrey,
+          // ),
+          // const Divider(
+          //   height: 50,
+          //   color: Color(0xffE5E7EB),
+          // ),
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.all(20),
+              itemBuilder: (BuildContext context, int index) {
+                return index % 2 == 0
+                    ? Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 12),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            color: AppColors.primaryBlue.withOpacity(0.2),
+                          ),
+                          child: OnestText(
+                            "Hi, How are you?",
+                            color: AppColors.hintDarkGrey,
+                          ),
                         ),
-                        color: AppColors.primaryBlue.withOpacity(0.2),
-                      ),
-                      child: OnestText(
-                        "Hi, How are you?",
-                        color: AppColors.hintDarkGrey,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 12),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                          topRight: Radius.circular(20),
+                      )
+                    : Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 12),
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            ),
+                            color: AppColors.primaryWhite,
+                          ),
+                          child: OnestText(
+                            "Hi, How are you?",
+                            color: AppColors.hintDarkGrey,
+                          ),
                         ),
-                        color: AppColors.primaryWhite,
-                      ),
-                      child: OnestText(
-                        "Hi, How are you?",
-                        color: AppColors.hintDarkGrey,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                      );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 10,
+                );
+              },
+              itemCount: 120,
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              width: double.infinity,
-              color: AppColors.primaryWhite,
-              child: Row(
-                children: [
-                  const Expanded(
-                    flex: 2,
-                    child: AppTextField(
-                      isMessageField: true,
-                      hint: "Type a message",
-                    ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            width: double.infinity,
+            color: AppColors.primaryWhite,
+            child: Row(
+              children: [
+                const Expanded(
+                  flex: 2,
+                  child: AppTextField(
+                    isMessageField: true,
+                    hint: "Type a message",
                   ),
-                  10.widthBox,
-                  CircleAvatar(
-                    backgroundColor: AppColors.primaryBlue,
-                    radius: 20,
-                    child: Center(
-                      child: SvgPicture.asset(AppAssets.sendButtonIcon),
-                    ),
-                  )
-                ],
-              ),
+                ),
+                10.widthBox,
+                CircleAvatar(
+                  backgroundColor: AppColors.primaryBlue,
+                  radius: 20,
+                  child: Center(
+                    child: SvgPicture.asset(AppAssets.sendButtonIcon),
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

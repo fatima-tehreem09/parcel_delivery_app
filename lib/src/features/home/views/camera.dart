@@ -7,12 +7,19 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../widgets/tag_delivered_dialog.dart';
+
 class CameraPage extends StatefulWidget {
-  const CameraPage.builder(BuildContext context, GoRouterState state,
-      {super.key});
+  CameraPage.builder(
+    BuildContext context,
+    GoRouterState state, {
+    super.key,
+  }) : isTagDelivered = state.uri.queryParameters["isTagDelivered"] == "false";
 
   static const path = "camera_path";
   static const name = "camera";
+
+  final bool isTagDelivered;
 
   @override
   State<CameraPage> createState() => _CameraPageState();
@@ -78,6 +85,8 @@ class _CameraPageState extends State<CameraPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isTagDelivered = widget.isTagDelivered;
+    print("TTTTTTT  $isTagDelivered");
     return Scaffold(
       backgroundColor: const Color(0xffF8F8FA),
       body: Stack(
@@ -151,13 +160,18 @@ class _CameraPageState extends State<CameraPage> {
                         color: AppColors.primaryBlue,
                       ),
                       onPressed: () {
-                        context.pop();
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (_) => const ReachedPickupSheet(
-                            isTagDelivered: true,
-                          ),
-                        );
+                        if (isTagDelivered) {
+                          const TagDeliveredDialog().show(context);
+                          print("Tag Delivered   $isTagDelivered");
+                        } else {
+                          context.pop();
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (_) => const ReachedPickupSheet(
+                              isTagDelivered: true,
+                            ),
+                          );
+                        }
                       },
                     ),
                   ),
