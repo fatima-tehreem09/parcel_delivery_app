@@ -83,19 +83,13 @@ class _CameraPageState extends State<CameraPage> {
       body: Stack(
         children: [
           if (takenPicture != null)
-            Expanded(
-              flex: 2,
-              child: Image.file(
-                File(takenPicture!.path),
-                fit: BoxFit.cover,
-              ),
+            Image.file(
+              File(takenPicture!.path),
+              fit: BoxFit.cover,
             )
           else if (_cameraController.value.isInitialized)
-            Expanded(
-              flex: 2,
-              child: CameraPreview(
-                _cameraController,
-              ),
+            CameraPreview(
+              _cameraController,
             )
           else
             Container(

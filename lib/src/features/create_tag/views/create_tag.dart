@@ -43,7 +43,11 @@ class _CreateTagState extends ConsumerState<CreateTag> {
                   BuildRow(property: "Package Size", desc: "Small"),
                   BuildRow(property: "Delivery Time", desc: "2 days"),
                   BuildRow(property: "Sender Point", desc: "Lagos"),
-                  BuildRow(property: "Receiver Point", desc: "Abuja"),
+                  BuildRow(
+                    property: "Receiver Point",
+                    desc: "Abuja",
+                    isLast: true,
+                  ),
                 ],
               ),
             ),
@@ -70,6 +74,13 @@ class _CreateTagState extends ConsumerState<CreateTag> {
                 const VerificationDialog(
                   isPaymentSuccessful: true,
                 ).show(context);
+                Future.delayed(
+                  const Duration(seconds: 1),
+                  () {
+                    context.pop();
+                    context.pop();
+                  },
+                );
               },
               text: "Pay Delivery Charges",
             ),
@@ -81,26 +92,37 @@ class _CreateTagState extends ConsumerState<CreateTag> {
 }
 
 class BuildRow extends StatelessWidget {
-  const BuildRow({super.key, required this.property, required this.desc});
+  const BuildRow({
+    super.key,
+    required this.property,
+    required this.desc,
+    this.isLast = false,
+  });
   final String property;
   final String desc;
+  final bool isLast;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         BasicRow(property: property, desc: desc),
-        const Divider(
-          height: 22,
-          color: Color(0xffF3F4F6),
-        ),
+        if (!isLast)
+          const Divider(
+            height: 22,
+            color: Color(0xffF3F4F6),
+          ),
       ],
     );
   }
 }
 
 class BasicRow extends StatelessWidget {
-  const BasicRow({super.key, required this.property, required this.desc});
+  const BasicRow({
+    super.key,
+    required this.property,
+    required this.desc,
+  });
   final String property;
   final String desc;
 

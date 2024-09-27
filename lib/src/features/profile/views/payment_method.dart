@@ -59,37 +59,51 @@ class _PaymentMethodState extends ConsumerState<PaymentMethod> {
               ),
             if (cardNumber.isNotEmpty) ...[
               20.heightBox,
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(9),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryWhite,
-                    borderRadius: BorderRadius.circular(50),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    padding: const EdgeInsets.all(9),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryWhite,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Image.asset(AppAssets.masterCardIcon),
                   ),
-                  child: Image.asset(AppAssets.masterCardIcon),
-                ),
-                title: OnestText(
-                  "Master Card",
-                  color: const Color(0xff010101),
-                  size: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-                subtitle: OnestText(
-                  maskCardNumber(cardNumber),
-                  color: AppColors.hintDarkGrey,
-                  size: 12,
-                  fontWeight: FontWeight.w400,
-                ),
-                trailing: GestureDetector(
-                  onTap: () {
-                    deleteCard();
-                    ref.refresh(localDataProvider);
-                  },
-                  child: const Icon(
-                    CupertinoIcons.delete_solid,
-                    color: Color(0xffEB5545),
+                  10.widthBox,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        OnestText(
+                          "Master Card",
+                          color: const Color(0xff010101),
+                          size: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        OnestText(
+                          maskCardNumber(cardNumber),
+                          color: AppColors.hintDarkGrey,
+                          size: 12,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () {
+                      deleteCard();
+                      ref.refresh(localDataProvider);
+                    },
+                    child: const Icon(
+                      CupertinoIcons.delete_solid,
+                      color: Color(0xffEB5545),
+                    ),
+                  ),
+                ],
               ),
             ]
           ],

@@ -18,6 +18,7 @@ import '../../../widgets/icon_box.dart';
 import '../../../widgets/text_widget.dart';
 import '../../message_view.dart';
 import '../../tag/widgets/status_tag.dart';
+import '../views/camera.dart';
 
 class ReachedPickupSheet extends ConsumerStatefulWidget {
   const ReachedPickupSheet({
@@ -112,6 +113,14 @@ class _ReachedPickupSheetState extends ConsumerState<ReachedPickupSheet> {
             onPressed: () {
               if (widget.isTagDelivered) {
                 const TagDeliveredDialog().show(context);
+                Future.delayed(
+                  const Duration(seconds: 1),
+                  () {
+                    context.pop();
+                    context.pop();
+                    context.pushNamed(CameraPage.name);
+                  },
+                );
               } else {
                 const PickupDialog().show(context);
               }

@@ -33,31 +33,31 @@ class _MessageViewState extends ConsumerState<MessageView> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xffD1D5DB),
-              ),
-              child: const Center(
-                child: Icon(
-                  Icons.person,
-                  size: 20,
-                ),
-              ),
-            ),
-            10.heightBox,
-            OnestText(
-              "Coffee Packet Tag Owner",
-              size: 16,
-              fontWeight: FontWeight.w600,
-              color: AppColors.hintDarkGrey,
-            ),
-            const Divider(
-              height: 50,
-              color: Color(0xffE5E7EB),
-            ),
+            // Container(
+            //   width: 40,
+            //   height: 40,
+            //   decoration: const BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     color: Color(0xffD1D5DB),
+            //   ),
+            //   child: const Center(
+            //     child: Icon(
+            //       Icons.person,
+            //       size: 20,
+            //     ),
+            //   ),
+            // ),
+            // 10.heightBox,
+            // OnestText(
+            //   "Coffee Packet Tag Owner",
+            //   size: 16,
+            //   fontWeight: FontWeight.w600,
+            //   color: AppColors.hintDarkGrey,
+            // ),
+            // const Divider(
+            //   height: 50,
+            //   color: Color(0xffE5E7EB),
+            // ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

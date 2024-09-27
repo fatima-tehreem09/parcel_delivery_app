@@ -1,7 +1,10 @@
 import 'package:abiola_along_client_app/src/features/home/widgets/bottomsheet_tag_data.dart';
+import 'package:abiola_along_client_app/src/utils/perimission_location.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../const/colors.dart';
@@ -19,12 +22,10 @@ class DriverHome extends ConsumerStatefulWidget {
 class _DriverHomeState extends ConsumerState<DriverHome> {
   final CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
-
   final LatLng _latLng = const LatLng(30.201106652712188, 71.5038758);
   final double _zoom = 15.0;
-  final double offset = 50;
-  final double height = 75;
-  final double width = 150;
+  String _currentAddress = "You current location";
+  Position? _currentPosition;
 
   @override
   void dispose() {
@@ -32,73 +33,57 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
     super.dispose();
   }
 
-  void updateMapCenter(LatLng coordinates) async {
-    final GoogleMapController controller =
-        await _customInfoWindowController.googleMapController!;
-    controller.animateCamera(CameraUpdate.newLatLng(coordinates));
+  Future<void> _getCurrentPosition() async {
+    final hasPermission = await ref
+        .read(locationPermissionProvider)
+        .handleLocationPermission(context);
+    if (!hasPermission) return;
+    try {
+      final position = await Geolocator.getCurrentPosition(
+          locationSettings:
+              const LocationSettings(accuracy: LocationAccuracy.high));
+      setState(() {
+        _currentPosition = position;
+        _getAddressFromLatLng(position);
+      });
+      _animateToCurrentLocation(position);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
-  Set<Marker> _markers = {};
+  void _animateToCurrentLocation(Position position) {
+    _customInfoWindowController.googleMapController?.animateCamera(
+      CameraUpdate.newLatLng(
+        LatLng(position.latitude, position.longitude),
+      ),
+    );
+  }
+
+  Future<void> _getAddressFromLatLng(Position position) async {
+    try {
+      final placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      final place = placemarks[0];
+      setState(() {
+        _currentAddress =
+            "${place.street}, ${place.subLocality}, ${place.locality}, ${place.subAdministrativeArea}, ${place.postalCode}";
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
-    print("isDriver: $isDriver  ");
-    const markerId = MarkerId("marker_id");
-    _markers.add(
-      Marker(
-        markerId: markerId,
-        position: _latLng,
-        onTap: () {
-          _customInfoWindowController.addInfoWindow!(
-            InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                  enableDrag: true,
-                  context: context,
-                  useRootNavigator: true,
-                  builder: (_) {
-                    return const BottomSheetTagData();
-                  },
-                );
-              },
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                  color: const Color(0xff1F2937),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Center(
-                  child: InterText(
-                    "3.5 Miles",
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.primaryWhite,
-                    size: 12,
-                  ),
-                ),
-              ),
-            ),
-            _latLng,
-          );
-        },
-      ),
-    );
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: AppColors.primaryScaffoldBg,
       appBar: AppBarWidget(
-        location: "SparkoSol",
-        onTap: () {
-          updateMapCenter(const LatLng(30.201032472218316, 71.50381142698191));
-          // ref.read(mapProvider.notifier).updateMapCenter(
-          //   LatLng(30.201106652712188, 71.5038758),
-          // );
-          //
-          // ref.read(mapProvider.notifier).addMarker(
-          //   LatLng(33.72148, 73.04329),
-          // );
-        },
+        location: _currentAddress,
+        onTap: _getCurrentPosition,
         isDriver: isDriver,
         isHomeView: true,
         title: "Home",
@@ -114,16 +99,62 @@ class _DriverHomeState extends ConsumerState<DriverHome> {
             },
             onMapCreated: (GoogleMapController controller) async {
               _customInfoWindowController.googleMapController = controller;
-              controller.showMarkerInfoWindow(markerId);
+              controller.showMarkerInfoWindow(const MarkerId("marker_id"));
+              if (_currentPosition != null) {
+                _animateToCurrentLocation(_currentPosition!);
+              }
             },
-            markers: _markers,
+            markers: {
+              Marker(
+                markerId: const MarkerId("marker_id"),
+                position: _latLng,
+                onTap: () {
+                  _customInfoWindowController.addInfoWindow!(
+                    InkWell(
+                      onTap: () {
+                        showBottomSheet(
+                          constraints: BoxConstraints(
+                            maxHeight: MediaQuery.of(context).size.height * 0.8,
+                          ),
+                          enableDrag: true,
+                          // useSafeArea: true,
+                          // isDismissible: true,
+                          context: context,
+
+                          // useRootNavigator: true,
+                          builder: (_) {
+                            return const BottomSheetTagData();
+                          },
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          color: const Color(0xff1F2937),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Center(
+                          child: InterText(
+                            "3.5 Miles",
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.primaryWhite,
+                            size: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                    _latLng,
+                  );
+                },
+              ),
+            },
             initialCameraPosition: CameraPosition(
               target: _latLng,
               zoom: _zoom,
             ),
           ),
           CustomInfoWindow(
-            // (top, left, width, height) => null,
             controller: _customInfoWindowController,
           ),
         ],

@@ -23,7 +23,7 @@ class NavigationView extends ConsumerStatefulWidget {
 class _DashboardViewState extends ConsumerState<NavigationView> {
   @override
   Widget build(BuildContext context) {
-    ref.refresh(routerConfigProvider);
+    ref.watch(routerConfigProvider);
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver on bbbb"

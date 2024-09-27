@@ -50,6 +50,7 @@ class VerificationDialog extends StatelessWidget {
           size: 24,
           fontWeight: FontWeight.w700,
           color: AppColors.primaryBlack,
+          textAlign: TextAlign.center,
         ),
         15.heightBox,
         OnestText(

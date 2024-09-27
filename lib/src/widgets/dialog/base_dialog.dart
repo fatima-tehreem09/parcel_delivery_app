@@ -7,7 +7,7 @@ class BaseDialog extends StatelessWidget {
   const BaseDialog({
     super.key,
     required this.children,
-    this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
   });
   final List<Widget> children;
   final CrossAxisAlignment crossAxisAlignment;

@@ -28,7 +28,7 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 
 final routerConfigProvider = Provider<GoRouter>(
   (ref) {
-    // ref.refresh(localDataProvider);
+    ref.watch(localDataProvider);
     ref.watch(localDataProvider).getUserType;
 
     final bool driver = ref.watch(localDataProvider).getUserType == "driver";

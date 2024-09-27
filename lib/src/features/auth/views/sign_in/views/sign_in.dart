@@ -61,7 +61,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
           AppTextField(
             textEditingController: _emailController,
             hint: "Email Address",
-            validator: InputValidator.required(),
+            validator: InputValidator.email(),
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.go,
           ),
@@ -92,12 +92,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
             ),
           ),
           50.heightBox,
-          AppButton(
-              isLoading: false,
-              onPressed: () {
-                context.pushNamed(Home.name);
-              },
-              text: "Sign In"),
+          AppButton(isLoading: false, onPressed: submitter, text: "Sign In"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,
@@ -129,5 +124,10 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
         ],
       ),
     );
+  }
+
+  @override
+  Future<void> onSubmit() async {
+    context.pushNamed(Home.name);
   }
 }

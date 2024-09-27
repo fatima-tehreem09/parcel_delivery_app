@@ -25,71 +25,67 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String location;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
-      child: AppBar(
-        forceMaterialTransparency: isDriver ? true : false,
-        backgroundColor: isDriver
-            ? AppColors.primaryWhite.withOpacity(0.5)
-            : Colors.transparent,
-        elevation: 0.0,
-        scrolledUnderElevation: 0.0,
-        leading: isHome
-            ? null
-            : isHomeView
-                ? const IconBox(
-                    color: Color(0xffECFDF5), icon: AppAssets.locationIcon)
-                : IconButton(
-                    icon: SvgPicture.asset(
-                      AppAssets.backArrowIcon,
-                      // fit: BoxFit.scaleDown,
-                    ),
-                    onPressed: () {
-                      context.pop();
-                    },
+    return AppBar(
+      forceMaterialTransparency: isDriver ? true : false,
+      backgroundColor: isDriver
+          ? AppColors.primaryWhite.withOpacity(0.5)
+          : Colors.transparent,
+      elevation: 0.0,
+      scrolledUnderElevation: 0.0,
+      leading: isHome
+          ? null
+          : isHomeView
+              ? const IconBox(
+                  color: Color(0xffECFDF5), icon: AppAssets.locationIcon)
+              : IconButton(
+                  icon: SvgPicture.asset(
+                    AppAssets.backArrowIcon,
+                    // fit: BoxFit.scaleDown,
                   ),
-        centerTitle: false,
-        title: isHomeView
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  OnestText(
-                    "Location",
-                    size: 13,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.hintDarkGrey,
-                  ),
-                  5.heightBox,
-                  OnestText(
-                    location,
-                    size: 16,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xff15171C),
-                  ),
-                ],
-              )
-            : OnestText(
-                title,
-                size: 24,
-                fontWeight: FontWeight.w700,
-                color: AppColors.primaryBlack,
-              ),
-        actions: [
-          if (isDriver)
-            GestureDetector(
-              onTap: onTap,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: SvgPicture.asset(AppAssets.targetIcon),
-              ),
+                  onPressed: () {
+                    context.pop();
+                  },
+                ),
+      centerTitle: false,
+      title: isHomeView
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OnestText(
+                  "Location",
+                  size: 13,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.hintDarkGrey,
+                ),
+                5.heightBox,
+                OnestText(
+                  location,
+                  size: 16,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xff15171C),
+                ),
+              ],
+            )
+          : OnestText(
+              title,
+              size: 24,
+              fontWeight: FontWeight.w700,
+              color: AppColors.primaryBlack,
             ),
-        ],
-      ),
+      actions: [
+        if (isDriver)
+          GestureDetector(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: SvgPicture.asset(AppAssets.targetIcon),
+            ),
+          ),
+      ],
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(70.0);
+  Size get preferredSize => const Size.fromHeight(56);
 }
