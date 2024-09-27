@@ -13,6 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:reusables/mixins/form_state_mixin.dart';
+import 'package:reusables/reusables.dart';
 
 import '../../../../../const/colors.dart';
 
@@ -56,103 +57,113 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
-    return AuthLayout(
-      heading: "Sign Up",
-      formChildren: [
-        const FieldHeading(
-          text: "Email",
-        ),
-        AppTextField(
-          textEditingController: _emailController,
-          hint: "Email Address",
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.go,
-        ),
-        const FieldHeading(text: "Phone"),
-        AppTextField(
-          textEditingController: _phoneController,
-          hint: "Phone Number",
-          keyboardType: TextInputType.number,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-          ],
-          textInputAction: TextInputAction.go,
-        ),
-        if (isDriver) ...[
-          const FieldHeading(text: "Vehicle Model"),
-          AppTextField(
-            textEditingController: _vehicleModelController,
-            hint: "Model Name",
-            keyboardType: TextInputType.text,
-            textInputAction: TextInputAction.go,
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: AuthLayout(
+        heading: "Sign Up",
+        formChildren: [
+          const FieldHeading(
+            text: "Email",
           ),
-          const FieldHeading(text: "License"),
           AppTextField(
-            textEditingController: _licenseController,
-            hint: "License Plate Number",
+            textEditingController: _emailController,
+            hint: "Email Address",
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.go,
+            validator: InputValidator.required(),
+          ),
+          const FieldHeading(text: "Phone"),
+          AppTextField(
+            textEditingController: _phoneController,
+            hint: "Phone Number",
+            validator: InputValidator.required(),
             keyboardType: TextInputType.number,
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly,
             ],
             textInputAction: TextInputAction.go,
           ),
-        ],
-        const FieldHeading(text: "Password"),
-        AppPasswordField(
-          textEditingController: _passwordController,
-        ),
-        const FieldHeading(text: "Confirm Password"),
-        AppPasswordField(
-          textEditingController: _confirmPasswordController,
-        ),
-        50.heightBox,
-        AppButton(
-            isLoading: false,
-            onPressed: () {
-              const VerificationDialog().show(context);
-
-              Future.delayed(
-                Duration(seconds: 1),
-                () {
-                  context.pop();
-                  context.pushNamed(
-                    SignIn.name,
-                  );
-                },
-              );
-            },
-            text: "Sign Up"),
-        50.heightBox,
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Text.rich(
-            TextSpan(
-              text: "Already Have an account? ",
-              style: GoogleFonts.onest(
-                color: AppColors.hintDarkGrey,
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
-              ),
-              children: [
-                TextSpan(
-                  text: "Sign In",
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      context.pushNamed(
-                        SignIn.name,
-                      );
-                    },
-                  style: GoogleFonts.onest(
-                    color: AppColors.lightBlack,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
-                ),
+          if (isDriver) ...[
+            const FieldHeading(text: "Vehicle Model"),
+            AppTextField(
+              validator: InputValidator.required(),
+              textEditingController: _vehicleModelController,
+              hint: "Model Name",
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.go,
+            ),
+            const FieldHeading(text: "License"),
+            AppTextField(
+              validator: InputValidator.required(),
+              textEditingController: _licenseController,
+              hint: "License Plate Number",
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
               ],
+              textInputAction: TextInputAction.go,
+            ),
+          ],
+          const FieldHeading(text: "Password"),
+          AppPasswordField(
+            validator: InputValidator.required(),
+            textEditingController: _passwordController,
+          ),
+          const FieldHeading(text: "Confirm Password"),
+          AppPasswordField(
+            validator: InputValidator.required(),
+            textEditingController: _confirmPasswordController,
+          ),
+          50.heightBox,
+          AppButton(
+              isLoading: false,
+              onPressed: () {
+                const VerificationDialog().show(context);
+
+                Future.delayed(
+                  Duration(seconds: 1),
+                  () {
+                    context.pop();
+                    context.pushNamed(
+                      SignIn.name,
+                    );
+                  },
+                );
+              },
+              text: "Sign Up"),
+          50.heightBox,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text.rich(
+              TextSpan(
+                text: "Already Have an account? ",
+                style: GoogleFonts.onest(
+                  color: AppColors.hintDarkGrey,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                ),
+                children: [
+                  TextSpan(
+                    text: "Sign In",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        context.pushNamed(
+                          SignIn.name,
+                        );
+                      },
+                    style: GoogleFonts.onest(
+                      color: AppColors.lightBlack,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reusables/mixins/form_state_mixin.dart';
+import 'package:reusables/utils/input_validator.dart';
 
 import '../../../../../widgets/primary_button.dart';
 
@@ -37,31 +38,37 @@ class _SignUpState extends ConsumerState<ForgetPassword> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
-    return AuthLayout(
-      heading: "Recover Password",
-      formChildren: [
-        const FieldHeading(
-          text: "Enter Email For Verification Link",
-        ),
-        AppTextField(
-          textEditingController: _emailController,
-          hint: "Email Address",
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.go,
-        ),
-        50.heightBox,
-        AppButton(
-          onPressed: () {
-            /// Just to show dialog and navigation, will be changed to actual logic later
-            Future.delayed(const Duration(seconds: 1), () {
-              const VerificationDialog(isVerificationLink: true).show(context);
-              context.pushNamed(UpdatePassword.name);
-            });
-          },
-          text: "Get Link",
-          isLoading: false,
-        ),
-      ],
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: AuthLayout(
+        heading: "Recover Password",
+        formChildren: [
+          const FieldHeading(
+            text: "Enter Email For Verification Link",
+          ),
+          AppTextField(
+            textEditingController: _emailController,
+            hint: "Email Address",
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.go,
+            validator: InputValidator.required(),
+          ),
+          50.heightBox,
+          AppButton(
+            onPressed: () {
+              /// Just to show dialog and navigation, will be changed to actual logic later
+              Future.delayed(const Duration(seconds: 1), () {
+                const VerificationDialog(isVerificationLink: true)
+                    .show(context);
+                context.pushNamed(UpdatePassword.name);
+              });
+            },
+            text: "Get Link",
+            isLoading: false,
+          ),
+        ],
+      ),
     );
   }
 }

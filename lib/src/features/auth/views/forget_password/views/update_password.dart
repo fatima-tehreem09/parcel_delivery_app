@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reusables/mixins/form_state_mixin.dart';
+import 'package:reusables/utils/input_validator.dart';
 
 import '../../../../../widgets/primary_button.dart';
 
@@ -38,24 +39,30 @@ class _SignUpState extends ConsumerState<UpdatePassword> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
-    return AuthLayout(
-      heading: "Update Password",
-      formChildren: [
-        const FieldHeading(text: "Password"),
-        AppPasswordField(
-          textEditingController: _passwordController,
-        ),
-        const FieldHeading(text: "Confirm Password"),
-        AppPasswordField(
-          textEditingController: _passwordController,
-        ),
-        50.heightBox,
-        AppButton(
-          onPressed: () {},
-          text: "Update Password",
-          isLoading: false,
-        ),
-      ],
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: AuthLayout(
+        heading: "Update Password",
+        formChildren: [
+          const FieldHeading(text: "Password"),
+          AppPasswordField(
+            validator: InputValidator.required(),
+            textEditingController: _passwordController,
+          ),
+          const FieldHeading(text: "Confirm Password"),
+          AppPasswordField(
+            validator: InputValidator.required(),
+            textEditingController: _passwordController,
+          ),
+          50.heightBox,
+          AppButton(
+            onPressed: () {},
+            text: "Update Password",
+            isLoading: false,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:reusables/mixins/form_state_mixin.dart';
+import 'package:reusables/utils/input_validator.dart';
 
 import '../../../../../const/colors.dart';
 import '../../../../../core/local/local_storage_repository.dart';
@@ -48,79 +49,85 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
-    return AuthLayout(
-      heading: "Sign In",
-      formChildren: [
-        const FieldHeading(
-          text: "Email",
-        ),
-        AppTextField(
-          textEditingController: _emailController,
-          hint: "Email Address",
-          keyboardType: TextInputType.emailAddress,
-          textInputAction: TextInputAction.go,
-        ),
-        const FieldHeading(text: "Password"),
-        AppPasswordField(
-          textEditingController: _passwordController,
-        ),
-        10.heightBox,
-        Align(
-          alignment: Alignment.bottomRight,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              overlayColor: Colors.transparent,
-              visualDensity: VisualDensity.compact,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: Size.zero,
-            ),
-            onPressed: () {
-              context.pushNamed(ForgetPassword.name);
-            },
-            child: OnestText(
-              "Forgot Password?",
-              color: const Color(0xff6B7280),
-              size: 14,
-              fontWeight: FontWeight.w400,
-            ),
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: AuthLayout(
+        heading: "Sign In",
+        formChildren: [
+          const FieldHeading(
+            text: "Email",
           ),
-        ),
-        50.heightBox,
-        AppButton(
-            isLoading: false,
-            onPressed: () {
-              context.pushNamed(Home.name);
-            },
-            text: "Sign In"),
-        50.heightBox,
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Text.rich(
-            TextSpan(
-              text: "Don’t have an account? ",
-              style: GoogleFonts.onest(
-                color: AppColors.hintDarkGrey,
-                fontWeight: FontWeight.w400,
-                fontSize: 16,
+          AppTextField(
+            textEditingController: _emailController,
+            hint: "Email Address",
+            validator: InputValidator.required(),
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.go,
+          ),
+          const FieldHeading(text: "Password"),
+          AppPasswordField(
+            validator: InputValidator.required(),
+            textEditingController: _passwordController,
+          ),
+          10.heightBox,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                overlayColor: Colors.transparent,
+                visualDensity: VisualDensity.compact,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                minimumSize: Size.zero,
               ),
-              children: [
-                TextSpan(
-                  text: "Sign Up",
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      context.pushNamed(SignUp.name);
-                    },
-                  style: GoogleFonts.onest(
-                    color: AppColors.lightBlack,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+              onPressed: () {
+                context.pushNamed(ForgetPassword.name);
+              },
+              child: OnestText(
+                "Forgot Password?",
+                color: const Color(0xff6B7280),
+                size: 14,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
-        ),
-      ],
+          50.heightBox,
+          AppButton(
+              isLoading: false,
+              onPressed: () {
+                context.pushNamed(Home.name);
+              },
+              text: "Sign In"),
+          50.heightBox,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text.rich(
+              TextSpan(
+                text: "Don’t have an account? ",
+                style: GoogleFonts.onest(
+                  color: AppColors.hintDarkGrey,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                ),
+                children: [
+                  TextSpan(
+                    text: "Sign Up",
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        context.pushNamed(SignUp.name);
+                      },
+                    style: GoogleFonts.onest(
+                      color: AppColors.lightBlack,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
