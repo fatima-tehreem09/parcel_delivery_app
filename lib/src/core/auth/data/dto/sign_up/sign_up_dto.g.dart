@@ -20,5 +20,6 @@ Map<String, dynamic> _$$SignUpDtoImplToJson(_$SignUpDtoImpl instance) {
 
   writeNotNull('password', instance.password);
   val['role'] = instance.role;
+  val['status'] = instance.status;
   return val;
 }

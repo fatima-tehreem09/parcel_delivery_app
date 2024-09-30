@@ -12,6 +12,7 @@ class SignUpDto with _$SignUpDto {
     required String phone,
     @JsonKey(includeIfNull: false) String? password,
     @Default('USER') String role,
+    @Default('ACTIVE') String status,
   }) = _SignUpDto;
 
   @override

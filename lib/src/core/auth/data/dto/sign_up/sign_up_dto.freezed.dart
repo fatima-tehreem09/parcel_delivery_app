@@ -21,6 +21,7 @@ mixin _$SignUpDto {
   @JsonKey(includeIfNull: false)
   String? get password => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
 
   /// Serializes this SignUpDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,8 @@ abstract class $SignUpDtoCopyWith<$Res> {
       {String email,
       String phone,
       @JsonKey(includeIfNull: false) String? password,
-      String role});
+      String role,
+      String status});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$SignUpDtoCopyWithImpl<$Res, $Val extends SignUpDto>
     Object? phone = null,
     Object? password = freezed,
     Object? role = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -81,6 +84,10 @@ class _$SignUpDtoCopyWithImpl<$Res, $Val extends SignUpDto>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -97,7 +104,8 @@ abstract class _$$SignUpDtoImplCopyWith<$Res>
       {String email,
       String phone,
       @JsonKey(includeIfNull: false) String? password,
-      String role});
+      String role,
+      String status});
 }
 
 /// @nodoc
@@ -117,6 +125,7 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? password = freezed,
     Object? role = null,
+    Object? status = null,
   }) {
     return _then(_$SignUpDtoImpl(
       email: null == email
@@ -135,6 +144,10 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -146,7 +159,8 @@ class _$SignUpDtoImpl implements _SignUpDto {
       {required this.email,
       required this.phone,
       @JsonKey(includeIfNull: false) this.password,
-      this.role = 'USER'});
+      this.role = 'USER',
+      this.status = 'ACTIVE'});
 
   @override
   final String email;
@@ -158,10 +172,13 @@ class _$SignUpDtoImpl implements _SignUpDto {
   @override
   @JsonKey()
   final String role;
+  @override
+  @JsonKey()
+  final String status;
 
   @override
   String toString() {
-    return 'SignUpDto(email: $email, phone: $phone, password: $password, role: $role)';
+    return 'SignUpDto(email: $email, phone: $phone, password: $password, role: $role, status: $status)';
   }
 
   @override
@@ -173,12 +190,14 @@ class _$SignUpDtoImpl implements _SignUpDto {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, email, phone, password, role);
+  int get hashCode =>
+      Object.hash(runtimeType, email, phone, password, role, status);
 
   /// Create a copy of SignUpDto
   /// with the given fields replaced by the non-null parameter values.
@@ -201,7 +220,8 @@ abstract class _SignUpDto implements SignUpDto {
       {required final String email,
       required final String phone,
       @JsonKey(includeIfNull: false) final String? password,
-      final String role}) = _$SignUpDtoImpl;
+      final String role,
+      final String status}) = _$SignUpDtoImpl;
 
   @override
   String get email;
@@ -212,6 +232,8 @@ abstract class _SignUpDto implements SignUpDto {
   String? get password;
   @override
   String get role;
+  @override
+  String get status;
 
   /// Create a copy of SignUpDto
   /// with the given fields replaced by the non-null parameter values.

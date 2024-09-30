@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/auth/data/dto/sign_up/sign_up_dto.dart';
 import '../../../core/auth/domain/repositories/auth/auth_repository.dart';
+import '../../../core/local/local_storage_repository.dart';
 import '../../../shared/app_exception.dart';
 import '../../../shared/states/app_loading_state.dart';
 
@@ -17,36 +18,39 @@ class Signup extends _$Signup {
 
   Future<void> signUp(
       String emailAddress, String phone, String password) async {
-    try {
+    // try {
       state = const AppLoadingState.loading();
-      debugPrint('BEFORE');
-
+      print('BEFORE');
+    String role= ref.read(localDataProvider).getUserType.toUpperCase();
       final result = await ref.read(authRepository).signUp(SignUpDto(
             email: emailAddress,
             password: password,
             phone: phone,
+          role:role,
           ));
-      debugPrint('$result.id');
+      print('${result.id}');
 
-      debugPrint('AFTER');
+      print('AFTER');
 
       state = const AppLoadingState();
-    } catch (e) {
-      state = const AppLoadingState();
-      if (e is DioException) {
-        if (e.response?.statusCode == 400) {
-          throw AppException(
-            title: 'Invalid User Data',
-            error: 'User with this email already exists',
-          );
-        } else if (e.response?.statusCode == 404) {
-          throw AppException(
-            title: 'Invalid Group Code',
-            error: 'This group code dose not exist.',
-          );
-        }
-      }
-      rethrow;
-    }
+    //
+    // } catch(e) {
+    //   print('Error ${e}');
+    //
+    //   state = const AppLoadingState();
+    //   if (e is DioException) {
+    //     if (e.response?.statusCode == 400) {
+    //       throw AppException(
+    //         title: 'Invalid User Data',
+    //         error: 'User with this email already exists',
+    //       );
+    //     } else if (e.response?.statusCode == 404) {
+    //       throw AppException(
+    //         title: 'Invalid Group Code',
+    //         error: 'This group code dose not exist.',
+    //       );
+    //     }
+    //   }
+    // }
   }
 }

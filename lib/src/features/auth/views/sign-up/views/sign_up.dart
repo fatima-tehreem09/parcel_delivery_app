@@ -16,6 +16,9 @@ import 'package:reusables/mixins/form_state_mixin.dart';
 import 'package:reusables/reusables.dart';
 
 import '../../../../../const/colors.dart';
+import '../../../../../states/app_loading_state.dart';
+import '../../../../../utils/compute_action.dart';
+import '../../../providers/sign_up_provider.dart';
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp.builder(
@@ -53,6 +56,10 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
+    final loadingState = ref.watch(signupProvider);
+
+    final isLoading = loadingState == const AppLoadingState.loading();
+
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
@@ -115,7 +122,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
             textEditingController: _confirmPasswordController,
           ),
           50.heightBox,
-          AppButton(isLoading: false, onPressed: submitter, text: "Sign Up"),
+          AppButton(isLoading: isLoading, onPressed: submitter, text: "Sign Up"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,
@@ -153,16 +160,30 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
 
   @override
   Future<void> onSubmit() async {
-    const VerificationDialog().show(context);
-
-    Future.delayed(
-      Duration(seconds: 1),
-      () {
-        context.pop();
-        context.pushNamed(
-          SignIn.name,
-        );
-      },
+    final result = await computeAction(
+      context,
+          () async => await ref.read(signupProvider.notifier).signUp(
+        _emailController.text,
+        _phoneController.text,
+        _passwordController.text,
+      ),
     );
+    if (result) {
+      if (context.mounted) {
+        const VerificationDialog().show(context);
+
+        Future.delayed(
+          Duration(seconds: 1),
+              () {
+            context.pop();
+            context.pushNamed(
+              SignIn.name,
+            );
+          },
+        );
+      }
+    }
+
+
   }
 }

@@ -53,7 +53,7 @@ class CustomClientAdapter extends IOHttpClientAdapter {
   @override
   Future<ResponseBody> fetch(RequestOptions options,
       Stream<Uint8List>? requestStream, Future<void>? cancelFuture) async {
-    final token = await ref.read(localDataProvider).accessToken;
+    final token =  ref.read(localDataProvider).accessToken;
     if (token != null) {
       options.headers[HttpHeaders.authorizationHeader] = 'Bearer $token';
       debugPrint('CUSTOM CLIENT ACCESS TOKEN $token');
