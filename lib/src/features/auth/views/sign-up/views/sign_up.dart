@@ -18,7 +18,7 @@ import 'package:reusables/reusables.dart';
 import '../../../../../const/colors.dart';
 import '../../../../../states/app_loading_state.dart';
 import '../../../../../utils/compute_action.dart';
-import '../../../providers/sign_up_provider.dart';
+import '../../../providers/auth_provider.dart';
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp.builder(
@@ -56,7 +56,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
-    final loadingState = ref.watch(signupProvider);
+    final loadingState = ref.watch(authProvider);
 
     final isLoading = loadingState == const AppLoadingState.loading();
 
@@ -162,7 +162,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   Future<void> onSubmit() async {
     final result = await computeAction(
       context,
-          () async => await ref.read(signupProvider.notifier).signUp(
+          () async => await ref.read(authProvider.notifier).signUp(
         _emailController.text,
         _phoneController.text,
         _passwordController.text,

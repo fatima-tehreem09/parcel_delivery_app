@@ -16,7 +16,10 @@ import 'package:reusables/utils/input_validator.dart';
 
 import '../../../../../const/colors.dart';
 import '../../../../../core/local/local_storage_repository.dart';
+import '../../../../../shared/states/app_loading_state.dart';
+import '../../../../../utils/compute_action.dart';
 import '../../../../../widgets/primary_button.dart';
+import '../../../providers/auth_provider.dart';
 
 class SignIn extends ConsumerStatefulWidget {
   const SignIn.builder(
@@ -46,6 +49,9 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
+    final loadingState = ref.watch(authProvider);
+
+    final isLoading = loadingState == const AppLoadingState.loading();
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
@@ -92,7 +98,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
             ),
           ),
           50.heightBox,
-          AppButton(isLoading: false, onPressed: submitter, text: "Sign In"),
+          AppButton(isLoading: isLoading, onPressed: submitter, text: "Sign In"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,
@@ -128,6 +134,21 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
 
   @override
   Future<void> onSubmit() async {
-    context.pushNamed(Home.name);
+    final result =
+    // await ref.read(authProvider.notifier).signIn(
+    //     _emailController.text,
+    //     _passwordController.text
+    // );
+    await computeAction(
+    context,
+        () async => await ref.read(authProvider.notifier).signIn(
+      _emailController.text,
+      _passwordController.text
+    ),
+  );
+if(result){
+  context.pushNamed(Home.name);
+
+}
   }
 }

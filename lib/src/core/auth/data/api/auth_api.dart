@@ -1,3 +1,4 @@
+import 'package:abiola_along_client_app/src/core/auth/data/dto/sign_in/sign_in_dto.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,6 +14,6 @@ abstract interface class AuthApi {
   @POST('sign-up')
   Future<UserModel> signUp(@Body() SignUpDto signUpDto);
 
-  @POST('social-sign-up')
-  Future<void> socialSignUp(@Body() SignUpDto signUpDto);
+  @POST('sign-in')
+  Future<UserModel> signIn(@Body() SignInDto signUpDto);
 }

@@ -1,3 +1,4 @@
+import 'package:abiola_along_client_app/src/core/auth/data/dto/sign_in/sign_in_dto.dart';
 import 'package:dio/dio.dart';
 
 import '../../../data/api/auth_api.dart';
@@ -14,5 +15,11 @@ class AuthApiRepository implements AuthenticationRepository {
   @override
   Future<UserModel> signUp(SignUpDto request) async {
     return await AuthApi(client).signUp(request);
+
+  }
+  @override
+  Future<UserModel> signIn(SignInDto request) async {
+
+    return await AuthApi(client).signIn(request);
   }
 }

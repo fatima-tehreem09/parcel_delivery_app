@@ -10,6 +10,7 @@ class AppButton extends StatelessWidget {
     this.isLogout = false,
     this.isLoading = false,
   });
+
   final VoidCallback onPressed;
   final String text;
   final bool isLogout;
@@ -20,7 +21,8 @@ class AppButton extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
         backgroundColor:
-            isLoading ? const Color(0xffE5E7EB) : AppColors.primaryBlue,
+            // isLoading ? const Color(0xffE5E7EB) :
+            AppColors.primaryBlue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(isLogout ? 20 : 100),
         ),
@@ -32,14 +34,19 @@ class AppButton extends StatelessWidget {
         overlayColor: Colors.transparent,
       ),
       onPressed: isLoading ? () {} : onPressed,
-      child: Center(
-        child: OnestText(
-          text,
-          size: 16,
-          fontWeight: FontWeight.w600,
-          color: AppColors.primaryWhite,
-        ),
-      ),
+      child: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(
+              color: Colors.white,
+            ))
+          : Center(
+              child: OnestText(
+                text,
+                size: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.primaryWhite,
+              ),
+            ),
     );
   }
 }

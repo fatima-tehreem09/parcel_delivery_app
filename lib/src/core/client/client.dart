@@ -21,7 +21,7 @@ final client = Provider<Dio>((ref) {
   const timeOut = Duration(seconds: 120000);
   return Dio(
     BaseOptions(
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-Type": "application/json","Accept": "application/json"},
       baseUrl: kBaseUrl,
       // requestEncoder: (request, options) {
 
@@ -36,6 +36,7 @@ final client = Provider<Dio>((ref) {
         PrettyDioLogger(
           requestBody: kDebugMode,
           requestHeader: kDebugMode,
+          responseBody: kDebugMode
         ),
     ])
     ..httpClientAdapter = CustomClientAdapter(ref);
