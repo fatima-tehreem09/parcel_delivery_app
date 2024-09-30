@@ -30,7 +30,10 @@ class Auth extends _$Auth {
             role: role,
           ));
       print('${result.accessToken}');
-
+      if(result.accessToken.isNotEmpty){
+        await ref.read(localDataProvider).setAccessToken(result.accessToken);
+        // response=true;
+      }
       print('AFTER');
 
       state = const AppLoadingState();
@@ -54,7 +57,7 @@ class Auth extends _$Auth {
     }
   }
 
-  Future<void> signIn(String emailAddress, String password) async {
+  Future<bool> signIn(String emailAddress, String password) async {
      bool response=false;
     try {
       state = const AppLoadingState.loading();
@@ -91,6 +94,6 @@ class Auth extends _$Auth {
       }
     }
 
-
+return response;
   }
 }

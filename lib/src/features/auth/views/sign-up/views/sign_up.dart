@@ -59,7 +59,6 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
     final loadingState = ref.watch(authProvider);
 
     final isLoading = loadingState == const AppLoadingState.loading();
-
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");

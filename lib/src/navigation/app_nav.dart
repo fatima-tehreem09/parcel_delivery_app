@@ -29,6 +29,7 @@ final _navigatorKey = GlobalKey<NavigatorState>();
 final routerConfigProvider = Provider<GoRouter>((ref) {
   final driver = ref.watch(localDataProvider).getUserType == "driver";
   final isUserStored = ref.watch(localDataProvider).getUserType.isNotEmpty;
+  final accessToken = ref.watch(localDataProvider).accessToken;
   final branches = <StatefulShellBranch>[
     StatefulShellBranch(
       initialLocation: Home.path,
