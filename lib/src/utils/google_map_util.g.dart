@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'api_interceptor.dart';
+part of 'google_map_util.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authInterceptorHash() => r'286f1df7d5870340134313a64d967e6f31650782';
+String _$locationNotifierHash() => r'8d934287d20b32f5ab0ca2928d5a38104e824c43';
 
-/// See also [authInterceptor].
-@ProviderFor(authInterceptor)
-final authInterceptorProvider = AutoDisposeProvider<void>.internal(
-  authInterceptor,
-  name: r'authInterceptorProvider',
+/// See also [LocationNotifier].
+@ProviderFor(LocationNotifier)
+final locationNotifierProvider =
+    AutoDisposeNotifierProvider<LocationNotifier, LocationState>.internal(
+  LocationNotifier.new,
+  name: r'locationNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$authInterceptorHash,
+      : _$locationNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AuthInterceptorRef = AutoDisposeProviderRef<void>;
+typedef _$LocationNotifier = AutoDisposeNotifier<LocationState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
