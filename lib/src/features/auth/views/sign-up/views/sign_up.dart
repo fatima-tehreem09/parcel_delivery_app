@@ -160,6 +160,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
 
   @override
   Future<void> onSubmit() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     final result = await computeAction(
       context,
       () async => await ref.read(authProvider.notifier).signUp(

@@ -207,17 +207,20 @@ mixin _$User {
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_earning')
+  @JsonKey(name: 'total_earning', includeIfNull: false)
   int get totalEarning => throw _privateConstructorUsedError;
-  @JsonKey(name: 'vehicle_model')
+  @JsonKey(name: 'vehicle_model', includeIfNull: false)
   int get vehicleModel => throw _privateConstructorUsedError;
-  @JsonKey(name: 'license_plate_number')
+  @JsonKey(name: 'license_plate_number', includeIfNull: false)
   int get licensePlateNumber => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: '__v')
+  @JsonKey(name: '__v', includeIfNull: false)
   int get v => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   Info get info => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
@@ -239,14 +242,15 @@ abstract class $UserCopyWith<$Res> {
       String email,
       String phone,
       String role,
-      @JsonKey(name: 'total_earning') int totalEarning,
-      @JsonKey(name: 'vehicle_model') int vehicleModel,
-      @JsonKey(name: 'license_plate_number') int licensePlateNumber,
+      @JsonKey(name: 'total_earning', includeIfNull: false) int totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false) int vehicleModel,
+      @JsonKey(name: 'license_plate_number', includeIfNull: false)
+      int licensePlateNumber,
       String status,
-      DateTime createdAt,
-      DateTime updatedAt,
-      @JsonKey(name: '__v') int v,
-      Info info});
+      @JsonKey(includeIfNull: false) DateTime createdAt,
+      @JsonKey(includeIfNull: false) DateTime updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) int v,
+      @JsonKey(includeIfNull: false) Info info});
 
   $InfoCopyWith<$Res> get info;
 }
@@ -354,14 +358,15 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       String phone,
       String role,
-      @JsonKey(name: 'total_earning') int totalEarning,
-      @JsonKey(name: 'vehicle_model') int vehicleModel,
-      @JsonKey(name: 'license_plate_number') int licensePlateNumber,
+      @JsonKey(name: 'total_earning', includeIfNull: false) int totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false) int vehicleModel,
+      @JsonKey(name: 'license_plate_number', includeIfNull: false)
+      int licensePlateNumber,
       String status,
-      DateTime createdAt,
-      DateTime updatedAt,
-      @JsonKey(name: '__v') int v,
-      Info info});
+      @JsonKey(includeIfNull: false) DateTime createdAt,
+      @JsonKey(includeIfNull: false) DateTime updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) int v,
+      @JsonKey(includeIfNull: false) Info info});
 
   @override
   $InfoCopyWith<$Res> get info;
@@ -453,14 +458,17 @@ class _$UserImpl implements _User {
       required this.email,
       required this.phone,
       required this.role,
-      @JsonKey(name: 'total_earning') required this.totalEarning,
-      @JsonKey(name: 'vehicle_model') required this.vehicleModel,
-      @JsonKey(name: 'license_plate_number') required this.licensePlateNumber,
+      @JsonKey(name: 'total_earning', includeIfNull: false)
+      required this.totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false)
+      required this.vehicleModel,
+      @JsonKey(name: 'license_plate_number', includeIfNull: false)
+      required this.licensePlateNumber,
       required this.status,
-      required this.createdAt,
-      required this.updatedAt,
-      @JsonKey(name: '__v') required this.v,
-      required this.info});
+      @JsonKey(includeIfNull: false) required this.createdAt,
+      @JsonKey(includeIfNull: false) required this.updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) required this.v,
+      @JsonKey(includeIfNull: false) required this.info});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -475,24 +483,27 @@ class _$UserImpl implements _User {
   @override
   final String role;
   @override
-  @JsonKey(name: 'total_earning')
+  @JsonKey(name: 'total_earning', includeIfNull: false)
   final int totalEarning;
   @override
-  @JsonKey(name: 'vehicle_model')
+  @JsonKey(name: 'vehicle_model', includeIfNull: false)
   final int vehicleModel;
   @override
-  @JsonKey(name: 'license_plate_number')
+  @JsonKey(name: 'license_plate_number', includeIfNull: false)
   final int licensePlateNumber;
   @override
   final String status;
   @override
+  @JsonKey(includeIfNull: false)
   final DateTime createdAt;
   @override
+  @JsonKey(includeIfNull: false)
   final DateTime updatedAt;
   @override
-  @JsonKey(name: '__v')
+  @JsonKey(name: '__v', includeIfNull: false)
   final int v;
   @override
+  @JsonKey(includeIfNull: false)
   final Info info;
 
   @override
@@ -563,15 +574,17 @@ abstract class _User implements User {
       required final String email,
       required final String phone,
       required final String role,
-      @JsonKey(name: 'total_earning') required final int totalEarning,
-      @JsonKey(name: 'vehicle_model') required final int vehicleModel,
-      @JsonKey(name: 'license_plate_number')
+      @JsonKey(name: 'total_earning', includeIfNull: false)
+      required final int totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false)
+      required final int vehicleModel,
+      @JsonKey(name: 'license_plate_number', includeIfNull: false)
       required final int licensePlateNumber,
       required final String status,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
-      @JsonKey(name: '__v') required final int v,
-      required final Info info}) = _$UserImpl;
+      @JsonKey(includeIfNull: false) required final DateTime createdAt,
+      @JsonKey(includeIfNull: false) required final DateTime updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) required final int v,
+      @JsonKey(includeIfNull: false) required final Info info}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -585,24 +598,27 @@ abstract class _User implements User {
   @override
   String get role;
   @override
-  @JsonKey(name: 'total_earning')
+  @JsonKey(name: 'total_earning', includeIfNull: false)
   int get totalEarning;
   @override
-  @JsonKey(name: 'vehicle_model')
+  @JsonKey(name: 'vehicle_model', includeIfNull: false)
   int get vehicleModel;
   @override
-  @JsonKey(name: 'license_plate_number')
+  @JsonKey(name: 'license_plate_number', includeIfNull: false)
   int get licensePlateNumber;
   @override
   String get status;
   @override
+  @JsonKey(includeIfNull: false)
   DateTime get createdAt;
   @override
+  @JsonKey(includeIfNull: false)
   DateTime get updatedAt;
   @override
-  @JsonKey(name: '__v')
+  @JsonKey(name: '__v', includeIfNull: false)
   int get v;
   @override
+  @JsonKey(includeIfNull: false)
   Info get info;
 
   /// Create a copy of User
