@@ -18,7 +18,7 @@ class Auth extends _$Auth {
   AppLoadingState build() => const AppLoadingState();
 
   Future<void> signUp(
-      String emailAddress, String phone, String password) async {
+      String emailAddress, String phone, String password,{String vehicle_model="",String license_plate_number=""}) async {
     try {
       state = const AppLoadingState.loading();
       print('BEFORE');
@@ -28,12 +28,13 @@ class Auth extends _$Auth {
             password: password,
             phone: phone,
             role: role,
+        vehicle_model: vehicle_model,license_plate_number:license_plate_number
           ));
       print('${result.accessToken}');
-      if(result.accessToken.isNotEmpty){
-        await ref.read(localDataProvider).setAccessToken(result.accessToken);
-        // response=true;
-      }
+      // if(result.accessToken.isNotEmpty){
+      //   await ref.read(localDataProvider).setAccessToken(result.accessToken);
+      //   // response=true;
+      // }
       print('AFTER');
 
       state = const AppLoadingState();
@@ -68,6 +69,7 @@ class Auth extends _$Auth {
           ));
       if(result.accessToken.isNotEmpty){
         await ref.read(localDataProvider).setAccessToken(result.accessToken);
+        await ref.read(localDataProvider).saveUserType(result.user.role.toLowerCase());
         response=true;
       }
       print('user info ${result.accessToken}');

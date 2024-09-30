@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SignUpDto {
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+  String get vehicle_model => throw _privateConstructorUsedError;
+  String get license_plate_number => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get password => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
@@ -41,6 +43,8 @@ abstract class $SignUpDtoCopyWith<$Res> {
   $Res call(
       {String email,
       String phone,
+      String vehicle_model,
+      String license_plate_number,
       @JsonKey(includeIfNull: false) String? password,
       String role,
       String status});
@@ -63,6 +67,8 @@ class _$SignUpDtoCopyWithImpl<$Res, $Val extends SignUpDto>
   $Res call({
     Object? email = null,
     Object? phone = null,
+    Object? vehicle_model = null,
+    Object? license_plate_number = null,
     Object? password = freezed,
     Object? role = null,
     Object? status = null,
@@ -75,6 +81,14 @@ class _$SignUpDtoCopyWithImpl<$Res, $Val extends SignUpDto>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      vehicle_model: null == vehicle_model
+          ? _value.vehicle_model
+          : vehicle_model // ignore: cast_nullable_to_non_nullable
+              as String,
+      license_plate_number: null == license_plate_number
+          ? _value.license_plate_number
+          : license_plate_number // ignore: cast_nullable_to_non_nullable
               as String,
       password: freezed == password
           ? _value.password
@@ -103,6 +117,8 @@ abstract class _$$SignUpDtoImplCopyWith<$Res>
   $Res call(
       {String email,
       String phone,
+      String vehicle_model,
+      String license_plate_number,
       @JsonKey(includeIfNull: false) String? password,
       String role,
       String status});
@@ -123,6 +139,8 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? phone = null,
+    Object? vehicle_model = null,
+    Object? license_plate_number = null,
     Object? password = freezed,
     Object? role = null,
     Object? status = null,
@@ -135,6 +153,14 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      vehicle_model: null == vehicle_model
+          ? _value.vehicle_model
+          : vehicle_model // ignore: cast_nullable_to_non_nullable
+              as String,
+      license_plate_number: null == license_plate_number
+          ? _value.license_plate_number
+          : license_plate_number // ignore: cast_nullable_to_non_nullable
               as String,
       password: freezed == password
           ? _value.password
@@ -158,6 +184,8 @@ class _$SignUpDtoImpl implements _SignUpDto {
   _$SignUpDtoImpl(
       {required this.email,
       required this.phone,
+      required this.vehicle_model,
+      required this.license_plate_number,
       @JsonKey(includeIfNull: false) this.password,
       this.role = 'USER',
       this.status = 'ACTIVE'});
@@ -166,6 +194,10 @@ class _$SignUpDtoImpl implements _SignUpDto {
   final String email;
   @override
   final String phone;
+  @override
+  final String vehicle_model;
+  @override
+  final String license_plate_number;
   @override
   @JsonKey(includeIfNull: false)
   final String? password;
@@ -178,7 +210,7 @@ class _$SignUpDtoImpl implements _SignUpDto {
 
   @override
   String toString() {
-    return 'SignUpDto(email: $email, phone: $phone, password: $password, role: $role, status: $status)';
+    return 'SignUpDto(email: $email, phone: $phone, vehicle_model: $vehicle_model, license_plate_number: $license_plate_number, password: $password, role: $role, status: $status)';
   }
 
   @override
@@ -188,6 +220,10 @@ class _$SignUpDtoImpl implements _SignUpDto {
             other is _$SignUpDtoImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.vehicle_model, vehicle_model) ||
+                other.vehicle_model == vehicle_model) &&
+            (identical(other.license_plate_number, license_plate_number) ||
+                other.license_plate_number == license_plate_number) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.role, role) || other.role == role) &&
@@ -196,8 +232,8 @@ class _$SignUpDtoImpl implements _SignUpDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, phone, password, role, status);
+  int get hashCode => Object.hash(runtimeType, email, phone, vehicle_model,
+      license_plate_number, password, role, status);
 
   /// Create a copy of SignUpDto
   /// with the given fields replaced by the non-null parameter values.
@@ -219,6 +255,8 @@ abstract class _SignUpDto implements SignUpDto {
   factory _SignUpDto(
       {required final String email,
       required final String phone,
+      required final String vehicle_model,
+      required final String license_plate_number,
       @JsonKey(includeIfNull: false) final String? password,
       final String role,
       final String status}) = _$SignUpDtoImpl;
@@ -227,6 +265,10 @@ abstract class _SignUpDto implements SignUpDto {
   String get email;
   @override
   String get phone;
+  @override
+  String get vehicle_model;
+  @override
+  String get license_plate_number;
   @override
   @JsonKey(includeIfNull: false)
   String? get password;

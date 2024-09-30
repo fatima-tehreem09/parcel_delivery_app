@@ -10,6 +10,8 @@ Map<String, dynamic> _$$SignUpDtoImplToJson(_$SignUpDtoImpl instance) {
   final val = <String, dynamic>{
     'email': instance.email,
     'phone': instance.phone,
+    'vehicle_model': instance.vehicle_model,
+    'license_plate_number': instance.license_plate_number,
   };
 
   void writeNotNull(String key, dynamic value) {

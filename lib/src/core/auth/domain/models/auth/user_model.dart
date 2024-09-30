@@ -22,6 +22,8 @@ class User with _$User {
     required String phone,
     required String role,
     @JsonKey(name: 'total_earning')   required int totalEarning,
+    @JsonKey(name: 'vehicle_model')   required int vehicleModel,
+    @JsonKey(name: 'license_plate_number')   required int licensePlateNumber,
     required String status,
     required DateTime createdAt,
       required DateTime updatedAt,

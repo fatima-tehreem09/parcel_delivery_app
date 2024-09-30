@@ -10,6 +10,8 @@ class SignUpDto with _$SignUpDto {
   factory SignUpDto({
     required String email,
     required String phone,
+    required String vehicle_model,
+    required String license_plate_number,
     @JsonKey(includeIfNull: false) String? password,
     @Default('USER') String role,
     @Default('ACTIVE') String status,

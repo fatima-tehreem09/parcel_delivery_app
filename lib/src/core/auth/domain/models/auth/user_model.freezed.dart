@@ -209,6 +209,10 @@ mixin _$User {
   String get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_earning')
   int get totalEarning => throw _privateConstructorUsedError;
+  @JsonKey(name: 'vehicle_model')
+  int get vehicleModel => throw _privateConstructorUsedError;
+  @JsonKey(name: 'license_plate_number')
+  int get licensePlateNumber => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
@@ -236,6 +240,8 @@ abstract class $UserCopyWith<$Res> {
       String phone,
       String role,
       @JsonKey(name: 'total_earning') int totalEarning,
+      @JsonKey(name: 'vehicle_model') int vehicleModel,
+      @JsonKey(name: 'license_plate_number') int licensePlateNumber,
       String status,
       DateTime createdAt,
       DateTime updatedAt,
@@ -265,6 +271,8 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? phone = null,
     Object? role = null,
     Object? totalEarning = null,
+    Object? vehicleModel = null,
+    Object? licensePlateNumber = null,
     Object? status = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -291,6 +299,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       totalEarning: null == totalEarning
           ? _value.totalEarning
           : totalEarning // ignore: cast_nullable_to_non_nullable
+              as int,
+      vehicleModel: null == vehicleModel
+          ? _value.vehicleModel
+          : vehicleModel // ignore: cast_nullable_to_non_nullable
+              as int,
+      licensePlateNumber: null == licensePlateNumber
+          ? _value.licensePlateNumber
+          : licensePlateNumber // ignore: cast_nullable_to_non_nullable
               as int,
       status: null == status
           ? _value.status
@@ -339,6 +355,8 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String phone,
       String role,
       @JsonKey(name: 'total_earning') int totalEarning,
+      @JsonKey(name: 'vehicle_model') int vehicleModel,
+      @JsonKey(name: 'license_plate_number') int licensePlateNumber,
       String status,
       DateTime createdAt,
       DateTime updatedAt,
@@ -366,6 +384,8 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? role = null,
     Object? totalEarning = null,
+    Object? vehicleModel = null,
+    Object? licensePlateNumber = null,
     Object? status = null,
     Object? createdAt = null,
     Object? updatedAt = null,
@@ -392,6 +412,14 @@ class __$$UserImplCopyWithImpl<$Res>
       totalEarning: null == totalEarning
           ? _value.totalEarning
           : totalEarning // ignore: cast_nullable_to_non_nullable
+              as int,
+      vehicleModel: null == vehicleModel
+          ? _value.vehicleModel
+          : vehicleModel // ignore: cast_nullable_to_non_nullable
+              as int,
+      licensePlateNumber: null == licensePlateNumber
+          ? _value.licensePlateNumber
+          : licensePlateNumber // ignore: cast_nullable_to_non_nullable
               as int,
       status: null == status
           ? _value.status
@@ -426,6 +454,8 @@ class _$UserImpl implements _User {
       required this.phone,
       required this.role,
       @JsonKey(name: 'total_earning') required this.totalEarning,
+      @JsonKey(name: 'vehicle_model') required this.vehicleModel,
+      @JsonKey(name: 'license_plate_number') required this.licensePlateNumber,
       required this.status,
       required this.createdAt,
       required this.updatedAt,
@@ -448,6 +478,12 @@ class _$UserImpl implements _User {
   @JsonKey(name: 'total_earning')
   final int totalEarning;
   @override
+  @JsonKey(name: 'vehicle_model')
+  final int vehicleModel;
+  @override
+  @JsonKey(name: 'license_plate_number')
+  final int licensePlateNumber;
+  @override
   final String status;
   @override
   final DateTime createdAt;
@@ -461,7 +497,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, phone: $phone, role: $role, totalEarning: $totalEarning, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, info: $info)';
+    return 'User(id: $id, email: $email, phone: $phone, role: $role, totalEarning: $totalEarning, vehicleModel: $vehicleModel, licensePlateNumber: $licensePlateNumber, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, v: $v, info: $info)';
   }
 
   @override
@@ -475,6 +511,10 @@ class _$UserImpl implements _User {
             (identical(other.role, role) || other.role == role) &&
             (identical(other.totalEarning, totalEarning) ||
                 other.totalEarning == totalEarning) &&
+            (identical(other.vehicleModel, vehicleModel) ||
+                other.vehicleModel == vehicleModel) &&
+            (identical(other.licensePlateNumber, licensePlateNumber) ||
+                other.licensePlateNumber == licensePlateNumber) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -486,8 +526,20 @@ class _$UserImpl implements _User {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, phone, role,
-      totalEarning, status, createdAt, updatedAt, v, info);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      email,
+      phone,
+      role,
+      totalEarning,
+      vehicleModel,
+      licensePlateNumber,
+      status,
+      createdAt,
+      updatedAt,
+      v,
+      info);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -512,6 +564,9 @@ abstract class _User implements User {
       required final String phone,
       required final String role,
       @JsonKey(name: 'total_earning') required final int totalEarning,
+      @JsonKey(name: 'vehicle_model') required final int vehicleModel,
+      @JsonKey(name: 'license_plate_number')
+      required final int licensePlateNumber,
       required final String status,
       required final DateTime createdAt,
       required final DateTime updatedAt,
@@ -532,6 +587,12 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'total_earning')
   int get totalEarning;
+  @override
+  @JsonKey(name: 'vehicle_model')
+  int get vehicleModel;
+  @override
+  @JsonKey(name: 'license_plate_number')
+  int get licensePlateNumber;
   @override
   String get status;
   @override

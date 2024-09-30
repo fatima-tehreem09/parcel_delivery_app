@@ -121,7 +121,8 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
             textEditingController: _confirmPasswordController,
           ),
           50.heightBox,
-          AppButton(isLoading: isLoading, onPressed: submitter, text: "Sign Up"),
+          AppButton(
+              isLoading: isLoading, onPressed: submitter, text: "Sign Up"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,
@@ -161,11 +162,12 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   Future<void> onSubmit() async {
     final result = await computeAction(
       context,
-          () async => await ref.read(authProvider.notifier).signUp(
-        _emailController.text,
-        _phoneController.text,
-        _passwordController.text,
-      ),
+      () async => await ref.read(authProvider.notifier).signUp(
+          _emailController.text,
+          _phoneController.text,
+          _passwordController.text,
+          license_plate_number: _licenseController.text,
+          vehicle_model: _vehicleModelController.text),
     );
     if (result) {
       if (context.mounted) {
@@ -173,7 +175,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
 
         Future.delayed(
           Duration(seconds: 1),
-              () {
+          () {
             context.pop();
             context.pushNamed(
               SignIn.name,
@@ -182,7 +184,5 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
         );
       }
     }
-
-
   }
 }
