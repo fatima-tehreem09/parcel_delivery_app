@@ -21,14 +21,14 @@ class User with _$User {
     required String email,
     required String phone,
     required String role,
-    @JsonKey(name: 'total_earning',includeIfNull: false)   required int totalEarning,
-    @JsonKey(name: 'vehicle_model',includeIfNull: false)   required int vehicleModel,
-    @JsonKey(name: 'license_plate_number',includeIfNull: false)   required int licensePlateNumber,
+    @JsonKey(name: 'total_earning',includeIfNull: false)    int ?totalEarning,
+    @JsonKey(name: 'vehicle_model',includeIfNull: false)    int? vehicleModel,
+    @JsonKey(name: 'license_plate_number',includeIfNull: false)    int? licensePlateNumber,
     required String status,
-    @JsonKey(includeIfNull: false)   required DateTime createdAt,
-    @JsonKey(includeIfNull: false)   required DateTime updatedAt,
-    @JsonKey(name: '__v',includeIfNull: false)    required int v,
-    @JsonKey(includeIfNull: false)  required Info info,
+    @JsonKey(includeIfNull: false)    DateTime? createdAt,
+    @JsonKey(includeIfNull: false)    DateTime ?updatedAt,
+    @JsonKey(name: '__v',includeIfNull: false)     int? v,
+    @JsonKey(includeIfNull: false)   Info? info,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

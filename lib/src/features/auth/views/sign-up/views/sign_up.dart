@@ -170,15 +170,23 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   @override
   Future<void> onSubmit() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    final result = await computeAction(
-      context,
-      () async => await ref.read(authProvider.notifier).signUp(
-          _emailController.text,
-          _phoneController.text,
-          _passwordController.text,
-          license_plate_number: _licenseController.text,
-          vehicle_model: _vehicleModelController.text),
+    final result =
+    await ref.read(authProvider.notifier).signUp(
+        _emailController.text,
+        _phoneController.text,
+        _passwordController.text,
+        license_plate_number: _licenseController.text,
+        vehicle_model: _vehicleModelController.text
     );
+    // await computeAction(
+    //   context,
+    //   () async => await ref.read(authProvider.notifier).signUp(
+    //       _emailController.text,
+    //       _phoneController.text,
+    //       _passwordController.text,
+    //       license_plate_number: _licenseController.text,
+    //       vehicle_model: _vehicleModelController.text),
+    // );
     if (result) {
       if (context.mounted) {
         const VerificationDialog().show(context);

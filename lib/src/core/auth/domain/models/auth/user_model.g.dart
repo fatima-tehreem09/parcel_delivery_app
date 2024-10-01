@@ -23,31 +23,46 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       email: json['email'] as String,
       phone: json['phone'] as String,
       role: json['role'] as String,
-      totalEarning: (json['total_earning'] as num).toInt(),
-      vehicleModel: (json['vehicle_model'] as num).toInt(),
-      licensePlateNumber: (json['license_plate_number'] as num).toInt(),
+      totalEarning: (json['total_earning'] as num?)?.toInt(),
+      vehicleModel: (json['vehicle_model'] as num?)?.toInt(),
+      licensePlateNumber: (json['license_plate_number'] as num?)?.toInt(),
       status: json['status'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
-      v: (json['__v'] as num).toInt(),
-      info: Info.fromJson(json['info'] as Map<String, dynamic>),
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+      v: (json['__v'] as num?)?.toInt(),
+      info: json['info'] == null
+          ? null
+          : Info.fromJson(json['info'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
-    <String, dynamic>{
-      '_id': instance.id,
-      'email': instance.email,
-      'phone': instance.phone,
-      'role': instance.role,
-      'total_earning': instance.totalEarning,
-      'vehicle_model': instance.vehicleModel,
-      'license_plate_number': instance.licensePlateNumber,
-      'status': instance.status,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      '__v': instance.v,
-      'info': instance.info.toJson(),
-    };
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
+  final val = <String, dynamic>{
+    '_id': instance.id,
+    'email': instance.email,
+    'phone': instance.phone,
+    'role': instance.role,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('total_earning', instance.totalEarning);
+  writeNotNull('vehicle_model', instance.vehicleModel);
+  writeNotNull('license_plate_number', instance.licensePlateNumber);
+  val['status'] = instance.status;
+  writeNotNull('createdAt', instance.createdAt?.toIso8601String());
+  writeNotNull('updatedAt', instance.updatedAt?.toIso8601String());
+  writeNotNull('__v', instance.v);
+  writeNotNull('info', instance.info?.toJson());
+  return val;
+}
 
 _$InfoImpl _$$InfoImplFromJson(Map<String, dynamic> json) => _$InfoImpl(
       iss: json['iss'] as String,

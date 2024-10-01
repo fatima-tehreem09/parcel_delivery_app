@@ -18,8 +18,9 @@ class Auth extends _$Auth {
   @override
   AppLoadingState build() => const AppLoadingState();
 
-  Future<void> signUp(
+  Future<bool> signUp(
       String emailAddress, String phone, String password,{String vehicle_model="",String license_plate_number=""}) async {
+    bool response=false;
     try {
       state = const AppLoadingState.loading();
       print('BEFORE');
@@ -31,11 +32,9 @@ class Auth extends _$Auth {
             role: role,
         vehicle_model: vehicle_model,license_plate_number:license_plate_number
           ));
-      print('${result.accessToken}');
-      // if(result.accessToken.isNotEmpty){
-      //   await ref.read(localDataProvider).setAccessToken(result.accessToken);
-      //   // response=true;
-      // }
+      if(result.user.id.isNotEmpty){
+        response=true;
+      }
       print('AFTER');
 
       state = const AppLoadingState();
@@ -59,11 +58,12 @@ class Auth extends _$Auth {
         }
       }
     }
+    return response;
   }
 
   Future<bool> signIn(BuildContext context,String emailAddress, String password) async {
      bool response=false;
-    // try {
+    try {
       state = const AppLoadingState.loading();
       print('BEFORE');
       final result = await ref.read(authRepository).signIn(SignInDto(
@@ -80,23 +80,23 @@ class Auth extends _$Auth {
 
       state = const AppLoadingState();
 
-    // } catch (e) {
-    //   print('Error ${e}');
-    //
-    //   state = const AppLoadingState();
-    //   if (e is DioException) {
-    //     if (e.response?.statusCode == 400) {
-    //       $showSnackBar(context: context, message: "Invalid Request!", backColor: Colors.red);
-    //
-    //     } else  if (e.response?.statusCode == 401) {
-    //       $showSnackBar(context: context, message: "Username or Password is incorrect", backColor: Colors.red);
-    //     }else{
-    //       $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
-    //     }
-    //   }else{
-    //     $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
-    //   }
-    // }
+    } catch (e) {
+      print('Error ${e}');
+
+      state = const AppLoadingState();
+      if (e is DioException) {
+        if (e.response?.statusCode == 400) {
+          $showSnackBar(context: context, message: "Invalid Request!", backColor: Colors.red);
+
+        } else  if (e.response?.statusCode == 401) {
+          $showSnackBar(context: context, message: "Username or Password is incorrect", backColor: Colors.red);
+        }else{
+          $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
+        }
+      }else{
+        $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
+      }
+    }
 
 return response;
   }

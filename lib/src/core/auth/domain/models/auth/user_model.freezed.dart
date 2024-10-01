@@ -208,20 +208,20 @@ mixin _$User {
   String get phone => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_earning', includeIfNull: false)
-  int get totalEarning => throw _privateConstructorUsedError;
+  int? get totalEarning => throw _privateConstructorUsedError;
   @JsonKey(name: 'vehicle_model', includeIfNull: false)
-  int get vehicleModel => throw _privateConstructorUsedError;
+  int? get vehicleModel => throw _privateConstructorUsedError;
   @JsonKey(name: 'license_plate_number', includeIfNull: false)
-  int get licensePlateNumber => throw _privateConstructorUsedError;
+  int? get licensePlateNumber => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: '__v', includeIfNull: false)
-  int get v => throw _privateConstructorUsedError;
+  int? get v => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
-  Info get info => throw _privateConstructorUsedError;
+  Info? get info => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -242,17 +242,17 @@ abstract class $UserCopyWith<$Res> {
       String email,
       String phone,
       String role,
-      @JsonKey(name: 'total_earning', includeIfNull: false) int totalEarning,
-      @JsonKey(name: 'vehicle_model', includeIfNull: false) int vehicleModel,
+      @JsonKey(name: 'total_earning', includeIfNull: false) int? totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false) int? vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      int licensePlateNumber,
+      int? licensePlateNumber,
       String status,
-      @JsonKey(includeIfNull: false) DateTime createdAt,
-      @JsonKey(includeIfNull: false) DateTime updatedAt,
-      @JsonKey(name: '__v', includeIfNull: false) int v,
-      @JsonKey(includeIfNull: false) Info info});
+      @JsonKey(includeIfNull: false) DateTime? createdAt,
+      @JsonKey(includeIfNull: false) DateTime? updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) int? v,
+      @JsonKey(includeIfNull: false) Info? info});
 
-  $InfoCopyWith<$Res> get info;
+  $InfoCopyWith<$Res>? get info;
 }
 
 /// @nodoc
@@ -274,14 +274,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? email = null,
     Object? phone = null,
     Object? role = null,
-    Object? totalEarning = null,
-    Object? vehicleModel = null,
-    Object? licensePlateNumber = null,
+    Object? totalEarning = freezed,
+    Object? vehicleModel = freezed,
+    Object? licensePlateNumber = freezed,
     Object? status = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? v = null,
-    Object? info = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? v = freezed,
+    Object? info = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -300,38 +300,38 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      totalEarning: null == totalEarning
+      totalEarning: freezed == totalEarning
           ? _value.totalEarning
           : totalEarning // ignore: cast_nullable_to_non_nullable
-              as int,
-      vehicleModel: null == vehicleModel
+              as int?,
+      vehicleModel: freezed == vehicleModel
           ? _value.vehicleModel
           : vehicleModel // ignore: cast_nullable_to_non_nullable
-              as int,
-      licensePlateNumber: null == licensePlateNumber
+              as int?,
+      licensePlateNumber: freezed == licensePlateNumber
           ? _value.licensePlateNumber
           : licensePlateNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      v: null == v
+              as DateTime?,
+      v: freezed == v
           ? _value.v
           : v // ignore: cast_nullable_to_non_nullable
-              as int,
-      info: null == info
+              as int?,
+      info: freezed == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as Info,
+              as Info?,
     ) as $Val);
   }
 
@@ -339,8 +339,12 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $InfoCopyWith<$Res> get info {
-    return $InfoCopyWith<$Res>(_value.info, (value) {
+  $InfoCopyWith<$Res>? get info {
+    if (_value.info == null) {
+      return null;
+    }
+
+    return $InfoCopyWith<$Res>(_value.info!, (value) {
       return _then(_value.copyWith(info: value) as $Val);
     });
   }
@@ -358,18 +362,18 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       String phone,
       String role,
-      @JsonKey(name: 'total_earning', includeIfNull: false) int totalEarning,
-      @JsonKey(name: 'vehicle_model', includeIfNull: false) int vehicleModel,
+      @JsonKey(name: 'total_earning', includeIfNull: false) int? totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false) int? vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      int licensePlateNumber,
+      int? licensePlateNumber,
       String status,
-      @JsonKey(includeIfNull: false) DateTime createdAt,
-      @JsonKey(includeIfNull: false) DateTime updatedAt,
-      @JsonKey(name: '__v', includeIfNull: false) int v,
-      @JsonKey(includeIfNull: false) Info info});
+      @JsonKey(includeIfNull: false) DateTime? createdAt,
+      @JsonKey(includeIfNull: false) DateTime? updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) int? v,
+      @JsonKey(includeIfNull: false) Info? info});
 
   @override
-  $InfoCopyWith<$Res> get info;
+  $InfoCopyWith<$Res>? get info;
 }
 
 /// @nodoc
@@ -388,14 +392,14 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? email = null,
     Object? phone = null,
     Object? role = null,
-    Object? totalEarning = null,
-    Object? vehicleModel = null,
-    Object? licensePlateNumber = null,
+    Object? totalEarning = freezed,
+    Object? vehicleModel = freezed,
+    Object? licensePlateNumber = freezed,
     Object? status = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
-    Object? v = null,
-    Object? info = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+    Object? v = freezed,
+    Object? info = freezed,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -414,38 +418,38 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      totalEarning: null == totalEarning
+      totalEarning: freezed == totalEarning
           ? _value.totalEarning
           : totalEarning // ignore: cast_nullable_to_non_nullable
-              as int,
-      vehicleModel: null == vehicleModel
+              as int?,
+      vehicleModel: freezed == vehicleModel
           ? _value.vehicleModel
           : vehicleModel // ignore: cast_nullable_to_non_nullable
-              as int,
-      licensePlateNumber: null == licensePlateNumber
+              as int?,
+      licensePlateNumber: freezed == licensePlateNumber
           ? _value.licensePlateNumber
           : licensePlateNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      v: null == v
+              as DateTime?,
+      v: freezed == v
           ? _value.v
           : v // ignore: cast_nullable_to_non_nullable
-              as int,
-      info: null == info
+              as int?,
+      info: freezed == info
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
-              as Info,
+              as Info?,
     ));
   }
 }
@@ -458,17 +462,15 @@ class _$UserImpl implements _User {
       required this.email,
       required this.phone,
       required this.role,
-      @JsonKey(name: 'total_earning', includeIfNull: false)
-      required this.totalEarning,
-      @JsonKey(name: 'vehicle_model', includeIfNull: false)
-      required this.vehicleModel,
+      @JsonKey(name: 'total_earning', includeIfNull: false) this.totalEarning,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false) this.vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      required this.licensePlateNumber,
+      this.licensePlateNumber,
       required this.status,
-      @JsonKey(includeIfNull: false) required this.createdAt,
-      @JsonKey(includeIfNull: false) required this.updatedAt,
-      @JsonKey(name: '__v', includeIfNull: false) required this.v,
-      @JsonKey(includeIfNull: false) required this.info});
+      @JsonKey(includeIfNull: false) this.createdAt,
+      @JsonKey(includeIfNull: false) this.updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) this.v,
+      @JsonKey(includeIfNull: false) this.info});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -484,27 +486,27 @@ class _$UserImpl implements _User {
   final String role;
   @override
   @JsonKey(name: 'total_earning', includeIfNull: false)
-  final int totalEarning;
+  final int? totalEarning;
   @override
   @JsonKey(name: 'vehicle_model', includeIfNull: false)
-  final int vehicleModel;
+  final int? vehicleModel;
   @override
   @JsonKey(name: 'license_plate_number', includeIfNull: false)
-  final int licensePlateNumber;
+  final int? licensePlateNumber;
   @override
   final String status;
   @override
   @JsonKey(includeIfNull: false)
-  final DateTime createdAt;
+  final DateTime? createdAt;
   @override
   @JsonKey(includeIfNull: false)
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   @override
   @JsonKey(name: '__v', includeIfNull: false)
-  final int v;
+  final int? v;
   @override
   @JsonKey(includeIfNull: false)
-  final Info info;
+  final Info? info;
 
   @override
   String toString() {
@@ -575,16 +577,16 @@ abstract class _User implements User {
       required final String phone,
       required final String role,
       @JsonKey(name: 'total_earning', includeIfNull: false)
-      required final int totalEarning,
+      final int? totalEarning,
       @JsonKey(name: 'vehicle_model', includeIfNull: false)
-      required final int vehicleModel,
+      final int? vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      required final int licensePlateNumber,
+      final int? licensePlateNumber,
       required final String status,
-      @JsonKey(includeIfNull: false) required final DateTime createdAt,
-      @JsonKey(includeIfNull: false) required final DateTime updatedAt,
-      @JsonKey(name: '__v', includeIfNull: false) required final int v,
-      @JsonKey(includeIfNull: false) required final Info info}) = _$UserImpl;
+      @JsonKey(includeIfNull: false) final DateTime? createdAt,
+      @JsonKey(includeIfNull: false) final DateTime? updatedAt,
+      @JsonKey(name: '__v', includeIfNull: false) final int? v,
+      @JsonKey(includeIfNull: false) final Info? info}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -599,27 +601,27 @@ abstract class _User implements User {
   String get role;
   @override
   @JsonKey(name: 'total_earning', includeIfNull: false)
-  int get totalEarning;
+  int? get totalEarning;
   @override
   @JsonKey(name: 'vehicle_model', includeIfNull: false)
-  int get vehicleModel;
+  int? get vehicleModel;
   @override
   @JsonKey(name: 'license_plate_number', includeIfNull: false)
-  int get licensePlateNumber;
+  int? get licensePlateNumber;
   @override
   String get status;
   @override
   @JsonKey(includeIfNull: false)
-  DateTime get createdAt;
+  DateTime? get createdAt;
   @override
   @JsonKey(includeIfNull: false)
-  DateTime get updatedAt;
+  DateTime? get updatedAt;
   @override
   @JsonKey(name: '__v', includeIfNull: false)
-  int get v;
+  int? get v;
   @override
   @JsonKey(includeIfNull: false)
-  Info get info;
+  Info? get info;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
