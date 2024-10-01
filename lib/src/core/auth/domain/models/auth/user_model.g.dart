@@ -24,8 +24,8 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       phone: json['phone'] as String,
       role: json['role'] as String,
       totalEarning: (json['total_earning'] as num?)?.toInt(),
-      vehicleModel: (json['vehicle_model'] as num?)?.toInt(),
-      licensePlateNumber: (json['license_plate_number'] as num?)?.toInt(),
+      vehicleModel: json['vehicle_model'] as String?,
+      licensePlateNumber: json['license_plate_number'] as String?,
       status: json['status'] as String,
       createdAt: json['createdAt'] == null
           ? null

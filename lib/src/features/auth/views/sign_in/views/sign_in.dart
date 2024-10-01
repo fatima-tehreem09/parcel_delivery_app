@@ -19,7 +19,7 @@ import '../../../../../core/local/local_storage_repository.dart';
 import '../../../../../shared/states/app_loading_state.dart';
 import '../../../../../utils/compute_action.dart';
 import '../../../../../widgets/primary_button.dart';
-import '../../../providers/auth_provider.dart';
+import '../../../providers/sign_in_provider.dart';
 
 class SignIn extends ConsumerStatefulWidget {
   const SignIn.builder(
@@ -49,7 +49,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
-    final loadingState = ref.watch(authProvider);
+    final loadingState = ref.watch(signInProviderProvider);
 
     final isLoading = loadingState == const AppLoadingState.loading();
     final _ = ref.watch(localDataProvider);
@@ -145,14 +145,14 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
   Future<void> onSubmit() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final result =
-    await ref.read(authProvider.notifier).signIn(
+    await ref.read(signInProviderProvider.notifier).signIn(
       context,
         _emailController.text,
         _passwordController.text
     );
   //   await computeAction(
   //   context,
-  //       () async => await ref.read(authProvider.notifier).signIn(
+  //       () async => await ref.read(signInProviderProvider.notifier).signIn(
   //     _emailController.text,
   //     _passwordController.text
   //   ),

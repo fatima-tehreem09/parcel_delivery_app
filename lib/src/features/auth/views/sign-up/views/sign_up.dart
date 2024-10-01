@@ -16,9 +16,8 @@ import 'package:reusables/mixins/form_state_mixin.dart';
 import 'package:reusables/reusables.dart';
 
 import '../../../../../const/colors.dart';
-import '../../../../../states/app_loading_state.dart';
-import '../../../../../utils/compute_action.dart';
-import '../../../providers/auth_provider.dart';
+import '../../../../../shared/states/app_loading_state.dart';
+import '../../../providers/sign_up_provider.dart';
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp.builder(
@@ -56,12 +55,15 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   /// TODO: Add validators to fields
   @override
   Widget build(BuildContext context) {
-    final loadingState = ref.watch(authProvider);
 
-    final isLoading = loadingState == const AppLoadingState.loading();
+
     final _ = ref.watch(localDataProvider);
     final bool isDriver = _.getUserType == "driver";
     print("isDriver: $isDriver  ");
+    final loadingState = ref.watch(signUpProviderProvider);
+    debugPrint("loadingState $loadingState");
+    final isLoading = loadingState == const AppLoadingState.loading();
+
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
@@ -72,6 +74,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
             text: "Email",
           ),
           AppTextField(
+            readOnly: isLoading,
             textEditingController: _emailController,
             hint: "Email Address",
             keyboardType: TextInputType.emailAddress,
@@ -80,7 +83,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
           ),
           const FieldHeading(text: "Phone"),
           AppTextField(
-            textEditingController: _phoneController,
+            textEditingController: _phoneController,    readOnly: isLoading,
             hint: "Phone Number",
             validator: InputValidator.required(),
             keyboardType: TextInputType.number,
@@ -91,7 +94,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
           ),
           if (isDriver) ...[
             const FieldHeading(text: "Vehicle Model"),
-            AppTextField(
+            AppTextField(    readOnly: isLoading,
               validator: InputValidator.required(),
               textEditingController: _vehicleModelController,
               hint: "Model Name",
@@ -99,7 +102,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
               textInputAction: TextInputAction.go,
             ),
             const FieldHeading(text: "License"),
-            AppTextField(
+            AppTextField(    readOnly: isLoading,
               validator: InputValidator.required(),
               textEditingController: _licenseController,
               hint: "License Plate Number",
@@ -111,18 +114,25 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
             ),
           ],
           const FieldHeading(text: "Password"),
-          AppPasswordField(
-            validator: InputValidator.required(),
-            textEditingController: _passwordController,
-          ),
-          const FieldHeading(text: "Confirm Password"),
-          AppPasswordField(
+          AppPasswordField(    readOnly: isLoading,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return "Password is required";
               } else if (value.length < 8) {
                 return "The password must be at least 8 characters long.";
-              } else if (value !=_confirmPasswordController.text) {
+              }
+              return null;
+            },
+            textEditingController: _passwordController,
+          ),
+          const FieldHeading(text: "Confirm Password"),
+          AppPasswordField(    readOnly: isLoading,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Password is required";
+              } else if (value.length < 8) {
+                return "The password must be at least 8 characters long.";
+              } else if (value !=_passwordController.text) {
                 return "Confirm password is incorrect.";
               }
               return null;
@@ -130,8 +140,8 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
             textEditingController: _confirmPasswordController,
           ),
           50.heightBox,
-          AppButton(
-              isLoading: isLoading, onPressed: submitter, text: "Sign Up"),
+
+          AppButton(isLoading: isLoading, onPressed: submitter, text: "Sign Up"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,
@@ -171,7 +181,7 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
   Future<void> onSubmit() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final result =
-    await ref.read(authProvider.notifier).signUp(
+    await ref.read(signUpProviderProvider.notifier).signUp(context,
         _emailController.text,
         _phoneController.text,
         _passwordController.text,

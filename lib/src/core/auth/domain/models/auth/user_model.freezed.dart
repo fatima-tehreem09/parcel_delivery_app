@@ -210,9 +210,9 @@ mixin _$User {
   @JsonKey(name: 'total_earning', includeIfNull: false)
   int? get totalEarning => throw _privateConstructorUsedError;
   @JsonKey(name: 'vehicle_model', includeIfNull: false)
-  int? get vehicleModel => throw _privateConstructorUsedError;
+  String? get vehicleModel => throw _privateConstructorUsedError;
   @JsonKey(name: 'license_plate_number', includeIfNull: false)
-  int? get licensePlateNumber => throw _privateConstructorUsedError;
+  String? get licensePlateNumber => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -243,9 +243,10 @@ abstract class $UserCopyWith<$Res> {
       String phone,
       String role,
       @JsonKey(name: 'total_earning', includeIfNull: false) int? totalEarning,
-      @JsonKey(name: 'vehicle_model', includeIfNull: false) int? vehicleModel,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false)
+      String? vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      int? licensePlateNumber,
+      String? licensePlateNumber,
       String status,
       @JsonKey(includeIfNull: false) DateTime? createdAt,
       @JsonKey(includeIfNull: false) DateTime? updatedAt,
@@ -307,11 +308,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       vehicleModel: freezed == vehicleModel
           ? _value.vehicleModel
           : vehicleModel // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       licensePlateNumber: freezed == licensePlateNumber
           ? _value.licensePlateNumber
           : licensePlateNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -363,9 +364,10 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String phone,
       String role,
       @JsonKey(name: 'total_earning', includeIfNull: false) int? totalEarning,
-      @JsonKey(name: 'vehicle_model', includeIfNull: false) int? vehicleModel,
+      @JsonKey(name: 'vehicle_model', includeIfNull: false)
+      String? vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      int? licensePlateNumber,
+      String? licensePlateNumber,
       String status,
       @JsonKey(includeIfNull: false) DateTime? createdAt,
       @JsonKey(includeIfNull: false) DateTime? updatedAt,
@@ -425,11 +427,11 @@ class __$$UserImplCopyWithImpl<$Res>
       vehicleModel: freezed == vehicleModel
           ? _value.vehicleModel
           : vehicleModel // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       licensePlateNumber: freezed == licensePlateNumber
           ? _value.licensePlateNumber
           : licensePlateNumber // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -489,10 +491,10 @@ class _$UserImpl implements _User {
   final int? totalEarning;
   @override
   @JsonKey(name: 'vehicle_model', includeIfNull: false)
-  final int? vehicleModel;
+  final String? vehicleModel;
   @override
   @JsonKey(name: 'license_plate_number', includeIfNull: false)
-  final int? licensePlateNumber;
+  final String? licensePlateNumber;
   @override
   final String status;
   @override
@@ -579,9 +581,9 @@ abstract class _User implements User {
       @JsonKey(name: 'total_earning', includeIfNull: false)
       final int? totalEarning,
       @JsonKey(name: 'vehicle_model', includeIfNull: false)
-      final int? vehicleModel,
+      final String? vehicleModel,
       @JsonKey(name: 'license_plate_number', includeIfNull: false)
-      final int? licensePlateNumber,
+      final String? licensePlateNumber,
       required final String status,
       @JsonKey(includeIfNull: false) final DateTime? createdAt,
       @JsonKey(includeIfNull: false) final DateTime? updatedAt,
@@ -604,10 +606,10 @@ abstract class _User implements User {
   int? get totalEarning;
   @override
   @JsonKey(name: 'vehicle_model', includeIfNull: false)
-  int? get vehicleModel;
+  String? get vehicleModel;
   @override
   @JsonKey(name: 'license_plate_number', includeIfNull: false)
-  int? get licensePlateNumber;
+  String? get licensePlateNumber;
   @override
   String get status;
   @override

@@ -11,55 +11,13 @@ import '../../../core/local/local_storage_repository.dart';
 import '../../../shared/app_exception.dart';
 import '../../../shared/states/app_loading_state.dart';
 
-part 'auth_provider.g.dart';
+part 'sign_in_provider.g.dart';
 
 @riverpod
-class Auth extends _$Auth {
+class SignInProvider extends _$SignInProvider {
   @override
   AppLoadingState build() => const AppLoadingState();
 
-  Future<bool> signUp(
-      String emailAddress, String phone, String password,{String vehicle_model="",String license_plate_number=""}) async {
-    bool response=false;
-    try {
-      state = const AppLoadingState.loading();
-      print('BEFORE');
-      String role = ref.read(localDataProvider).getUserType.toUpperCase();
-      final result = await ref.read(authRepository).signUp(SignUpDto(
-            email: emailAddress,
-            password: password,
-            phone: phone,
-            role: role,
-        vehicle_model: vehicle_model,license_plate_number:license_plate_number
-          ));
-      if(result.user.id.isNotEmpty){
-        response=true;
-      }
-      print('AFTER');
-
-      state = const AppLoadingState();
-    } catch (e) {
-      print('Error ${e}');
-
-      state = const AppLoadingState();
-      if (e is DioException) {
-        if (e.response?.statusCode == 400) {
-          AppSnackBar.showErrorSnackBar("Invalid Request!");
-
-        } else  if (e.response?.statusCode == 401) {
-          AppSnackBar.showErrorSnackBar("Username or Password is incorrect");
-
-        } else if (e.response?.statusCode == 404) {
-          AppSnackBar.showErrorSnackBar("Request not found");
-          // throw AppException(
-          //   title: 'Invalid Group Code',
-          //   error: 'This group code dose not exist.',
-          // );
-        }
-      }
-    }
-    return response;
-  }
 
   Future<bool> signIn(BuildContext context,String emailAddress, String password) async {
      bool response=false;
@@ -71,9 +29,16 @@ class Auth extends _$Auth {
             password: password,
           ));
       if(result.accessToken.isNotEmpty){
-        await ref.read(localDataProvider).setAccessToken(result.accessToken);
-        await ref.read(localDataProvider).saveUserType(result.user.role.toLowerCase());
-        response=true;
+        if((result.user.info?.emailVerified??false)==false){
+          $showSnackBar(context: context, message: "Email not verified!", backColor: Colors.red);
+
+        }else{
+          await ref.read(localDataProvider).setAccessToken(result.accessToken);
+          await ref.read(localDataProvider).saveUserType(result.user.role.toLowerCase());
+          response=true;
+
+        }
+
       }
 
       print('AFTER');
