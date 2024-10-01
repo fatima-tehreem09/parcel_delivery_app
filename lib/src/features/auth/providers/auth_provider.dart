@@ -45,23 +45,25 @@ class Auth extends _$Auth {
       state = const AppLoadingState();
       if (e is DioException) {
         if (e.response?.statusCode == 400) {
-          throw AppException(
-            title: 'Invalid User Data',
-            error: 'User with this email already exists',
-          );
+          AppSnackBar.showErrorSnackBar("Invalid Request!");
+
+        } else  if (e.response?.statusCode == 401) {
+          AppSnackBar.showErrorSnackBar("Username or Password is incorrect");
+
         } else if (e.response?.statusCode == 404) {
-          throw AppException(
-            title: 'Invalid Group Code',
-            error: 'This group code dose not exist.',
-          );
+          AppSnackBar.showErrorSnackBar("Request not found");
+          // throw AppException(
+          //   title: 'Invalid Group Code',
+          //   error: 'This group code dose not exist.',
+          // );
         }
       }
     }
   }
 
-  Future<bool> signIn(String emailAddress, String password) async {
+  Future<bool> signIn(BuildContext context,String emailAddress, String password) async {
      bool response=false;
-    try {
+    // try {
       state = const AppLoadingState.loading();
       print('BEFORE');
       final result = await ref.read(authRepository).signIn(SignInDto(
@@ -73,30 +75,28 @@ class Auth extends _$Auth {
         await ref.read(localDataProvider).saveUserType(result.user.role.toLowerCase());
         response=true;
       }
-      print('user info ${result.accessToken}');
 
       print('AFTER');
 
       state = const AppLoadingState();
-    } catch (e) {
-      print('Error ${e}');
 
-      state = const AppLoadingState();
-      if (e is DioException) {
-        if (e.response?.statusCode == 400) {
-          AppSnackBar.showErrorSnackBar("Invalid Request!");
-
-        } else  if (e.response?.statusCode == 401) {
-          AppSnackBar.showErrorSnackBar("Username or Password is incorrect");
-
-        } else if (e.response?.statusCode == 404) {
-          // throw AppException(
-          //   title: 'Invalid Group Code',
-          //   error: 'This group code dose not exist.',
-          // );
-        }
-      }
-    }
+    // } catch (e) {
+    //   print('Error ${e}');
+    //
+    //   state = const AppLoadingState();
+    //   if (e is DioException) {
+    //     if (e.response?.statusCode == 400) {
+    //       $showSnackBar(context: context, message: "Invalid Request!", backColor: Colors.red);
+    //
+    //     } else  if (e.response?.statusCode == 401) {
+    //       $showSnackBar(context: context, message: "Username or Password is incorrect", backColor: Colors.red);
+    //     }else{
+    //       $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
+    //     }
+    //   }else{
+    //     $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
+    //   }
+    // }
 
 return response;
   }

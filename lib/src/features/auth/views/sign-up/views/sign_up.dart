@@ -117,7 +117,16 @@ class _SignUpState extends ConsumerState<SignUp> with FormStateMixin {
           ),
           const FieldHeading(text: "Confirm Password"),
           AppPasswordField(
-            validator: InputValidator.required(),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Password is required";
+              } else if (value.length < 8) {
+                return "The password must be at least 8 characters long.";
+              } else if (value !=_confirmPasswordController.text) {
+                return "Confirm password is incorrect.";
+              }
+              return null;
+            },
             textEditingController: _confirmPasswordController,
           ),
           50.heightBox,

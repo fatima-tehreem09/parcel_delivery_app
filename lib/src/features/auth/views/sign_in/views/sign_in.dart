@@ -65,6 +65,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
             text: "Email",
           ),
           AppTextField(
+            readOnly: isLoading,
             textEditingController: _emailController,
             hint: "Email Address",
             validator: InputValidator.email(),
@@ -73,7 +74,15 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
           ),
           const FieldHeading(text: "Password"),
           AppPasswordField(
-            validator: InputValidator.required(),
+            readOnly: isLoading,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Password is required";
+              } else if (value.length < 8) {
+                return "The password must be at least 8 characters long.";
+              }
+              return null;
+            },
             textEditingController: _passwordController,
           ),
           10.heightBox,
@@ -98,7 +107,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
             ),
           ),
           50.heightBox,
-          AppButton(isLoading: isLoading, onPressed: submitter, text: "Sign In"),
+          AppButton(isLoading: false, onPressed: submitter, text: "Sign In"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,
@@ -137,6 +146,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
     FocusManager.instance.primaryFocus?.unfocus();
     final result =
     await ref.read(authProvider.notifier).signIn(
+      context,
         _emailController.text,
         _passwordController.text
     );

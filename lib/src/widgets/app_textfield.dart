@@ -170,6 +170,7 @@ class AppPasswordField extends StatefulWidget {
     this.onChanged,
     this.initialValue,
     this.onSaved,
+    this.readOnly=false,
   });
 
   final IconData? icon;
@@ -177,6 +178,7 @@ class AppPasswordField extends StatefulWidget {
   final String? hint;
   final String? label;
   final BuildContext? context;
+  final bool readOnly;
   final FormFieldValidator<String?>? validator;
   final TextEditingController? textEditingController;
   final double? borderRadius;
@@ -217,6 +219,7 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
 
     return TextFormField(
       initialValue: widget.initialValue,
+      readOnly: widget.readOnly,
       key: widget.textKey,
       onSaved: widget.onSaved,
       cursorColor: AppColors.primaryBlue,

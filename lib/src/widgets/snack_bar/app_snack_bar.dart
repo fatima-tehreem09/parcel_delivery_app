@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../const/colors.dart';
+import '../inter_text.dart';
 import '../text_widget.dart';
+
 
 
 sealed class AppSnackBar {
@@ -29,6 +31,7 @@ sealed class AppSnackBar {
 
   static void showErrorSnackBar([String? text]) {
     text ??= 'Something went wrong. Please try again.';
+    debugPrint("Snakbar message ${text}");
     final messenger = snackbarKey.currentState;
     messenger?.removeCurrentSnackBar();
     messenger?.hideCurrentSnackBar();
@@ -57,4 +60,48 @@ sealed class AppSnackBar {
 //     ),
 //   );
 // }
+}
+
+$showSnackBar({
+  required BuildContext context,
+  required String message,
+  IconData icon = Icons.close_rounded,
+  required Color backColor,
+  Color contentTextColor = AppColors.white,
+}) {
+  final messenger = ScaffoldMessenger.of(context);
+  messenger
+      .showSnackBar(customSnackbar(message, icon, backColor, contentTextColor));
+}
+
+SnackBar customSnackbar(
+    String content, IconData icon, Color backColor, Color contentTextColor) {
+  return SnackBar(
+    elevation: 0,
+    content: Row(
+      children: [
+        CircleAvatar(
+          radius: 24,
+          backgroundColor: AppColors.white,
+          child: Icon(
+            icon,
+            color: const Color(0xff4B5563),
+          ),
+        ),
+        const SizedBox(width: 8.0),
+        Expanded(
+          child: InterText(
+            content,
+            color: contentTextColor,
+            size: 16,
+          ),
+        ),
+      ],
+    ),
+    backgroundColor: backColor,
+    behavior: SnackBarBehavior.floating,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20.0),
+    ),
+  );
 }
