@@ -107,7 +107,7 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
             ),
           ),
           50.heightBox,
-          AppButton(isLoading: false, onPressed: submitter, text: "Sign In"),
+          AppButton(isLoading: isLoading, onPressed: submitter, text: "Sign In"),
           50.heightBox,
           Align(
             alignment: Alignment.bottomCenter,

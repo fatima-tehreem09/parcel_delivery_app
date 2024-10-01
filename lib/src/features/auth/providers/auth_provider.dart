@@ -90,6 +90,8 @@ class Auth extends _$Auth {
 
         } else  if (e.response?.statusCode == 401) {
           $showSnackBar(context: context, message: "Username or Password is incorrect", backColor: Colors.red);
+        }else if (e.response?.statusCode == 403) {
+          $showSnackBar(context: context, message: "Account is not active!", backColor: Colors.red);
         }else{
           $showSnackBar(context: context, message: "Something went wrong!", backColor: Colors.red);
         }
