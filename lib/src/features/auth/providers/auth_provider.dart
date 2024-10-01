@@ -1,4 +1,5 @@
 import 'package:abiola_along_client_app/src/core/auth/data/dto/sign_in/sign_in_dto.dart';
+import 'package:abiola_along_client_app/src/widgets/snack_bar/app_snack_bar.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -83,15 +84,16 @@ class Auth extends _$Auth {
       state = const AppLoadingState();
       if (e is DioException) {
         if (e.response?.statusCode == 400) {
-          throw AppException(
-            title: 'Invalid User Data',
-            error: 'User with this email already exists',
-          );
+          AppSnackBar.showErrorSnackBar("Invalid Request!");
+
+        } else  if (e.response?.statusCode == 401) {
+          AppSnackBar.showErrorSnackBar("Username or Password is incorrect");
+
         } else if (e.response?.statusCode == 404) {
-          throw AppException(
-            title: 'Invalid Group Code',
-            error: 'This group code dose not exist.',
-          );
+          // throw AppException(
+          //   title: 'Invalid Group Code',
+          //   error: 'This group code dose not exist.',
+          // );
         }
       }
     }

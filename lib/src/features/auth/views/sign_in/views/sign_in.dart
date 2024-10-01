@@ -136,17 +136,17 @@ class _SignUpState extends ConsumerState<SignIn> with FormStateMixin {
   Future<void> onSubmit() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final result =
-    // await ref.read(authProvider.notifier).signIn(
-    //     _emailController.text,
-    //     _passwordController.text
-    // );
-    await computeAction(
-    context,
-        () async => await ref.read(authProvider.notifier).signIn(
-      _emailController.text,
-      _passwordController.text
-    ),
-  );
+    await ref.read(authProvider.notifier).signIn(
+        _emailController.text,
+        _passwordController.text
+    );
+  //   await computeAction(
+  //   context,
+  //       () async => await ref.read(authProvider.notifier).signIn(
+  //     _emailController.text,
+  //     _passwordController.text
+  //   ),
+  // );
 if(result){
   context.pushNamed(Home.name);
 
