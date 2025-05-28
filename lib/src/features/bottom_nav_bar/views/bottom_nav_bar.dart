@@ -33,15 +33,15 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.6),
-              offset: Offset(0, -4),
+              color: Colors.black.withValues(alpha: 00.6),
+              offset: const Offset(0, -4),
               blurRadius: 8,
               spreadRadius: 0,
             ),
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.4),
-              offset: Offset(0, -4),
-              blurRadius: 8,
+              color: Colors.black.withValues(alpha: 00.4),
+              offset: const Offset(0, 0),
+              blurRadius: 4,
               spreadRadius: 0,
             ),
           ],

@@ -72,4 +72,6 @@ class AppAssets {
   static const homeFilledIcon = '${assessmentPath}home-filled.svg';
   static const benefitsIcon = '${assessmentPath}benefits-icon.svg';
   static const discoverIcon = '${assessmentPath}discover-icon.svg';
+  static const cardPattern = '${assessmentPath}card-pattern.svg';
+  static const visaLogo = '${assessmentPath}visa-logo.svg';
 }

@@ -1,4 +1,6 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
+import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/widgets/cached_image.dart';
 import 'package:abiola_along_client_app/src/widgets/icon_box.dart';
 import 'package:abiola_along_client_app/src/widgets/inter_tight_text.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      forceMaterialTransparency: true,
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       scrolledUnderElevation: 0.0,
@@ -36,7 +37,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               icon: leadingIcon,
             ),
       centerTitle: true,
-      title: title != ""
+      title: title.isNotEmpty
           ? InterTightText(
               title,
               fontWeight: FontWeight.w500,
@@ -44,17 +45,32 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             )
           : SvgPicture.asset(
               titleIcon,
+              fit: BoxFit.scaleDown,
+              height: 28,
             ),
-      // actions: [
-      //   Row(
-      //     children: [
-      //       GestureDetector(
-      //         onTap: onTap,
-      //         // child: IconBox(icon: )
-      //       ),
-      //     ],
-      //   ),
-      // ],
+      actions: [
+        if (title.isEmpty) ...[
+          Row(
+            children: [
+              GestureDetector(
+                onTap: onTap,
+                child: IconBox(
+                  shouldShowBorder: true,
+                  icon: AppAssets.notificationIcon,
+                  margin: EdgeInsets.only(right: 8),
+                ),
+              ),
+              CachedImageWidget(
+                size: 40,
+                fit: BoxFit.cover,
+                url:
+                    "https://images.unsplash.com/photo-1623227413711-25ee4388dae3?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              ),
+              8.width,
+            ],
+          ),
+        ],
+      ],
     );
   }
 

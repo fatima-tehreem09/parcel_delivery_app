@@ -9,33 +9,44 @@ class IconBox extends StatelessWidget {
     this.color = AppColors.bgWhite,
     required this.icon,
     this.margin = const EdgeInsets.all(0),
-    this.shouldShowBorder=false,
+    this.shouldShowBorder = false,
+    this.isPng = false,
+    this.width = 40,
+    this.height = 40,
   });
+
   final Color color;
   final String icon;
   final EdgeInsetsGeometry margin;
   final bool shouldShowBorder;
+  final bool isPng;
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: margin,
       padding: const EdgeInsets.all(12),
-      width: 40,
-      height: 40,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         color: color,
-        border:shouldShowBorder? Border.all(
-          color: Color(0xffEBEBEB),
-          width: 1,
-        ):null,
+        border: shouldShowBorder
+            ? Border.all(
+                color: Color(0xffEBEBEB),
+                width: 1,
+              )
+            : null,
         shape: BoxShape.circle,
       ),
       child: Center(
-        child: SvgPicture.asset(
-          icon,
-          fit: BoxFit.scaleDown,
-        ),
+        child: isPng
+            ? Image.asset(icon)
+            : SvgPicture.asset(
+                icon,
+                fit: BoxFit.scaleDown,
+              ),
       ),
     );
   }

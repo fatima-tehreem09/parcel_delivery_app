@@ -60,3 +60,12 @@ extension CenterLeftAlignment on Widget {
     );
   }
 }
+
+extension SliverPaddingExtension on Widget {
+  Widget get sliverPadding {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      sliver: sliver,
+    );
+  }
+}
