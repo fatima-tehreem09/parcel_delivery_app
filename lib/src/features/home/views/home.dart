@@ -37,7 +37,7 @@ class _HomeState extends ConsumerState<Home> {
       backgroundColor: AppColors.bgWhite,
       body: CustomScrollView(
         slivers: [
-          CardWidget().sliverPadding,
+          const CardWidget().sliverPadding,
           12.height.sliver,
           const ActionTile(title: "My Assets", buttonText: "View All")
               .sliverPadding,
@@ -45,7 +45,7 @@ class _HomeState extends ConsumerState<Home> {
           12.height.sliver,
           const ActionTile(title: "Transactions", buttonText: "View All")
               .sliverPadding,
-          Transactions().sliverPadding,
+          const Transactions().sliverPadding,
         ],
       ),
     );

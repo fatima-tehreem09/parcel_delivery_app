@@ -32,7 +32,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           ? null
           : IconBox(
               shouldShowBorder: true,
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               color: AppColors.bgWhite,
               icon: leadingIcon,
             ),
@@ -54,13 +54,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             children: [
               GestureDetector(
                 onTap: onTap,
-                child: IconBox(
+                child: const IconBox(
                   shouldShowBorder: true,
                   icon: AppAssets.notificationIcon,
                   margin: EdgeInsets.only(right: 8),
                 ),
               ),
-              CachedImageWidget(
+              const CachedImageWidget(
                 size: 40,
                 fit: BoxFit.cover,
                 url:

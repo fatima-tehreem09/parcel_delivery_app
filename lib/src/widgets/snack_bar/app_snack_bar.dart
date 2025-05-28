@@ -4,8 +4,6 @@ import '../../const/colors.dart';
 import '../inter_text.dart';
 import '../text_widget.dart';
 
-
-
 sealed class AppSnackBar {
   static final snackbarKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -15,15 +13,12 @@ sealed class AppSnackBar {
     messenger?.hideCurrentSnackBar();
     messenger?.showSnackBar(
       SnackBar(
-        content:
-        OnestText(
+        content: OnestText(
           text,
           size: 16,
           fontWeight: FontWeight.w700,
           color: AppColors.white,
         ),
-
-
         backgroundColor: AppColors.primaryBlue,
       ),
     );
@@ -31,13 +26,13 @@ sealed class AppSnackBar {
 
   static void showErrorSnackBar([String? text]) {
     text ??= 'Something went wrong. Please try again.';
-    debugPrint("Snakbar message ${text}");
+    debugPrint("Snakbar message $text");
     final messenger = snackbarKey.currentState;
     messenger?.removeCurrentSnackBar();
     messenger?.hideCurrentSnackBar();
     messenger?.showSnackBar(
       SnackBar(
-        content:      OnestText(
+        content: OnestText(
           text,
           size: 12,
           fontWeight: FontWeight.w500,

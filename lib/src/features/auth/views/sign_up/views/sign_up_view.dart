@@ -72,7 +72,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> with FormStateMixin {
       absorbing: isLoading,
       child: Scaffold(
         backgroundColor: AppColors.bgWhite,
-        appBar: AppBarWidget(
+        appBar: const AppBarWidget(
           shouldShowLeading: true,
           title: "Create Your Account",
           leadingIcon: AppAssets.arrowSVG,
@@ -86,7 +86,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> with FormStateMixin {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const GeneralHeading(),
-                HeadingText(text: "Full Name").leftAlignment,
+                const HeadingText(text: "Full Name").leftAlignment,
                 4.5.height,
                 AppTextField(
                   textEditingController: nameController,

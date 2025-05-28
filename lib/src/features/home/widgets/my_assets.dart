@@ -12,13 +12,13 @@ class MyAssets extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final List<String> names = const [
+    const List<String> names = [
       "Bitcoin (BTC)",
       "Ethereum (ETH)",
       "Litecoin (LTC)",
     ];
 
-    final List<String> icons = const [
+    const List<String> icons = [
       AppAssets.bitcoinIcon,
       AppAssets.ethereumIcon,
       AppAssets.ethereumIcon,
@@ -30,24 +30,21 @@ class MyAssets extends ConsumerWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 3,
         itemBuilder: (context, index) {
-          return Expanded(
-            child: Container(
-              margin: EdgeInsets.only(right: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: AppColors.greySecondary,
-                ),
+          return Container(
+            margin: EdgeInsets.only(right: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: AppColors.greySecondary,
               ),
-              padding: const EdgeInsets.all(12),
-              child: _AssetItem(
-                icon: icons[index],
-                color: index % 2 == 0
-                    ? AppColors.yellowPrimary
-                    : Color(0xffE8E8E8),
-                name: names[index],
-                amount: '1,250.000',
-              ),
+            ),
+            padding: const EdgeInsets.all(12),
+            child: _AssetItem(
+              icon: icons[index],
+              color:
+                  index % 2 == 0 ? AppColors.yellowPrimary : Color(0xffE8E8E8),
+              name: names[index],
+              amount: '1,250.000',
             ),
           );
         },

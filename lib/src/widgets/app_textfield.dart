@@ -96,7 +96,7 @@ class _AppTextFieldState extends State<AppTextField> {
       textAlign: widget.textAlign,
       readOnly: widget.readOnly ?? false,
       initialValue: widget.initialValue,
-      style: textStyle(Color(0xff1A1C1E)),
+      style: textStyle(const Color(0xff1A1C1E)),
       onTap: widget.onTap,
       autofillHints: widget.autofillHints,
       onFieldSubmitted: widget.onFieldSubmitted,
@@ -125,11 +125,11 @@ class _AppTextFieldState extends State<AppTextField> {
         filled: true,
         fillColor: AppColors.bgWhite,
         border: getBorder(
-          Color(0xffD9D9D9),
+          const Color(0xffD9D9D9),
         ),
         counterText: widget.counterText,
         enabledBorder: getBorder(
-          Color(0xffD9D9D9),
+          const Color(0xffD9D9D9),
         ),
         focusedBorder: getBorder(
           AppColors.greenPrimary,
@@ -219,7 +219,7 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
         // onFieldSubmitted: (v) {
         //   FocusScope.of(context).nextFocus();
         // },
-        style: textStyle(Color(0xff1A1C1E)),
+        style: textStyle(const Color(0xff1A1C1E)),
         scrollPadding: const EdgeInsets.all(180),
         decoration: InputDecoration(
           suffixIcon: GestureDetector(
@@ -238,10 +238,10 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
           filled: true,
           fillColor: AppColors.bgWhite,
           border: getBorder(
-            Color(0xffD9D9D9),
+            const Color(0xffD9D9D9),
           ),
           enabledBorder: getBorder(
-            Color(0xffD9D9D9),
+            const Color(0xffD9D9D9),
           ),
           focusedBorder: getBorder(
             AppColors.greenPrimary,

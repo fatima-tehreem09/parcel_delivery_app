@@ -36,7 +36,7 @@ class _CheckListTileWidgetState extends ConsumerState<CheckListTileWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Checkbox(
-          side: BorderSide(
+          side: const BorderSide(
             color: Color(0xff6C7278),
             width: 1.5,
           ),

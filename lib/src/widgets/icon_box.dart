@@ -34,7 +34,7 @@ class IconBox extends StatelessWidget {
         color: color,
         border: shouldShowBorder
             ? Border.all(
-                color: Color(0xffEBEBEB),
+                color: const Color(0xffEBEBEB),
                 width: 1,
               )
             : null,

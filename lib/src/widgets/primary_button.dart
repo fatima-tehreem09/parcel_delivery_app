@@ -27,7 +27,7 @@ class AppButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 24,
           vertical: 12,
         ),

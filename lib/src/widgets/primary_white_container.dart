@@ -17,7 +17,7 @@ class AppWhiteContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? EdgeInsets.only(bottom: 10),
+      margin: margin ?? const EdgeInsets.only(bottom: 10),
       width: double.infinity,
       padding: padding,
       decoration: BoxDecoration(

@@ -25,9 +25,9 @@ class CardActions extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Color(0xff002620),
+        color: const Color(0xff002620),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(

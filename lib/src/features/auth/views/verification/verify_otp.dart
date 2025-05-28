@@ -52,7 +52,7 @@ class _VerifyCodeViewState extends ConsumerState<VerifyCodeView> {
     String accessToken = ref.watch(localDataProvider).accessToken ?? '';
     return Scaffold(
       backgroundColor: AppColors.bgWhite,
-      appBar: AppBarWidget(
+      appBar: const AppBarWidget(
         shouldShowLeading: true,
         title: "Verification",
         leadingIcon: AppAssets.arrowSVG,
