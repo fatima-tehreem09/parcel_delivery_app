@@ -1,83 +1,95 @@
-import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../const/colors.dart';
 
 class AppOtpTextField extends ConsumerStatefulWidget {
   const AppOtpTextField({
     super.key,
     required this.enabled,
+    required this.onCompleted,
+    required this.validator,
   });
+
   final bool enabled;
+  final ValueChanged<String> onCompleted;
+  final FormFieldValidator<String> validator;
 
   @override
   ConsumerState createState() => _AppOtpTextFieldState();
 }
 
 class _AppOtpTextFieldState extends ConsumerState<AppOtpTextField> {
+  String? errorText;
+
   @override
   Widget build(BuildContext context) {
-    textStyle(Color color) {
-      return TextStyle(
+    TextStyle getStyle(Color color) {
+      return GoogleFonts.urbanist(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
         color: color,
-        fontWeight: FontWeight.w400,
-        fontSize: 14,
+        decoration: TextDecoration.none,
+        decorationStyle: TextDecorationStyle.solid,
+        decorationColor: Colors.transparent,
+        decorationThickness: 0,
       );
     }
 
-    InputBorder getBorder(Color color) {
-      return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(
-          color: color,
-          width: 1,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        OtpTextField(
+          onCodeChanged: (String pin) {
+            setState(() {
+              errorText = widget.validator(pin);
+            });
+          },
+          onSubmit: (String pin) {
+            setState(() {
+              errorText = widget.validator(pin);
+            });
+            if (errorText == null) {
+              widget.onCompleted(pin);
+            }
+          },
+          enabled: widget.enabled,
+          fieldHeight: 48,
+          fieldWidth: 48,
+          filled: true,
+          fillColor: AppColors.bgWhite,
+          numberOfFields: 4,
+          disabledBorderColor: const Color(0xffD9D9D9),
+          enabledBorderColor: const Color(0xffD9D9D9),
+          focusedBorderColor: AppColors.greenPrimary,
+          borderColor: const Color(0xffD9D9D9),
+          textStyle: getStyle(AppColors.blackPrimary),
+          cursorColor: AppColors.primaryBlue,
+          borderRadius: BorderRadius.circular(12),
+          borderWidth: 1,
+          keyboardType: const TextInputType.numberWithOptions(
+            decimal: true,
+            signed: false,
+          ),
+          decoration: InputDecoration(
+            hintText: "0",
+            counterText: '',
+            hintStyle: getStyle(AppColors.greySecondary),
+          ),
+          showFieldAsBox: true,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         ),
-      );
-    }
-
-    return OtpTextField(
-      enabled: widget.enabled,
-      fieldHeight: 48,
-      fieldWidth: 48,
-      filled: true,
-      fillColor: AppColors.bgWhite,
-      numberOfFields: 4,
-      textStyle: textStyle(Color(0xff010101)),
-      cursorColor: AppColors.greenPrimary,
-      borderRadius: BorderRadius.circular(12),
-      borderWidth: 1,
-      hasCustomInputDecoration: true,
-      borderColor: Color(0xffD9D9D9),
-      keyboardType: const TextInputType.numberWithOptions(
-        decimal: true,
-        signed: false,
-      ),
-      decoration: InputDecoration(
-        hintText: "-",
-        counterText: '',
-        hintStyle: textStyle(AppColors.textGrey),
-        // border: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(8),
-        //   borderSide: BorderSide(
-        //     color: mode ? const Color(0xff212C42) : Colors.white,
-        //   ),
-        // ),
-        // focusedBorder: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(8),
-        //   borderSide: BorderSide(
-        //     color: mode ? const Color(0xff212C42) : Colors.white,
-        //   ),
-        // ),
-        // enabledBorder: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(8),
-        //   borderSide: BorderSide(
-        //     color: mode ? const Color(0xff212C42) : Colors.white,
-        //   ),
-        // ),
-      ),
-      focusedBorderColor: AppColors.greenPrimary,
-      showFieldAsBox: true,
-      onCodeChanged: (String value) {},
+        if (errorText != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              errorText!,
+              style: const TextStyle(color: Colors.red, fontSize: 12),
+            ),
+          ),
+      ],
     );
   }
 }

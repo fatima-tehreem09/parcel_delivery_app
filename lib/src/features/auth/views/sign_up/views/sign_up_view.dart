@@ -2,6 +2,7 @@ import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/features/auth/views/sign_in/sign_in_view.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/verification/verify_otp.dart';
 import 'package:abiola_along_client_app/src/features/auth/widgets/helper_text.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
@@ -13,6 +14,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reusables/mixins/form_state_mixin.dart';
 import 'package:reusables/reusables.dart';
 
+import '../../../../../core/local/local_storage_repository.dart';
 import '../../../../../widgets/app_textfield.dart';
 import '../../../widgets/general_heading.dart';
 import '../../../widgets/heading.dart';
@@ -44,6 +46,9 @@ class _SignUpViewState extends ConsumerState<SignUpView> with FormStateMixin {
     if (kDebugMode) {
       emailController.text = "haroon@gmail.com";
       passwordController.text = "12345678";
+      confirmPasswordController.text = "12345678";
+      nameController.text = "Haroon";
+      phoneController.text = "1234567890";
     }
   }
 
@@ -57,13 +62,14 @@ class _SignUpViewState extends ConsumerState<SignUpView> with FormStateMixin {
     phoneController.dispose();
   }
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     // bool isLoading =
-    //     ref.watch(signInProvider) == const AppLoadingState.loading();
-    // final _=ref.watch(userByIdProvider);
+    //     ref.watch(signUnProvider) == const AppLoadingState.loading();
     return AbsorbPointer(
-      absorbing: false,
+      absorbing: isLoading,
       child: Scaffold(
         backgroundColor: AppColors.bgWhite,
         appBar: AppBarWidget(
@@ -151,7 +157,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> with FormStateMixin {
                 ),
                 AppButton(
                   onPressed: submitter,
-                  text: "Continue",
+                  text: isLoading ? "Please Wait" : "Continue",
                 ),
                 15.height,
                 HelperText(
@@ -174,15 +180,37 @@ class _SignUpViewState extends ConsumerState<SignUpView> with FormStateMixin {
   Future<void> onSubmit() async {
     // final data = await performNetworkOperation(
     //   context,
-    //   () => ref.read(signInProvider.notifier).signIn(
-    //         SignInModel(
+    //   () => ref.read(signUpProvider.notifier).signUp(
+    //         UserModel(
     //           password: passwordController.text,
     //           email: emailController.text,
+    //           name: nameController.text,
+    //           phone: phoneController.text,
+    //           confirmPassword: confirmPasswordController.text,
     //         ),
     //       ),
     // );
     // if (data == null) return;
     // if (!mounted) return;
     // context.goNamed(HomeView.name);
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      await Future.delayed(const Duration(seconds: 3));
+      final localData = ref.watch(localDataProvider);
+      await localData.saveUsername(nameController.text);
+      await localData.setAccessToken(emailController.text);
+      // ref.refresh(localDataProvider);
+      if (!mounted) return;
+      context.goNamed(VerifyCodeView.name);
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
   }
 }

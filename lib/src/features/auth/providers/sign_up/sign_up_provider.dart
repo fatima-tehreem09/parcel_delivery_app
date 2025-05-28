@@ -1,99 +1,41 @@
-// import 'dart:typed_data';
-//
-// import 'package:image_picker/image_picker.dart';
-// import 'package:riverpod_annotation/riverpod_annotation.dart';
-// import 'package:surgemate_client_app/src/core/auth/domain/models/sign_up_model/signup.dart';
-// import 'package:surgemate_client_app/src/core/auth/domain/repositories/auth_repository.dart';
-// import 'package:surgemate_client_app/src/core/handler/error_handler.dart';
-// import 'package:surgemate_client_app/src/features/auth/providers/sign_up/signup_state.dart';
-//
-// import '../../../../core/auth/domain/models/sign_in_model/sign_in_model.dart';
-// import '../../../../core/user/user_model.dart';
-// import '../sign_in/sign_in_provider.dart';
-//
-// part 'sign_up_provider.g.dart';
-//
-// @riverpod
-// class SignUp extends _$SignUp {
-//   @override
-//   SignupState build() => SignupState.initial();
-//
-//   void changeName(String? v) {
-//     state = state.copyWith(request: state.request.copyWith(name: v));
-//   }
-//
-//   void changeBirth(String? v) {
-//     state = state.copyWith(request: state.request.copyWith(dateOfBirth: v));
-//   }
-//
-//   void changeEmail(String? v) {
-//     state = state.copyWith(request: state.request.copyWith(email: v));
-//   }
-//
-//   void changePassword(String? v) {
-//     state = state.copyWith(request: state.request.copyWith(password: v));
-//   }
-//
-//   void changeEmployment(EmploymentType? v) {
-//     state = state.copyWith(request: state.request.copyWith(employmentType: v));
-//   }
-//
-//   void changeImage(XFile? image) {
-//     state = state.copyWith(image: image);
-//   }
-//
-//   void changeSelectedDate(DateTime selectedDate) {
-//     state = state.copyWith(selectedDate: selectedDate);
-//   }
-//
-//   void changeCountry(String country) {
-//     state = state.copyWith(
-//       request: state.request.copyWith(country: country),
-//     );
-//   }
-//
-//   Future<UserModelData?> signUp() async {
-//     state = state.copyWith(isLoading: true);
-//     try {
-//       String nameOfImage = '';
-//       if (state.image != null) {
-//         final String fileName = state.image!.name;
-//         final Uint8List fileBytes = await state.image!.readAsBytes();
-//         final imageName = await ref.read(authRepositoryProvider).uploadDocument(
-//               fileBytes,
-//               fileName,
-//             );
-//         nameOfImage = imageName.file ?? '';
-//       }
-//       state = state.copyWith(
-//         request: state.request.copyWith(
-//           profilePictureKey: nameOfImage,
-//           gradationYear: state.selectedDate?.year.toString() ?? '',
-//           role: "user",
-//         ),
-//       );
-//
-//       await ref.read(authRepositoryProvider).signUp(state.request);
-//
-//       final result = await ref.read(signInProvider.notifier).signIn(
-//             SignInModel(
-//               password: state.request.password,
-//               email: state.request.email,
-//             ),
-//           );
-//       return result.user;
-//     } catch (e) {
-//       throw ErrorHandler.errorHandler(error: e);
-//       // if (e is DioException) {
-//       //   if (e.response?.statusCode == 500) {
-//       //     throw "User with this email already exists.";
-//       //   } else {
-//       //     throw "Internet connection error";
-//       //   }
-//       // }
-//       // rethrow;
-//     } finally {
-//       state = state.copyWith(isLoading: false);
-//     }
-//   }
-// }
+import 'package:abiola_along_client_app/src/core/auth/data/dto/sign_up/sign_up_dto.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../../core/auth/domain/models/auth/user_model.dart';
+import '../../../../core/auth/domain/repositories/auth/auth_repository.dart';
+import '../../../../core/client/api_interceptor.dart';
+import '../../../../core/handler/error_handler.dart';
+import '../../../../core/local/local_storage_repository.dart';
+import '../../../../shared/states/app_loading_state.dart';
+
+part 'sign_up_provider.g.dart';
+
+@riverpod
+class SignUp extends _$SignUp {
+  @override
+  AppLoadingState build() => const AppLoadingState();
+
+  Future<UserModel> signUp(UserModel request) async {
+    state = const AppLoadingState.loading();
+    try {
+      final result = await ref.read(authRepository).signUp(
+            SignUpDto(
+              email: request.email,
+              password: request.password ?? "",
+              name: request.name ?? "",
+              phone: request.phone ?? '',
+              confirmPassword: request.password,
+            ),
+          );
+      final localData = ref.watch(localDataProvider);
+      await localData.saveUsername(result.name ?? "");
+      ref.refresh(authInterceptorProvider);
+      ref.refresh(localDataProvider);
+      return result;
+    } catch (e) {
+      throw ErrorHandler.errorHandler(error: e);
+    } finally {
+      state = const AppLoadingState();
+    }
+  }
+}

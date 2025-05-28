@@ -7,10 +7,8 @@ part 'sign_in_dto.g.dart';
 
 @Freezed(toJson: true, fromJson: false)
 class SignInDto with _$SignInDto {
-  factory SignInDto({
-    required String username,
-    required String password
-  }) = _SignInDto;
+  factory SignInDto({required String email, required String password}) =
+      _SignInDto;
 
   @override
   Map<String, dynamic> toJson() => super.toJson();

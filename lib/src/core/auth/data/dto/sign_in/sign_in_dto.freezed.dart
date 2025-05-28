@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SignInDto {
-  String get username => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
   /// Serializes this SignInDto to a JSON map.
@@ -34,7 +34,7 @@ abstract class $SignInDtoCopyWith<$Res> {
   factory $SignInDtoCopyWith(SignInDto value, $Res Function(SignInDto) then) =
       _$SignInDtoCopyWithImpl<$Res, SignInDto>;
   @useResult
-  $Res call({String username, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -52,13 +52,13 @@ class _$SignInDtoCopyWithImpl<$Res, $Val extends SignInDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
+    Object? email = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -76,7 +76,7 @@ abstract class _$$SignInDtoImplCopyWith<$Res>
       __$$SignInDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
@@ -92,13 +92,13 @@ class __$$SignInDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
+    Object? email = null,
     Object? password = null,
   }) {
     return _then(_$SignInDtoImpl(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -111,16 +111,16 @@ class __$$SignInDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class _$SignInDtoImpl implements _SignInDto {
-  _$SignInDtoImpl({required this.username, required this.password});
+  _$SignInDtoImpl({required this.email, required this.password});
 
   @override
-  final String username;
+  final String email;
   @override
   final String password;
 
   @override
   String toString() {
-    return 'SignInDto(username: $username, password: $password)';
+    return 'SignInDto(email: $email, password: $password)';
   }
 
   @override
@@ -128,15 +128,14 @@ class _$SignInDtoImpl implements _SignInDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SignInDtoImpl &&
-            (identical(other.username, username) ||
-                other.username == username) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, username, password);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   /// Create a copy of SignInDto
   /// with the given fields replaced by the non-null parameter values.
@@ -156,11 +155,11 @@ class _$SignInDtoImpl implements _SignInDto {
 
 abstract class _SignInDto implements SignInDto {
   factory _SignInDto(
-      {required final String username,
+      {required final String email,
       required final String password}) = _$SignInDtoImpl;
 
   @override
-  String get username;
+  String get email;
   @override
   String get password;
 

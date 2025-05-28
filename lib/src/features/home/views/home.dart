@@ -1,13 +1,12 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/const/colors.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
-import 'package:abiola_along_client_app/src/features/home/widgets/card_actions.dart';
+import 'package:abiola_along_client_app/src/features/home/widgets/card.dart';
 import 'package:abiola_along_client_app/src/features/home/widgets/my_assets.dart';
 import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
 import 'package:abiola_along_client_app/src/widgets/inter_tight_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../widgets/cached_image.dart';
@@ -30,7 +29,6 @@ class Home extends ConsumerStatefulWidget {
 class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
       appBar: const AppBarWidget(
         leadingIcon: AppAssets.menuIcon,
@@ -40,68 +38,7 @@ class _HomeState extends ConsumerState<Home> {
       backgroundColor: AppColors.bgWhite,
       body: CustomScrollView(
         slivers: [
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            color: AppColors.greenPrimary,
-            child: Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                SvgPicture.asset(AppAssets.cardPattern),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              InterTightText(
-                                'Credit',
-                                size: 12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.bgWhite,
-                              ),
-                              const Spacer(),
-                              SvgPicture.asset(AppAssets.visaLogo),
-                            ],
-                          ),
-                          33.height,
-                          InterTightText(
-                            '\$1,250.00',
-                            size: 24,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.bgWhite,
-                          ),
-                          Row(
-                            children: [
-                              InterTightText(
-                                'Available Balance',
-                                size: 12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.bgWhite,
-                              ),
-                              const Spacer(),
-                              InterTightText(
-                                'Available Balance',
-                                size: 12,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.bgWhite,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    16.height,
-                    const CardActions(),
-                  ],
-                ),
-              ],
-            ),
-          ).sliverPadding,
+          CardWidget().sliverPadding,
           12.height.sliver,
           const ActionTile(title: "My Assets", buttonText: "View All")
               .sliverPadding,
@@ -177,8 +114,8 @@ class _TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: const Color(0xffEBEBEB),
@@ -194,6 +131,7 @@ class _TransactionItem extends StatelessWidget {
           9.width,
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -205,25 +143,28 @@ class _TransactionItem extends StatelessWidget {
                     ),
                     const Spacer(),
                     InterTightText(
-                      "type",
-                      size: 12,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.blackPrimary,
+                      amount,
+                      size: 14,
+                      fontWeight: FontWeight.w500,
+                      // color: isIncoming
+                      //     ? AppColors.greenPrimary
+                      //     : AppColors.redPrimary,
                     ),
                   ],
                 ),
+                4.height,
                 Row(
                   children: [
                     InterTightText(
-                      "Incoming Transfer",
-                      size: 14,
+                      type,
+                      size: 12,
                       fontWeight: FontWeight.w400,
                       color: AppColors.textGrey,
                     ),
                     const Spacer(),
                     InterTightText(
-                      "May 28,2025",
-                      size: 14,
+                      date,
+                      size: 12,
                       fontWeight: FontWeight.w400,
                       color: AppColors.textGrey,
                     ),

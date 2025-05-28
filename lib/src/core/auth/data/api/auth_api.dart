@@ -9,7 +9,7 @@ part 'auth_api.g.dart';
 
 @RestApi()
 abstract interface class AuthApi {
-  factory AuthApi(Dio client) => _AuthApi(client, baseUrl: '/auth/');
+  factory AuthApi(Dio client) => _AuthApi(client);
 
   @POST('sign-up')
   Future<UserModel> signUp(@Body() SignUpDto signUpDto);

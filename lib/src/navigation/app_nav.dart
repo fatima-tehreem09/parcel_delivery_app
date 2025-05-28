@@ -6,14 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/views/sign_up/views/sign_up_view.dart';
+import '../features/auth/views/verification/verify_otp.dart';
 import '../features/bottom_nav_bar/views/bottom_nav_bar.dart';
 import '../features/home/views/home.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
 
 final routerConfigProvider = Provider<GoRouter>((ref) {
-  final driver = ref.watch(localDataProvider).getUserType == "driver";
-  final isUserStored = ref.watch(localDataProvider).getUserType.isNotEmpty;
   final accessToken = ref.watch(localDataProvider).accessToken;
   final branches = <StatefulShellBranch>[
     StatefulShellBranch(
@@ -28,6 +27,7 @@ final routerConfigProvider = Provider<GoRouter>((ref) {
     ),
   ];
   print('Total Branches : ${branches.length}');
+  print("access token:$accessToken");
   return GoRouter(
     navigatorKey: _navigatorKey,
     initialLocation: OnboardingPage.path,
@@ -51,6 +51,11 @@ final routerConfigProvider = Provider<GoRouter>((ref) {
         path: SignUpView.path,
         name: SignUpView.name,
         builder: SignUpView.builder,
+      ),
+      GoRoute(
+        path: VerifyCodeView.path,
+        name: VerifyCodeView.name,
+        builder: VerifyCodeView.builder,
       ),
 
       StatefulShellRoute.indexedStack(

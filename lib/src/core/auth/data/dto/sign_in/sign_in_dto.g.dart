@@ -8,6 +8,6 @@ part of 'sign_in_dto.dart';
 
 Map<String, dynamic> _$$SignInDtoImplToJson(_$SignInDtoImpl instance) =>
     <String, dynamic>{
-      'username': instance.username,
+      'email': instance.email,
       'password': instance.password,
     };

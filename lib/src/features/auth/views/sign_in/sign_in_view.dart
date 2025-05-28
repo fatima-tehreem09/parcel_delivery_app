@@ -1,5 +1,6 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
 import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
+import 'package:abiola_along_client_app/src/features/auth/views/sign_up/views/sign_up_view.dart';
 import 'package:abiola_along_client_app/src/features/home/views/home.dart';
 import 'package:abiola_along_client_app/src/widgets/inter_tight_text.dart';
 import 'package:abiola_along_client_app/src/widgets/primary_button.dart';
@@ -12,6 +13,7 @@ import 'package:reusables/mixins/form_state_mixin.dart';
 import 'package:reusables/reusables.dart';
 
 import '../../../../const/colors.dart';
+import '../../../../core/local/local_storage_repository.dart';
 import '../../../../widgets/app_textfield.dart';
 import '../../widgets/check_list_tile.dart';
 import '../../widgets/general_heading.dart';
@@ -53,14 +55,14 @@ class _SignInViewState extends ConsumerState<SignInView> with FormStateMixin {
   }
 
   bool _rememberMe = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     // bool isLoading =
-    // ref.watch(signInProvider) == const AppLoadingState.loading();
-    // final _=ref.watch(userByIdProvider);
+    //     ref.watch(signInProvider) == const AppLoadingState.loading();
     return AbsorbPointer(
-      absorbing: false,
+      absorbing: isLoading,
       child: Scaffold(
         backgroundColor: AppColors.bgWhite,
         body: SafeArea(
@@ -153,16 +155,15 @@ class _SignInViewState extends ConsumerState<SignInView> with FormStateMixin {
                       25.5.height,
                       AppButton(
                         onPressed: submitter,
-                        // text: isLoading ? "Please Wait.." : "Login",
-                        text: "Login",
+                        text: isLoading ? "Please Wait.." : "Login",
+                        // text: "Login",
                       ),
                       15.height,
                       HelperText(
                         text: "Don\'t have an account? ",
                         linkText: "Create one",
-                        onTap: () {},
+                        onTap: () => context.pushNamed(SignUpView.name),
                       ),
-                      50.height,
                     ],
                   ),
                 ),
@@ -179,7 +180,7 @@ class _SignInViewState extends ConsumerState<SignInView> with FormStateMixin {
     // final data = await performNetworkOperation(
     //   context,
     //   () => ref.read(signInProvider.notifier).signIn(
-    //         SignInModel(
+    //         UserModel(
     //           password: passwordController.text,
     //           email: emailController.text,
     //         ),
@@ -187,6 +188,22 @@ class _SignInViewState extends ConsumerState<SignInView> with FormStateMixin {
     // );
     // if (data == null) return;
     // if (!mounted) return;
-    context.goNamed(Home.name);
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      await Future.delayed(const Duration(seconds: 3));
+      final localData = ref.watch(localDataProvider);
+      await localData.setAccessToken(emailController.text);
+      if (!mounted) return;
+      context.goNamed(Home.name);
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
   }
 }

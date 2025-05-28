@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart' show BaseOptions, Dio;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// const kBaseUrl = 'https://apisurgemate.wespark.co/api/v1/';
-const kBaseUrl =
-    'https://surgemate-backend-170522911236.asia-south1.run.app/api/v1/';
+const kBaseUrl = "";
 
 final dioClientProvider = Provider(
   (ref) => Dio(
