@@ -1,6 +1,7 @@
 class AppAssets {
   static const iconPath = 'assets/icons/';
   static const imagePath = 'assets/images/';
+  static const assessmentPath = 'assets/assessment-assets/';
 
   static const passwordIcon = '${iconPath}password-icon.svg';
   static const logo = '${imagePath}app-logo.png';
@@ -49,4 +50,26 @@ class AppAssets {
   static const callDecline = '${iconPath}call-decline.svg';
   static const callAccept = '${iconPath}call-accept.svg';
   static const arrowForward = '${iconPath}arrow-forward.svg';
+
+  /// assessment assets
+  static const assessmentLogo = '${assessmentPath}app-logo.svg';
+  static const onBoarding1 = '${assessmentPath}onBarding1.svg';
+  static const onBoarding2 = '${assessmentPath}onBarding2.svg';
+  static const onBoarding3 = '${assessmentPath}onBarding3.svg';
+  static const arrowSVG = '${assessmentPath}arrow-left.svg';
+  static const passwordHideSVG = '${assessmentPath}eye-off.svg';
+  static const bgPattern = '${assessmentPath}bg-pattern.svg';
+  static const menuIcon = '${assessmentPath}menu.svg';
+  static const notificationIcon = '${assessmentPath}notification-icon.svg';
+  static const depositIcon = '${assessmentPath}deposit-icon.png';
+  static const bitcoinIcon = '${assessmentPath}bitcoin-icon.svg';
+  static const sendIcon = '${assessmentPath}send-icon.png';
+  static const withdrawIcon = '${assessmentPath}withdraw-icon.png';
+  static const convertIcon = '${assessmentPath}convert-icon.png';
+  static const tradeIcon = '${assessmentPath}trade-up.svg';
+  static const ethereumIcon = '${assessmentPath}ethereum-icon.svg';
+  static const creditCardInactive = '${assessmentPath}credit-card-inactive.svg';
+  static const homeFilledIcon = '${assessmentPath}home-filled.svg';
+  static const benefitsIcon = '${assessmentPath}benefits-icon.svg';
+  static const discoverIcon = '${assessmentPath}discover-icon.svg';
 }

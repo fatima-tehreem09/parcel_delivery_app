@@ -17,13 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SignUpDto {
   String get email => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  String get vehicle_model => throw _privateConstructorUsedError;
-  String get license_plate_number => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
   String? get password => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  String? get confirmPassword => throw _privateConstructorUsedError;
 
   /// Serializes this SignUpDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,12 +41,10 @@ abstract class $SignUpDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String email,
+      String name,
       String phone,
-      String vehicle_model,
-      String license_plate_number,
       @JsonKey(includeIfNull: false) String? password,
-      String role,
-      String status});
+      @JsonKey(includeIfNull: false) String? confirmPassword});
 }
 
 /// @nodoc
@@ -66,42 +63,32 @@ class _$SignUpDtoCopyWithImpl<$Res, $Val extends SignUpDto>
   @override
   $Res call({
     Object? email = null,
+    Object? name = null,
     Object? phone = null,
-    Object? vehicle_model = null,
-    Object? license_plate_number = null,
     Object? password = freezed,
-    Object? role = null,
-    Object? status = null,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      vehicle_model: null == vehicle_model
-          ? _value.vehicle_model
-          : vehicle_model // ignore: cast_nullable_to_non_nullable
-              as String,
-      license_plate_number: null == license_plate_number
-          ? _value.license_plate_number
-          : license_plate_number // ignore: cast_nullable_to_non_nullable
               as String,
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      confirmPassword: freezed == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -116,12 +103,10 @@ abstract class _$$SignUpDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String email,
+      String name,
       String phone,
-      String vehicle_model,
-      String license_plate_number,
       @JsonKey(includeIfNull: false) String? password,
-      String role,
-      String status});
+      @JsonKey(includeIfNull: false) String? confirmPassword});
 }
 
 /// @nodoc
@@ -138,42 +123,32 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
+    Object? name = null,
     Object? phone = null,
-    Object? vehicle_model = null,
-    Object? license_plate_number = null,
     Object? password = freezed,
-    Object? role = null,
-    Object? status = null,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_$SignUpDtoImpl(
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      vehicle_model: null == vehicle_model
-          ? _value.vehicle_model
-          : vehicle_model // ignore: cast_nullable_to_non_nullable
-              as String,
-      license_plate_number: null == license_plate_number
-          ? _value.license_plate_number
-          : license_plate_number // ignore: cast_nullable_to_non_nullable
               as String,
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
+      confirmPassword: freezed == confirmPassword
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -183,34 +158,27 @@ class __$$SignUpDtoImplCopyWithImpl<$Res>
 class _$SignUpDtoImpl implements _SignUpDto {
   _$SignUpDtoImpl(
       {required this.email,
+      required this.name,
       required this.phone,
-      required this.vehicle_model,
-      required this.license_plate_number,
       @JsonKey(includeIfNull: false) this.password,
-      this.role = 'USER',
-      this.status = 'ACTIVE'});
+      @JsonKey(includeIfNull: false) this.confirmPassword});
 
   @override
   final String email;
   @override
+  final String name;
+  @override
   final String phone;
-  @override
-  final String vehicle_model;
-  @override
-  final String license_plate_number;
   @override
   @JsonKey(includeIfNull: false)
   final String? password;
   @override
-  @JsonKey()
-  final String role;
-  @override
-  @JsonKey()
-  final String status;
+  @JsonKey(includeIfNull: false)
+  final String? confirmPassword;
 
   @override
   String toString() {
-    return 'SignUpDto(email: $email, phone: $phone, vehicle_model: $vehicle_model, license_plate_number: $license_plate_number, password: $password, role: $role, status: $status)';
+    return 'SignUpDto(email: $email, name: $name, phone: $phone, password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -219,21 +187,18 @@ class _$SignUpDtoImpl implements _SignUpDto {
         (other.runtimeType == runtimeType &&
             other is _$SignUpDtoImpl &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.vehicle_model, vehicle_model) ||
-                other.vehicle_model == vehicle_model) &&
-            (identical(other.license_plate_number, license_plate_number) ||
-                other.license_plate_number == license_plate_number) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.confirmPassword, confirmPassword) ||
+                other.confirmPassword == confirmPassword));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, email, phone, vehicle_model,
-      license_plate_number, password, role, status);
+  int get hashCode =>
+      Object.hash(runtimeType, email, name, phone, password, confirmPassword);
 
   /// Create a copy of SignUpDto
   /// with the given fields replaced by the non-null parameter values.
@@ -253,29 +218,25 @@ class _$SignUpDtoImpl implements _SignUpDto {
 
 abstract class _SignUpDto implements SignUpDto {
   factory _SignUpDto(
-      {required final String email,
-      required final String phone,
-      required final String vehicle_model,
-      required final String license_plate_number,
-      @JsonKey(includeIfNull: false) final String? password,
-      final String role,
-      final String status}) = _$SignUpDtoImpl;
+          {required final String email,
+          required final String name,
+          required final String phone,
+          @JsonKey(includeIfNull: false) final String? password,
+          @JsonKey(includeIfNull: false) final String? confirmPassword}) =
+      _$SignUpDtoImpl;
 
   @override
   String get email;
   @override
+  String get name;
+  @override
   String get phone;
-  @override
-  String get vehicle_model;
-  @override
-  String get license_plate_number;
   @override
   @JsonKey(includeIfNull: false)
   String? get password;
   @override
-  String get role;
-  @override
-  String get status;
+  @JsonKey(includeIfNull: false)
+  String? get confirmPassword;
 
   /// Create a copy of SignUpDto
   /// with the given fields replaced by the non-null parameter values.

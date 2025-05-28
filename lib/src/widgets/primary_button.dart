@@ -22,14 +22,16 @@ class AppButton extends StatelessWidget {
       style: TextButton.styleFrom(
         backgroundColor:
             // isLoading ? const Color(0xffE5E7EB) :
-            AppColors.primaryBlue,
+            AppColors.greenPrimary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(isLogout ? 20 : 100),
+          borderRadius: BorderRadius.circular(12),
         ),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.symmetric(
-            horizontal: isLogout ? 10 : 20, vertical: isLogout ? 10 : 16),
-        minimumSize: const Size(double.infinity, 52),
+          horizontal: 24,
+          vertical: 12,
+        ),
+        minimumSize: const Size(double.infinity, 48),
         elevation: 0.0,
         overlayColor: Colors.transparent,
       ),

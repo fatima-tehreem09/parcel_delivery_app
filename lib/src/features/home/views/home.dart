@@ -1,16 +1,7 @@
 import 'package:abiola_along_client_app/src/const/colors.dart';
-import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
-import 'package:abiola_along_client_app/src/features/home/views/driver_home.dart';
-import 'package:abiola_along_client_app/src/features/home/widgets/my_tag_widget.dart';
-import 'package:abiola_along_client_app/src/utils/google_map_util.dart';
-import 'package:abiola_along_client_app/src/widgets/app_bar.dart';
-import 'package:abiola_along_client_app/src/widgets/app_textfield.dart';
-import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../core/local/local_storage_repository.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home.builder(
@@ -19,8 +10,8 @@ class Home extends ConsumerStatefulWidget {
     super.key,
   });
 
-  static const path = "/home";
-  static const name = "home";
+  static const path = '/Home';
+  static const name = "Home";
 
   @override
   ConsumerState createState() => _HomeState();
@@ -28,59 +19,87 @@ class Home extends ConsumerStatefulWidget {
 
 class _HomeState extends ConsumerState<Home> {
   @override
-  void initState() {
-    super.initState();
-    ref.read(locationNotifierProvider.notifier).getCurrentPosition();
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Scaffold(
+      backgroundColor: AppColors.bgWhite,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildHeader(theme),
+              const SizedBox(height: 24),
+              _buildSectionTitle("Featured Image"),
+              const SizedBox(height: 12),
+              _buildImagePlaceholder(width: double.infinity, height: 200),
+              const SizedBox(height: 24),
+              _buildSectionTitle("Gallery"),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(3, (_) {
+                  return _buildImagePlaceholder(width: 100, height: 100);
+                }),
+              ),
+              const SizedBox(height: 24),
+              _buildSectionTitle("Description"),
+              const SizedBox(height: 8),
+              Text(
+                "This is a sample description to demonstrate the layout. "
+                "You can replace this text with real content.",
+                style: theme.textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final isDriver = ref.watch(localDataProvider).getUserType == "driver";
-    final location = ref.watch(locationNotifierProvider);
-    return !isDriver
-        ? Scaffold(
-            backgroundColor: AppColors.primaryScaffoldBg,
-            appBar: AppBarWidget(
-              location: location.currentAddress ?? ".......",
-              isDriver: isDriver,
-              isHomeView: true,
-              title: "Home",
-            ),
-            body: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AppTextField(
-                    isSearchField: true,
-                    hint: "Search",
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.search,
-                  ),
-                  20.heightBox,
-                  OnestText(
-                    "My Tags",
-                    size: 24,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.primaryBlack,
-                  ),
-                  20.heightBox,
-                  Expanded(
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) => 10.heightBox,
-                      shrinkWrap: true,
-                      itemCount: 20,
-                      itemBuilder: (index, context) {
-                        return MyTagWidget(
-                          onTap: () {},
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
-        : const DriverHome();
+  Widget _buildHeader(ThemeData theme) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "Expert Screen",
+          style: theme.textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const CircleAvatar(
+          radius: 24,
+          backgroundColor: Colors.grey,
+          child: Icon(Icons.person, color: Colors.white),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+  }
+
+  Widget _buildImagePlaceholder(
+      {required double width, required double height}) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade400),
+      ),
+      child: const Center(
+        child: Icon(Icons.image, size: 40, color: Colors.grey),
+      ),
+    );
   }
 }

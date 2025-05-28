@@ -39,30 +39,24 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
           : Info.fromJson(json['info'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
-  final val = <String, dynamic>{
-    '_id': instance.id,
-    'email': instance.email,
-    'phone': instance.phone,
-    'role': instance.role,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('total_earning', instance.totalEarning);
-  writeNotNull('vehicle_model', instance.vehicleModel);
-  writeNotNull('license_plate_number', instance.licensePlateNumber);
-  val['status'] = instance.status;
-  writeNotNull('createdAt', instance.createdAt?.toIso8601String());
-  writeNotNull('updatedAt', instance.updatedAt?.toIso8601String());
-  writeNotNull('__v', instance.v);
-  writeNotNull('info', instance.info?.toJson());
-  return val;
-}
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
+      '_id': instance.id,
+      'email': instance.email,
+      'phone': instance.phone,
+      'role': instance.role,
+      if (instance.totalEarning case final value?) 'total_earning': value,
+      if (instance.vehicleModel case final value?) 'vehicle_model': value,
+      if (instance.licensePlateNumber case final value?)
+        'license_plate_number': value,
+      'status': instance.status,
+      if (instance.createdAt?.toIso8601String() case final value?)
+        'createdAt': value,
+      if (instance.updatedAt?.toIso8601String() case final value?)
+        'updatedAt': value,
+      if (instance.v case final value?) '__v': value,
+      if (instance.info?.toJson() case final value?) 'info': value,
+    };
 
 _$InfoImpl _$$InfoImplFromJson(Map<String, dynamic> json) => _$InfoImpl(
       iss: json['iss'] as String,

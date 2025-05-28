@@ -40,7 +40,7 @@ class _AppState extends ConsumerState<App> {
           child: child!,
         );
       },
-      title: "Abiola Along",
+      title: "Fiacto",
       debugShowCheckedModeBanner: false,
       routerConfig: ref.read(routerConfigProvider),
     );

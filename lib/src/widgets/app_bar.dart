@@ -1,90 +1,60 @@
 import 'package:abiola_along_client_app/src/const/assets.dart';
-import 'package:abiola_along_client_app/src/const/colors.dart';
-import 'package:abiola_along_client_app/src/extensions/size_extension.dart';
 import 'package:abiola_along_client_app/src/widgets/icon_box.dart';
-import 'package:abiola_along_client_app/src/widgets/text_widget.dart';
+import 'package:abiola_along_client_app/src/widgets/inter_tight_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
+
+import '../const/colors.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
     super.key,
-    required this.title,
-    this.isHome = false,
-    this.isHomeView = false,
-    this.isDriver = false,
+    this.title = "",
+    this.titleIcon = AppAssets.logo,
+    this.shouldShowLeading = false,
     this.onTap,
-    this.location = "xyz",
+    this.leadingIcon = "",
   });
   final String title;
-  final bool isHome;
-  final bool isHomeView;
-  final bool isDriver;
+  final String titleIcon;
+  final bool shouldShowLeading;
   final void Function()? onTap;
-  final String location;
+  final String leadingIcon;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      forceMaterialTransparency: isDriver ? true : false,
-      backgroundColor: isDriver
-          ? AppColors.primaryWhite.withOpacity(0.5)
-          : Colors.transparent,
+      forceMaterialTransparency: true,
+      backgroundColor: Colors.transparent,
       elevation: 0.0,
       scrolledUnderElevation: 0.0,
-      leading: isHome
+      leading: !shouldShowLeading
           ? null
-          : isHomeView
-              ? const IconBox(
-                  margin: EdgeInsets.only(left: 20),
-                  color: Color(0xffECFDF5),
-                  icon: AppAssets.locationIcon)
-              : IconButton(
-                  icon: SvgPicture.asset(
-                    AppAssets.backArrowIcon,
-                    // fit: BoxFit.scaleDown,
-                  ),
-                  onPressed: () {
-                    context.pop();
-                  },
-                ),
-      centerTitle: false,
-      title: isHomeView
-          ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                OnestText(
-                  "Location",
-                  size: 13,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.hintDarkGrey,
-                ),
-                5.heightBox,
-                OnestText(
-                  location,
-                  size: 16,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xff15171C),
-                ),
-              ],
-            )
-          : OnestText(
+          : IconBox(
+              shouldShowBorder: true,
+              margin: EdgeInsets.only(left: 20),
+              color: AppColors.bgWhite,
+              icon: leadingIcon,
+            ),
+      centerTitle: true,
+      title: title != ""
+          ? InterTightText(
               title,
-              size: 24,
-              fontWeight: FontWeight.w700,
-              color: AppColors.primaryBlack,
+              fontWeight: FontWeight.w500,
+              size: 16,
+            )
+          : SvgPicture.asset(
+              titleIcon,
             ),
-      actions: [
-        if (isDriver)
-          GestureDetector(
-            onTap: onTap,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: SvgPicture.asset(AppAssets.targetIcon),
-            ),
-          ),
-      ],
+      // actions: [
+      //   Row(
+      //     children: [
+      //       GestureDetector(
+      //         onTap: onTap,
+      //         // child: IconBox(icon: )
+      //       ),
+      //     ],
+      //   ),
+      // ],
     );
   }
 

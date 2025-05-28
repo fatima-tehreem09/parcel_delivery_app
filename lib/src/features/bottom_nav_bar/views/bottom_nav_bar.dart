@@ -25,79 +25,77 @@ class _DashboardViewState extends ConsumerState<NavigationView> {
   Widget build(BuildContext context) {
     ref.watch(routerConfigProvider);
     ref.watch(localDataProvider);
-    final _ = ref.watch(localDataProvider);
-    final bool isDriver = _.getUserType == "driver";
-    print("isDriver on bbbb"
-        ": $isDriver  ");
 
     return Scaffold(
       backgroundColor: const Color(0xffF8F8FA),
-      extendBodyBehindAppBar: isDriver ? true : false,
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        clipBehavior: Clip.antiAlias,
+      extendBodyBehindAppBar: false,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.6),
+              offset: Offset(0, -4),
+              blurRadius: 8,
+              spreadRadius: 0,
+            ),
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.4),
+              offset: Offset(0, -4),
+              blurRadius: 8,
+              spreadRadius: 0,
+            ),
+          ],
+        ),
         child: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                AppAssets.homeGrey,
+                AppAssets.homeFilledIcon,
                 fit: BoxFit.scaleDown,
               ),
               activeIcon: SvgPicture.asset(
-                AppAssets.homeBlack,
+                AppAssets.homeFilledIcon,
                 fit: BoxFit.scaleDown,
               ),
-              label: '',
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                AppAssets.tagGrey,
+                AppAssets.creditCardInactive,
                 fit: BoxFit.scaleDown,
               ),
               activeIcon: SvgPicture.asset(
-                AppAssets.tagBlack,
+                AppAssets.creditCardInactive,
                 fit: BoxFit.scaleDown,
               ),
-              label: '',
-            ),
-            if (!isDriver)
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  AppAssets.addTag,
-                  fit: BoxFit.scaleDown,
-                ),
-                activeIcon: SvgPicture.asset(
-                  AppAssets.addTag,
-                  fit: BoxFit.scaleDown,
-                ),
-                label: '',
-              ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.notificationGrey,
-                fit: BoxFit.scaleDown,
-              ),
-              activeIcon: SvgPicture.asset(
-                AppAssets.notificationBlack,
-                fit: BoxFit.scaleDown,
-              ),
-              label: '',
+              label: 'Card',
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                AppAssets.profileGrey,
+                AppAssets.benefitsIcon,
                 fit: BoxFit.scaleDown,
               ),
               activeIcon: SvgPicture.asset(
-                AppAssets.profileBlack,
+                AppAssets.benefitsIcon,
                 fit: BoxFit.scaleDown,
               ),
-              label: '',
+              label: 'Benefits',
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppAssets.discoverIcon,
+                fit: BoxFit.scaleDown,
+              ),
+              activeIcon: SvgPicture.asset(
+                AppAssets.discoverIcon,
+                fit: BoxFit.scaleDown,
+              ),
+              label: 'Discover',
             ),
           ],
           onTap: (index) => _onTap(context, index),
           currentIndex: widget.navigationShell.currentIndex,
-          backgroundColor: AppColors.primaryWhite,
+          backgroundColor: AppColors.bgWhite,
           elevation: 0.0,
           showUnselectedLabels: false,
           showSelectedLabels: false,
